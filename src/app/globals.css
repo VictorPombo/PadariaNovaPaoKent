@@ -1,0 +1,444 @@
+@import "tailwindcss";
+
+/* =============================================
+   PADARIA NOVA PAOKENT — Design System Global
+   ============================================= */
+
+/* Fontes */
+:root {
+  /* Paleta Landing Page */
+  --color-brown-dark: #2C1A0E;
+  --color-cream: #F5EDD6;
+  --color-gold: #C9A84C;
+  --color-gold-light: #E2C06E;
+  --color-gold-dark: #9E7A2E;
+  --color-warm-white: #FAF6EF;
+  --color-coffee: #6B3F2A;
+  --color-coffee-light: #8B5E44;
+
+  /* Paleta Admin (Dark Mode) */
+  --color-admin-bg: #0F0F0F;
+  --color-admin-card: #1A1A1A;
+  --color-admin-border: #2A2A2A;
+  --color-admin-text: #E8E8E8;
+  --color-admin-muted: #888888;
+
+  /* Status Colors */
+  --color-critical: #EF4444;
+  --color-warning: #F59E0B;
+  --color-positive: #22C55E;
+  --color-info: #3B82F6;
+
+  /* Typography */
+  --font-serif: var(--font-playfair), 'Playfair Display', Georgia, serif;
+  --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
+
+  /* Shadows */
+  --shadow-gold: 0 0 30px rgba(201, 168, 76, 0.15);
+  --shadow-warm: 0 4px 40px rgba(44, 26, 14, 0.3);
+  --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Reset & Base */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* =============================================
+   LANDING PAGE STYLES
+   ============================================= */
+
+.landing-body {
+  background-color: var(--color-warm-white);
+  color: var(--color-brown-dark);
+}
+
+/* Textura de papel artesanal sutil */
+.paper-texture {
+  position: relative;
+}
+.paper-texture::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Tipografia Landing */
+.font-serif { font-family: var(--font-serif); }
+.font-sans { font-family: var(--font-sans); }
+
+/* Glassmorphism */
+.glass {
+  background: rgba(250, 246, 239, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+}
+
+.glass-dark {
+  background: rgba(15, 15, 15, 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+/* Gradientes */
+.gradient-gold {
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light));
+}
+
+.gradient-hero {
+  background: linear-gradient(180deg, rgba(44, 26, 14, 0.85) 0%, rgba(44, 26, 14, 0.6) 50%, rgba(44, 26, 14, 0.9) 100%);
+}
+
+.gradient-dark-bottom {
+  background: linear-gradient(to bottom, transparent, var(--color-brown-dark));
+}
+
+/* Botão Gold Premium */
+.btn-gold {
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+  color: var(--color-brown-dark);
+  font-weight: 700;
+  font-family: var(--font-sans);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-gold:hover::before { left: 100%; }
+.btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201, 168, 76, 0.4); }
+.btn-gold:active { transform: translateY(0); }
+
+/* Botão WhatsApp */
+.btn-whatsapp {
+  background: #25D366;
+  color: white;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.btn-whatsapp:hover { background: #1DA851; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37, 211, 102, 0.4); }
+
+/* Botão iFood */
+.btn-ifood {
+  background: #EA1D2C;
+  color: white;
+  font-weight: 700;
+  transition: all 0.3s ease;
+}
+.btn-ifood:hover { background: #C41525; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(234, 29, 44, 0.4); }
+
+/* Pulse animation para botões flutuantes */
+@keyframes pulse-green {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+
+@keyframes pulse-red {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(234, 29, 44, 0.4); }
+  50% { box-shadow: 0 0 0 12px rgba(234, 29, 44, 0); }
+}
+
+.pulse-green { animation: pulse-green 2s infinite; }
+.pulse-red { animation: pulse-red 2s infinite 0.5s; }
+
+/* Card de produto premium */
+.product-card {
+  background: var(--color-warm-white);
+  border: 1px solid rgba(201, 168, 76, 0.2);
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(44, 26, 14, 0.15), 0 0 0 1px rgba(201, 168, 76, 0.3);
+}
+
+/* Selo animado */
+@keyframes spin-slow { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+.seal-spin { animation: spin-slow 20s linear infinite; }
+
+/* Contador animado */
+@keyframes count-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.count-animate { animation: count-up 0.5s ease forwards; }
+
+/* Scroll reveal */
+@keyframes fade-in-up {
+  from { opacity: 0; transform: translateY(32px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.reveal { opacity: 0; }
+.reveal.visible { animation: fade-in-up 0.7s ease forwards; }
+
+/* =============================================
+   ADMIN PANEL STYLES (Dark Mode)
+   ============================================= */
+
+.admin-body {
+  background-color: var(--color-admin-bg);
+  color: var(--color-admin-text);
+  font-family: var(--font-sans);
+}
+
+/* Sidebar */
+.admin-sidebar {
+  background: var(--color-admin-card);
+  border-right: 1px solid var(--color-admin-border);
+  width: 260px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+  z-index: 40;
+  transition: transform 0.3s ease;
+}
+
+.admin-sidebar::-webkit-scrollbar { width: 4px; }
+.admin-sidebar::-webkit-scrollbar-track { background: transparent; }
+.admin-sidebar::-webkit-scrollbar-thumb { background: var(--color-admin-border); border-radius: 2px; }
+
+/* Admin Cards */
+.admin-card {
+  background: var(--color-admin-card);
+  border: 1px solid var(--color-admin-border);
+  border-radius: 12px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.admin-card:hover { border-color: rgba(201, 168, 76, 0.3); }
+
+/* KPI Card */
+.kpi-card {
+  background: linear-gradient(135deg, var(--color-admin-card), rgba(201, 168, 76, 0.05));
+  border: 1px solid var(--color-admin-border);
+  border-radius: 12px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.kpi-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.1), transparent);
+  border-radius: 50%;
+  transform: translate(20px, -20px);
+}
+
+.kpi-card:hover { border-color: rgba(201, 168, 76, 0.4); box-shadow: var(--shadow-gold); }
+
+/* Alert Cards */
+.alert-critical {
+  background: rgba(239, 68, 68, 0.08);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: 10px;
+}
+
+.alert-warning {
+  background: rgba(245, 158, 11, 0.08);
+  border: 1px solid rgba(245, 158, 11, 0.4);
+  border-radius: 10px;
+}
+
+.alert-positive {
+  background: rgba(34, 197, 94, 0.08);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  border-radius: 10px;
+}
+
+.alert-info {
+  background: rgba(59, 130, 246, 0.08);
+  border: 1px solid rgba(59, 130, 246, 0.4);
+  border-radius: 10px;
+}
+
+/* Meta progress bar */
+.goal-progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: var(--color-admin-border);
+  overflow: hidden;
+  position: relative;
+}
+
+.goal-progress-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-gold-dark), var(--color-gold), var(--color-gold-light));
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+.goal-progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Stock status badges */
+.badge-normal { background: rgba(34, 197, 94, 0.15); color: #22C55E; border: 1px solid rgba(34, 197, 94, 0.3); }
+.badge-low { background: rgba(245, 158, 11, 0.15); color: #F59E0B; border: 1px solid rgba(245, 158, 11, 0.3); }
+.badge-critical { background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.3); }
+.badge-zero { background: rgba(107, 114, 128, 0.15); color: #9CA3AF; border: 1px solid rgba(107, 114, 128, 0.3); }
+
+/* Input admin estilo dark */
+.admin-input {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-admin-border);
+  border-radius: 8px;
+  color: var(--color-admin-text);
+  font-family: var(--font-sans);
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.admin-input:focus {
+  border-color: var(--color-gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+/* Botão primário admin */
+.btn-admin-primary {
+  background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
+  color: var(--color-brown-dark);
+  font-weight: 700;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-admin-primary:hover { opacity: 0.9; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(201, 168, 76, 0.3); }
+
+/* Botão ghost admin */
+.btn-admin-ghost {
+  background: transparent;
+  border: 1px solid var(--color-admin-border);
+  color: var(--color-admin-text);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-admin-ghost:hover { background: rgba(255,255,255,0.05); border-color: var(--color-gold); }
+
+/* Heatmap */
+.heatmap-cell {
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.heatmap-cell:hover { transform: scale(1.2); z-index: 1; }
+
+.heat-0 { background: rgba(255,255,255,0.03); }
+.heat-1 { background: rgba(34, 197, 94, 0.2); }
+.heat-2 { background: rgba(245, 158, 11, 0.3); }
+.heat-3 { background: rgba(249, 115, 22, 0.5); }
+.heat-4 { background: rgba(239, 68, 68, 0.7); }
+
+/* Scrollbar personalizado global */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(201, 168, 76, 0.3); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(201, 168, 76, 0.5); }
+
+/* Seleção de texto */
+::selection { background: rgba(201, 168, 76, 0.3); color: var(--color-brown-dark); }
+
+/* Focus ring acessível */
+:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 2px;
+}
+
+/* Animações de entrada */
+@keyframes slide-in-right {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(0.95); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+.animate-slide-in-right { animation: slide-in-right 0.3s ease forwards; }
+.animate-slide-in-up { animation: slide-in-up 0.4s ease forwards; }
+.animate-scale-in { animation: scale-in 0.2s ease forwards; }
+
+/* Stagger children */
+.stagger > *:nth-child(1) { animation-delay: 0ms; }
+.stagger > *:nth-child(2) { animation-delay: 50ms; }
+.stagger > *:nth-child(3) { animation-delay: 100ms; }
+.stagger > *:nth-child(4) { animation-delay: 150ms; }
+.stagger > *:nth-child(5) { animation-delay: 200ms; }
+.stagger > *:nth-child(6) { animation-delay: 250ms; }
+
+/* Responsive helpers */
+@media (max-width: 768px) {
+  .admin-sidebar {
+    transform: translateX(-100%);
+  }
+  .admin-sidebar.open {
+    transform: translateX(0);
+  }
+}

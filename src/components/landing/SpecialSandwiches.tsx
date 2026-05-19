@@ -1,0 +1,330 @@
+'use client'
+
+import { useRef, useEffect } from 'react'
+
+const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20pedir%20um%20sanduíche%20'
+const IFOOD_URL = 'https://www.ifood.com.br'
+
+const specialSandwiches = [
+  {
+    name: 'Arthur Ramos',
+    ingredients: 'Presunto Parma, queijo estepe, rúcula, mostarda dijon',
+    price: 'R$ 47,90',
+    priceLarge: 'R$ 56,90',
+    emoji: '🥖',
+    featured: true,
+  },
+  {
+    name: 'Faria Lima',
+    ingredients: 'Salame, queijo estepe, molho tártaro, alface, tomate',
+    price: 'R$ 39,50',
+    priceLarge: 'R$ 46,50',
+    emoji: '🥖',
+    featured: false,
+  },
+  {
+    name: 'Cidade Jardim',
+    ingredients: 'Rosbife, queijo prato, catupiry, alface, tomate',
+    price: 'R$ 39,50',
+    priceLarge: 'R$ 46,50',
+    emoji: '🥖',
+    featured: false,
+  },
+  {
+    name: 'Iguatemi',
+    ingredients: 'Mortadela com pistache, queijo prato, molho rosé',
+    price: 'Consulte',
+    priceLarge: 'Consulte',
+    emoji: '🥖',
+    featured: false,
+  },
+  {
+    name: 'Tucumã',
+    ingredients: 'Peito de peru, mussarela de búfala, tomate seco, rúcula',
+    price: 'R$ 39,50',
+    priceLarge: 'R$ 46,50',
+    emoji: '🥖',
+    featured: false,
+  },
+  {
+    name: 'Amauri',
+    ingredients: 'Rosbife, parmesão, catupiry, rúcula, mostarda',
+    price: 'R$ 39,50',
+    priceLarge: 'R$ 46,50',
+    emoji: '🥖',
+    featured: false,
+  },
+]
+
+export default function SpecialSandwiches() {
+  const sectionRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cards = entry.target.querySelectorAll('.sandwich-card')
+            cards.forEach((card, i) => {
+              setTimeout(() => {
+                ;(card as HTMLElement).style.opacity = '1'
+                ;(card as HTMLElement).style.transform = 'translateY(0)'
+              }, i * 100)
+            })
+          }
+        })
+      },
+      { threshold: 0.1 }
+    )
+
+    if (sectionRef.current) observer.observe(sectionRef.current)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section
+      id="especiais"
+      ref={sectionRef}
+      style={{
+        background: '#2C1A0E',
+        padding: '96px 24px',
+      }}
+    >
+      <div style={{ maxWidth: '1280px', margin: '0 auto' }}>
+        {/* Header da seção */}
+        <div style={{ textAlign: 'center', marginBottom: '64px' }}>
+          <span
+            style={{
+              color: '#C9A84C',
+              fontSize: '12px',
+              fontWeight: '700',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+            }}
+          >
+            Identidade Local
+          </span>
+          <h2
+            style={{
+              fontFamily: 'var(--font-playfair)',
+              fontSize: 'clamp(28px, 4vw, 48px)',
+              fontWeight: '700',
+              color: '#FAF6EF',
+              marginTop: '12px',
+              marginBottom: '16px',
+              lineHeight: '1.2',
+            }}
+          >
+            Sanduíches que têm o nome
+            <br />
+            <span
+              style={{
+                background: 'linear-gradient(135deg, #C9A84C, #E2C06E)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+              }}
+            >
+              do seu bairro.
+            </span>
+          </h2>
+          <p style={{ color: 'rgba(250,246,239,0.6)', fontSize: '16px', maxWidth: '560px', margin: '0 auto' }}>
+            Cada sanduíche homenageia uma rua do Jardim Paulistano. Porque aqui,
+            a tradição tem endereço.
+          </p>
+        </div>
+
+        {/* Grid de sanduíches */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+            gap: '20px',
+          }}
+        >
+          {specialSandwiches.map((sandwich, index) => (
+            <div
+              key={sandwich.name}
+              className="sandwich-card"
+              style={{
+                opacity: 0,
+                transform: 'translateY(24px)',
+                transition: 'all 0.5s ease',
+                background: sandwich.featured
+                  ? 'linear-gradient(135deg, rgba(201,168,76,0.15), rgba(26,16,8,1))'
+                  : 'rgba(255,255,255,0.04)',
+                border: sandwich.featured
+                  ? '1px solid rgba(201,168,76,0.4)'
+                  : '1px solid rgba(255,255,255,0.08)',
+                borderRadius: '16px',
+                padding: '24px',
+                position: 'relative',
+                overflow: 'hidden',
+              }}
+            >
+              {/* Imagem do sanduíche */}
+              <div
+                style={{
+                  width: '100%',
+                  height: '180px',
+                  borderRadius: '10px',
+                  marginBottom: '20px',
+                  background: 'rgba(255,255,255,0.05)',
+                  backgroundImage: 'url(/sandwich-premium.jpg)',
+                  backgroundSize: 'cover',
+                  backgroundPosition: 'center',
+                  position: 'relative',
+                  overflow: 'hidden',
+                }}
+              >
+                {sandwich.featured && (
+                  <span
+                    style={{
+                      position: 'absolute',
+                      top: '10px',
+                      right: '10px',
+                      background: 'linear-gradient(135deg, #9E7A2E, #C9A84C)',
+                      color: '#2C1A0E',
+                      fontSize: '10px',
+                      fontWeight: '800',
+                      padding: '4px 10px',
+                      borderRadius: '999px',
+                      letterSpacing: '0.08em',
+                    }}
+                  >
+                    ★ MAIS PEDIDO
+                  </span>
+                )}
+              </div>
+
+              {/* Número do sanduíche */}
+              <span
+                style={{
+                  fontSize: '11px',
+                  color: '#C9A84C',
+                  fontWeight: '600',
+                  letterSpacing: '0.1em',
+                }}
+              >
+                Nº {String(index + 1).padStart(2, '0')}
+              </span>
+
+              {/* Nome */}
+              <h3
+                style={{
+                  fontFamily: 'var(--font-playfair)',
+                  fontSize: '22px',
+                  fontWeight: '700',
+                  color: '#FAF6EF',
+                  marginTop: '4px',
+                  marginBottom: '8px',
+                }}
+              >
+                {sandwich.name}
+              </h3>
+
+              {/* Ingredientes */}
+              <p
+                style={{
+                  color: 'rgba(250,246,239,0.5)',
+                  fontSize: '14px',
+                  lineHeight: '1.6',
+                  marginBottom: '20px',
+                }}
+              >
+                {sandwich.ingredients}
+              </p>
+
+              {/* Preços */}
+              <div
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  marginBottom: '16px',
+                }}
+              >
+                <div>
+                  <p style={{ color: '#888888', fontSize: '11px', marginBottom: '2px' }}>
+                    Pão francês
+                  </p>
+                  <p
+                    style={{
+                      color: '#C9A84C',
+                      fontSize: '22px',
+                      fontWeight: '700',
+                      fontFamily: 'var(--font-playfair)',
+                    }}
+                  >
+                    {sandwich.price}
+                  </p>
+                </div>
+                {sandwich.priceLarge !== sandwich.price && (
+                  <div style={{ textAlign: 'right' }}>
+                    <p style={{ color: '#888888', fontSize: '11px', marginBottom: '2px' }}>
+                      Baguete/ciabatta
+                    </p>
+                    <p style={{ color: 'rgba(201,168,76,0.7)', fontSize: '18px', fontWeight: '600' }}>
+                      {sandwich.priceLarge}
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              {/* Botões */}
+              <div style={{ display: 'flex', gap: '8px' }}>
+                <a
+                  href={`${WHATSAPP_URL}${encodeURIComponent(sandwich.name)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '6px',
+                    background: '#25D366',
+                    color: 'white',
+                    fontWeight: '700',
+                    fontSize: '13px',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = '0.85' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
+                >
+                  WhatsApp
+                </a>
+                <a
+                  href={IFOOD_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    flex: 1,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: '6px',
+                    background: '#EA1D2C',
+                    color: 'white',
+                    fontWeight: '700',
+                    fontSize: '13px',
+                    padding: '10px',
+                    borderRadius: '8px',
+                    textDecoration: 'none',
+                    transition: 'all 0.2s',
+                  }}
+                  onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.opacity = '0.85' }}
+                  onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.opacity = '1' }}
+                >
+                  iFood
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
