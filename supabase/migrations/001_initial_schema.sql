@@ -38,9 +38,12 @@ CREATE TABLE push_subscriptions (
   user_id UUID REFERENCES auth.users(id) ON DELETE CASCADE,
   subscription JSONB NOT NULL,
   device_name TEXT,
-  created_at TIMESTAMPTZ DEFAULT NOW(),
-  UNIQUE(user_id, (subscription->>'endpoint'))
+  created_at TIMESTAMPTZ DEFAULT NOW()
 );
+
+-- Índice único no endpoint do push subscription (expressão JSONB deve ser índice, não constraint inline)
+CREATE UNIQUE INDEX idx_push_subscriptions_user_endpoint
+  ON push_subscriptions (user_id, (subscription->>'endpoint'));
 
 -- =============================================
 -- CARDÁPIO
