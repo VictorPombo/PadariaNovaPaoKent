@@ -16,12 +16,12 @@
   --color-coffee: #6B3F2A;
   --color-coffee-light: #8B5E44;
 
-  /* Paleta Admin (Dark Mode) */
-  --color-admin-bg: #0F0F0F;
-  --color-admin-card: #1A1A1A;
-  --color-admin-border: #2A2A2A;
-  --color-admin-text: #E8E8E8;
-  --color-admin-muted: #888888;
+  /* Paleta Admin (Light Mode Strict) */
+  --color-admin-bg: #F9FAFB;
+  --color-admin-card: #FFFFFF;
+  --color-admin-border: #E5E7EB;
+  --color-admin-text: #111827;
+  --color-admin-muted: #9CA3AF;
 
   /* Status Colors */
   --color-critical: #EF4444;
@@ -39,13 +39,11 @@
   --shadow-card: 0 2px 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Reset & Base */
+/* Reset & Base — box-sizing only; Tailwind v4 preflight handles margin/padding */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 html {
@@ -218,38 +216,26 @@ body {
   font-family: var(--font-sans);
 }
 
-/* Sidebar */
-.admin-sidebar {
-  background: var(--color-admin-card);
-  border-right: 1px solid var(--color-admin-border);
-  width: 260px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  overflow-y: auto;
-  z-index: 40;
-  transition: transform 0.3s ease;
-}
 
-.admin-sidebar::-webkit-scrollbar { width: 4px; }
-.admin-sidebar::-webkit-scrollbar-track { background: transparent; }
-.admin-sidebar::-webkit-scrollbar-thumb { background: var(--color-admin-border); border-radius: 2px; }
 
 /* Admin Cards */
 .admin-card {
-  background: var(--color-admin-card);
-  border: 1px solid var(--color-admin-border);
+  background: rgba(255, 255, 255, 0.65);
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-.admin-card:hover { border-color: rgba(201, 168, 76, 0.3); }
+.admin-card:hover { border-color: rgba(201, 168, 76, 0.35); }
 
 /* KPI Card */
 .kpi-card {
-  background: linear-gradient(135deg, var(--color-admin-card), rgba(201, 168, 76, 0.05));
-  border: 1px solid var(--color-admin-border);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(201, 168, 76, 0.05));
+  border: 1px solid rgba(201, 168, 76, 0.18);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   border-radius: 12px;
   padding: 20px;
   transition: all 0.3s ease;
@@ -264,12 +250,12 @@ body {
   right: 0;
   width: 60px;
   height: 60px;
-  background: radial-gradient(circle, rgba(201, 168, 76, 0.1), transparent);
+  background: radial-gradient(circle, rgba(201, 168, 76, 0.08), transparent);
   border-radius: 50%;
   transform: translate(20px, -20px);
 }
 
-.kpi-card:hover { border-color: rgba(201, 168, 76, 0.4); box-shadow: var(--shadow-gold); }
+.kpi-card:hover { border-color: rgba(201, 168, 76, 0.35); box-shadow: var(--shadow-gold); }
 
 /* Alert Cards */
 .alert-critical {
@@ -335,12 +321,12 @@ body {
 .badge-critical { background: rgba(239, 68, 68, 0.15); color: #EF4444; border: 1px solid rgba(239, 68, 68, 0.3); }
 .badge-zero { background: rgba(107, 114, 128, 0.15); color: #9CA3AF; border: 1px solid rgba(107, 114, 128, 0.3); }
 
-/* Input admin estilo dark */
+/* Input admin estilo light */
 .admin-input {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--color-admin-border);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(201, 168, 76, 0.22);
   border-radius: 8px;
-  color: var(--color-admin-text);
+  color: #2C1A0E;
   font-family: var(--font-sans);
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
@@ -354,7 +340,7 @@ body {
 /* Botão primário admin */
 .btn-admin-primary {
   background: linear-gradient(135deg, var(--color-gold-dark), var(--color-gold));
-  color: var(--color-brown-dark);
+  color: #FAF8F5;
   font-weight: 700;
   border: none;
   border-radius: 8px;
@@ -366,15 +352,15 @@ body {
 
 /* Botão ghost admin */
 .btn-admin-ghost {
-  background: transparent;
-  border: 1px solid var(--color-admin-border);
-  color: var(--color-admin-text);
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(201, 168, 76, 0.22);
+  color: #2C1A0E;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.btn-admin-ghost:hover { background: rgba(255,255,255,0.05); border-color: var(--color-gold); }
+.btn-admin-ghost:hover { background: rgba(255,255,255,0.8); border-color: var(--color-gold); }
 
 /* Heatmap */
 .heatmap-cell {
@@ -433,12 +419,104 @@ body {
 .stagger > *:nth-child(5) { animation-delay: 200ms; }
 .stagger > *:nth-child(6) { animation-delay: 250ms; }
 
-/* Responsive helpers */
-@media (max-width: 768px) {
-  .admin-sidebar {
-    transform: translateX(-100%);
-  }
-  .admin-sidebar.open {
-    transform: translateX(0);
-  }
+/* =============================================
+   PREMIUM ADMIN UPGRADE CLASSES
+   ============================================= */
+
+.admin-glass-card {
+  background: rgba(30, 20, 15, 0.45) !important;
+  backdrop-filter: blur(20px) saturate(140%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(140%) !important;
+  border: 1px solid rgba(201, 168, 76, 0.12) !important;
+  border-radius: 16px !important;
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
+
+.admin-glass-card:hover {
+  border-color: rgba(201, 168, 76, 0.28) !important;
+  box-shadow: 0 16px 48px -8px rgba(0, 0, 0, 0.6), 0 0 24px 0 rgba(201, 168, 76, 0.08) !important;
+  transform: translateY(-2px) !important;
+}
+
+.sidebar-glass {
+  background: rgba(18, 11, 8, 0.6) !important;
+  backdrop-filter: blur(28px) !important;
+  -webkit-backdrop-filter: blur(28px) !important;
+  border-right: 1px solid rgba(201, 168, 76, 0.1) !important;
+}
+
+.ambient-orb {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(140px);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.18;
+  mix-blend-mode: screen;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #FAF6EF 10%, #E2C06E 60%, #C9A84C 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.btn-premium-gold {
+  background: linear-gradient(135deg, #9E7A2E 0%, #C9A84C 50%, #E2C06E 100%) !important;
+  color: #1A0F0A !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+  letter-spacing: 0.03em !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  border-radius: 12px !important;
+  box-shadow: 0 4px 15px rgba(201, 168, 76, 0.25), inset 0 1px 1px rgba(255, 255, 255, 0.3) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+}
+
+.btn-premium-gold:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.45), inset 0 1px 2px rgba(255, 255, 255, 0.4) !important;
+  filter: brightness(1.08) !important;
+}
+
+.btn-premium-ghost {
+  background: rgba(201, 168, 76, 0.04) !important;
+  color: #FAF6EF !important;
+  font-weight: 600 !important;
+  font-size: 13px !important;
+  border: 1px solid rgba(201, 168, 76, 0.2) !important;
+  border-radius: 12px !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  cursor: pointer !important;
+}
+
+.btn-premium-ghost:hover {
+  background: rgba(201, 168, 76, 0.1) !important;
+  border-color: rgba(201, 168, 76, 0.45) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* Custom scrollbars inside dark lists */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(201, 168, 76, 0.15);
+  border-radius: 2px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(201, 168, 76, 0.3);
+}
+
+
+

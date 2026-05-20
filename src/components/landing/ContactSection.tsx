@@ -1,3 +1,4 @@
+// Seção de Contato da Padaria Nova Paokent
 'use client'
 
 const MAPS_URL = 'https://maps.google.com/?q=Rua+Prof+Artur+Ramos+223+Jardim+Paulistano+São+Paulo'

@@ -1,32 +1,207 @@
 'use client'
 
+import { useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
 import type { Profile } from '@/types'
+import {
+  LayoutDashboard,
+  AlertTriangle,
+  ShoppingCart,
+  DollarSign,
+  BarChart3,
+  Package,
+  ChefHat,
+  Trash2,
+  CreditCard,
+  Users,
+  Star,
+  ClipboardList,
+  Footprints,
+  Target,
+  Share2,
+  Brain,
+  FileText,
+  Wrench,
+  Settings,
+  LogOut,
+  Menu,
+  X,
+  Globe,
+  type LucideIcon,
+} from 'lucide-react'
 
-const navItems = [
-  { href: '/admin/dashboard', icon: '🏠', label: 'Dashboard' },
-  { href: '/admin/alerts', icon: '🚨', label: 'Alertas' },
-  { href: '/admin/orders', icon: '🛒', label: 'Pedidos' },
-  { href: '/admin/revenue', icon: '💰', label: 'Faturamento' },
-  { href: '/admin/dre', icon: '📊', label: 'DRE & CMV' },
-  { href: '/admin/stock', icon: '📦', label: 'Estoque' },
-  { href: '/admin/production', icon: '🍞', label: 'Produção' },
-  { href: '/admin/waste', icon: '🗑️', label: 'Desperdício' },
-  { href: '/admin/expenses', icon: '💳', label: 'Gastos' },
-  { href: '/admin/customers', icon: '👥', label: 'CRM Clientes' },
-  { href: '/admin/reviews', icon: '⭐', label: 'Avaliações' },
-  { href: '/admin/menu', icon: '📋', label: 'Cardápio' },
-  { href: '/admin/foot-traffic', icon: '🧑', label: 'Fluxo Presencial' },
-  { href: '/admin/goals', icon: '🎯', label: 'Metas' },
-  { href: '/admin/social', icon: '📱', label: 'Redes Sociais' },
-  { href: '/admin/ai-assistant', icon: '🧠', label: 'IA Gerencial' },
-  { href: '/admin/reports', icon: '📊', label: 'Relatórios' },
-  { href: '/admin/equipment', icon: '🔧', label: 'Equipamentos' },
-  { href: '/admin/settings', icon: '⚙️', label: 'Sistema' },
+// ---------------------------------------------------------------------------
+// Types & Config
+// ---------------------------------------------------------------------------
+
+interface NavItem {
+  href: string
+  icon: LucideIcon
+  label: string
+}
+
+interface NavCategory {
+  title: string
+  items: NavItem[]
+}
+
+const navCategories: NavCategory[] = [
+  {
+    title: 'OPERAÇÃO',
+    items: [
+      { href: '/admin/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
+      { href: '/admin/alerts', icon: AlertTriangle, label: 'Alertas' },
+      { href: '/admin/orders', icon: ShoppingCart, label: 'Pedidos' },
+      { href: '/admin/revenue', icon: DollarSign, label: 'Faturamento' },
+      { href: '/admin/stock', icon: Package, label: 'Estoque' },
+      { href: '/admin/production', icon: ChefHat, label: 'Produção' },
+      { href: '/admin/waste', icon: Trash2, label: 'Desperdício' },
+      { href: '/admin/menu', icon: ClipboardList, label: 'Cardápio' },
+      { href: '/admin/equipment', icon: Wrench, label: 'Equipamentos' },
+    ],
+  },
+  {
+    title: 'FINANCEIRO',
+    items: [
+      { href: '/admin/dre', icon: BarChart3, label: 'DRE & CMV' },
+      { href: '/admin/expenses', icon: CreditCard, label: 'Gastos' },
+      { href: '/admin/goals', icon: Target, label: 'Metas' },
+      { href: '/admin/foot-traffic', icon: Footprints, label: 'Fluxo presencial' },
+      { href: '/admin/reports', icon: FileText, label: 'Relatórios' },
+    ],
+  },
+  {
+    title: 'CRM & IA',
+    items: [
+      { href: '/admin/customers', icon: Users, label: 'CRM Clientes' },
+      { href: '/admin/reviews', icon: Star, label: 'Avaliações' },
+      { href: '/admin/social', icon: Share2, label: 'Redes sociais' },
+      { href: '/admin/ai-assistant', icon: Brain, label: 'IA Gerencial' },
+      { href: '/admin/settings', icon: Settings, label: 'Sistema' },
+    ],
+  },
 ]
+
+const roleLabels: Record<string, string> = {
+  owner: 'Proprietário',
+  manager: 'Gerente',
+  cashier: 'Caixa',
+}
+
+interface SidebarContentProps {
+  profile: Profile | null
+  pathname: string
+  onLogout: () => void
+  onNavClick?: () => void
+}
+
+// ---------------------------------------------------------------------------
+// SidebarContent Component
+// ---------------------------------------------------------------------------
+
+function SidebarContent({ profile, pathname, onLogout, onNavClick }: SidebarContentProps) {
+  return (
+    <div className="flex flex-col h-full overflow-hidden bg-transparent">
+      {/* Logo */}
+      <div className="flex items-center gap-3 px-5 py-6 flex-shrink-0 border-b border-[#C9A84C]/10">
+        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9E7A2E] to-[#C9A84C] flex items-center justify-center text-base shadow-md shadow-black/40 border border-white/10">
+          🍞
+        </div>
+        <div>
+          <p className="font-bold text-[14px] leading-tight text-[#FAF6EF] tracking-wide" style={{ fontFamily: 'var(--font-serif)' }}>
+            Nova Pão Kent
+          </p>
+          <p className="text-[9px] text-[#C9A84C] font-extrabold tracking-widest mt-0.5">
+            PAINEL GERENCIAL
+          </p>
+        </div>
+      </div>
+
+      {/* Nav Links */}
+      <nav className="flex-1 px-3 py-4 space-y-6 overflow-y-auto custom-scrollbar">
+        {navCategories.map((category) => (
+          <div key={category.title}>
+            <p className="px-3 mb-2.5 text-[9px] font-extrabold uppercase tracking-widest text-[#9E7A2E]/90">
+              {category.title}
+            </p>
+            <div className="space-y-1">
+              {category.items.map((item) => {
+                const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
+                const Icon = item.icon
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={onNavClick}
+                    className={`flex items-center gap-3 px-3.5 py-2 text-[13px] rounded-xl transition-all duration-200 group outline-none relative border ${
+                      isActive
+                        ? 'text-[#FAF6EF] font-semibold bg-[#C9A84C]/8 border-[#C9A84C]/20 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]'
+                        : 'text-neutral-400 hover:text-white hover:bg-white/[0.02] border-transparent'
+                    }`}
+                  >
+                    <Icon 
+                      size={16} 
+                      strokeWidth={isActive ? 2.5 : 2} 
+                      className={isActive ? 'text-[#C9A84C]' : 'text-neutral-500 group-hover:text-neutral-300 transition-colors'} 
+                    />
+                    <span className="truncate">{item.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        ))}
+      </nav>
+
+      {/* User info + Bottom Actions */}
+      <div className="px-4 py-4 flex-shrink-0 border-t border-[#C9A84C]/10 bg-black/10 backdrop-blur-md">
+        <Link
+          href="/"
+          target="_blank"
+          onClick={onNavClick}
+          className="flex items-center gap-3 px-3 py-2 text-xs mb-3 transition-colors text-neutral-400 hover:text-white hover:bg-white/5 rounded-lg group"
+        >
+          <Globe size={14} className="text-neutral-500 group-hover:text-neutral-300 transition-colors" />
+          <span>Ver site público</span>
+        </Link>
+        
+        <div className="flex items-center justify-between px-1">
+          <div className="flex items-center gap-3 min-w-0">
+            <div 
+              className="w-8 h-8 flex-shrink-0 rounded-full flex items-center justify-center font-bold text-xs shadow-md border border-white/10"
+              style={{ background: 'linear-gradient(135deg, #9E7A2E 0%, #C9A84C 100%)', color: '#1A0F0A' }}
+            >
+              {profile?.full_name?.[0]?.toUpperCase() || 'A'}
+            </div>
+            <div className="flex flex-col truncate min-w-0">
+              <span className="text-xs font-semibold text-[#FAF6EF] truncate">
+                {profile?.full_name?.split(' ')[0] || 'Admin'}
+              </span>
+              <span className="text-[10px] text-neutral-500 truncate">
+                {roleLabels[profile?.role || ''] || 'Acesso'}
+              </span>
+            </div>
+          </div>
+          <button
+            onClick={onLogout}
+            className="flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-lg text-neutral-400 hover:text-red-400 hover:bg-red-500/10 transition-all cursor-pointer bg-transparent border border-transparent hover:border-red-500/20 outline-none"
+            title="Sair do sistema"
+          >
+            <LogOut size={15} />
+          </button>
+        </div>
+      </div>
+    </div>
+  )
+}
+
+// ---------------------------------------------------------------------------
+// Main Sidebar Component
+// ---------------------------------------------------------------------------
 
 interface AdminSidebarProps {
   profile: Profile | null
@@ -36,112 +211,79 @@ export default function AdminSidebar({ profile }: AdminSidebarProps) {
   const pathname = usePathname()
   const router = useRouter()
   const supabase = createClient()
+  const [mobileOpen, setMobileOpen] = useState(false)
 
-  const roleLabels: Record<string, string> = {
-    owner: '👑 Proprietário',
-    manager: '🎯 Gerente',
-    cashier: '💳 Caixa',
-  }
+  useEffect(() => {
+    setMobileOpen(false)
+  }, [pathname])
 
-  async function handleLogout() {
+  const handleLogout = useCallback(async () => {
     await supabase.auth.signOut()
     router.push('/auth/login')
     router.refresh()
-  }
+  }, [supabase, router])
+
+  const closeMobile = useCallback(() => {
+    setMobileOpen(false)
+  }, [])
 
   return (
     <>
-      {/* Sidebar Desktop */}
+      {/* Mobile Toggle Button */}
+      <button
+        onClick={() => setMobileOpen((v) => !v)}
+        className="lg:hidden fixed top-[12px] left-4 z-50 flex items-center justify-center w-10 h-10 rounded-xl border border-[#C9A84C]/25 bg-[#2C1A0E]/80 backdrop-blur-md text-[#FAF6EF] hover:bg-[#3d2719]/80 transition-all shadow-md cursor-pointer"
+      >
+        {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+      </button>
+
+      {/* Desktop Sidebar */}
       <aside
         id="admin-sidebar"
-        className="hidden lg:flex flex-col fixed top-0 left-0 h-screen z-40 overflow-y-auto"
-        style={{
-          width: '260px',
-          background: '#1A1A1A',
-          borderRight: '1px solid #2A2A2A',
-        }}
+        className="hidden lg:flex flex-col h-screen overflow-hidden w-[260px] sidebar-glass flex-shrink-0 relative z-20"
       >
-        {/* Logo */}
-        <div
-          className="flex items-center gap-3 px-5 py-5"
-          style={{ borderBottom: '1px solid #2A2A2A' }}
-        >
-          <div
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-xl flex-shrink-0"
-            style={{ background: 'linear-gradient(135deg, #9E7A2E, #C9A84C)' }}
-          >
-            🍞
-          </div>
-          <div>
-            <p className="font-bold text-sm leading-tight" style={{ color: '#FAF6EF', fontFamily: 'var(--font-playfair)' }}>
-              Nova Paokent
-            </p>
-            <p className="text-xs" style={{ color: '#C9A84C' }}>Gestão Inteligente</p>
-          </div>
-        </div>
-
-        {/* User info */}
-        {profile && (
-          <div
-            className="px-5 py-3 mx-3 my-3 rounded-xl"
-            style={{ background: 'rgba(201,168,76,0.08)', border: '1px solid rgba(201,168,76,0.15)' }}
-          >
-            <p className="text-sm font-medium truncate" style={{ color: '#E8E8E8' }}>
-              {profile.full_name}
-            </p>
-            <p className="text-xs" style={{ color: '#C9A84C' }}>
-              {roleLabels[profile.role] || profile.role}
-            </p>
-          </div>
-        )}
-
-        {/* Nav Links */}
-        <nav className="flex-1 px-3 pb-4 space-y-0.5">
-          {navItems.map((item) => {
-            const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all duration-150"
-                style={{
-                  background: isActive ? 'rgba(201,168,76,0.15)' : 'transparent',
-                  color: isActive ? '#C9A84C' : '#888888',
-                  fontWeight: isActive ? '600' : '400',
-                  textDecoration: 'none',
-                  borderLeft: isActive ? '2px solid #C9A84C' : '2px solid transparent',
-                }}
-              >
-                <span className="text-base w-5 text-center flex-shrink-0">{item.icon}</span>
-                <span className="truncate">{item.label}</span>
-              </Link>
-            )
-          })}
-        </nav>
-
-        {/* Logout + Site link */}
-        <div className="px-3 py-4" style={{ borderTop: '1px solid #2A2A2A' }}>
-          <Link
-            href="/"
-            target="_blank"
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm mb-1 transition-colors"
-            style={{ color: '#555555', textDecoration: 'none' }}
-          >
-            <span>🌐</span>
-            <span>Ver site público</span>
-          </Link>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm w-full text-left transition-colors"
-            style={{ color: '#555555', background: 'transparent', border: 'none', cursor: 'pointer', width: '100%' }}
-            onMouseEnter={(e) => { (e.target as HTMLElement).style.color = '#EF4444' }}
-            onMouseLeave={(e) => { (e.target as HTMLElement).style.color = '#555555' }}
-          >
-            <span>🚪</span>
-            <span>Sair</span>
-          </button>
-        </div>
+        <SidebarContent
+          profile={profile}
+          pathname={pathname}
+          onLogout={handleLogout}
+        />
       </aside>
+
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              key="sidebar-backdrop"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-40 lg:hidden bg-black/70 backdrop-blur-sm"
+              onClick={closeMobile}
+              aria-hidden="true"
+            />
+
+            {/* Drawer */}
+            <motion.aside
+              key="sidebar-drawer"
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', stiffness: 350, damping: 35 }}
+              className="fixed top-0 left-0 h-screen z-50 flex flex-col lg:hidden overflow-hidden w-[260px] sidebar-glass shadow-2xl"
+            >
+              <SidebarContent
+                profile={profile}
+                pathname={pathname}
+                onLogout={handleLogout}
+                onNavClick={closeMobile}
+              />
+            </motion.aside>
+          </>
+        )}
+      </AnimatePresence>
     </>
   )
 }

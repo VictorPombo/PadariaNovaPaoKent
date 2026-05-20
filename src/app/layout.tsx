@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Playfair_Display } from 'next/font/google'
+import Script from 'next/script'
 import './globals.css'
 
 const inter = Inter({
@@ -122,19 +123,17 @@ export default function RootLayout({
           }}
         />
         {/* PWA service worker register */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              if ('serviceWorker' in navigator) {
-                window.addEventListener('load', function() {
-                  navigator.serviceWorker.register('/sw.js').catch(function(err) {
-                    console.warn('SW registration failed:', err);
-                  });
+        <Script id="register-sw">
+          {`
+            if ('serviceWorker' in navigator) {
+              window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js').catch(function(err) {
+                  console.warn('SW registration failed:', err);
                 });
-              }
-            `,
-          }}
-        />
+              });
+            }
+          `}
+        </Script>
       </head>
       <body className="antialiased">{children}</body>
     </html>

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { createClient } from '@/lib/supabase/client'
 
@@ -13,8 +13,55 @@ export default function LoginForm() {
   const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [isLocalhost, setIsLocalhost] = useState(false)
 
   const supabase = createClient()
+
+  useEffect(() => {
+    if (
+      typeof window !== 'undefined' &&
+      (window.location.hostname === 'localhost' ||
+        window.location.hostname === '127.0.0.1' ||
+        window.location.hostname.includes('3000'))
+    ) {
+      setIsLocalhost(true)
+    }
+  }, [])
+
+  async function handleQuickLogin(role: 'owner' | 'manager' | 'cashier') {
+    let targetEmail = ''
+    let targetPassword = ''
+
+    if (role === 'owner') {
+      targetEmail = 'proprietario@novapaokent.com.br'
+      targetPassword = 'PaokentOwner2026!'
+    } else if (role === 'manager') {
+      targetEmail = 'gerente@novapaokent.com.br'
+      targetPassword = 'PaokentManager2026!'
+    } else {
+      targetEmail = 'caixa@novapaokent.com.br'
+      targetPassword = 'PaokentCashier2026!'
+    }
+
+    setEmail(targetEmail)
+    setPassword(targetPassword)
+    setLoading(true)
+    setError(null)
+
+    const { error: loginError } = await supabase.auth.signInWithPassword({
+      email: targetEmail,
+      password: targetPassword,
+    })
+
+    if (loginError) {
+      setError('Erro ao entrar automaticamente. Por favor execute as migrations SQL no Supabase.')
+      setLoading(false)
+      return
+    }
+
+    router.push(redirectTo)
+    router.refresh()
+  }
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault()
@@ -231,16 +278,104 @@ export default function LoginForm() {
           </form>
 
           <div style={{ marginTop: '24px', textAlign: 'center' }}>
-            <p style={{ color: '#444444', fontSize: '12px', marginBottom: '8px' }}>
+            <p style={{ color: '#444444', fontSize: '12px', marginBottom: '12px' }}>
               Padaria Nova Paokent © {new Date().getFullYear()}
             </p>
-            <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', color: '#333333', fontSize: '11px' }}>
-              <span>👑 Proprietário</span>
-              <span>•</span>
-              <span>🎯 Gerente</span>
-              <span>•</span>
-              <span>💳 Caixa</span>
-            </div>
+            {isLocalhost ? (
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
+                <p style={{ color: '#C9A84C', fontSize: '10px', fontWeight: '600', letterSpacing: '0.05em', margin: '0 0 4px 0' }}>
+                  ⚡ ENTRADA RÁPIDA (LOCALHOST):
+                </p>
+                <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
+                  <button
+                    onClick={() => handleQuickLogin('owner')}
+                    disabled={loading}
+                    type="button"
+                    style={{
+                      background: 'rgba(201, 168, 76, 0.08)',
+                      border: '1px solid rgba(201, 168, 76, 0.25)',
+                      borderRadius: '8px',
+                      color: '#FAF6EF',
+                      padding: '6px 12px',
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(201, 168, 76, 0.2)'
+                      e.currentTarget.style.borderColor = '#C9A84C'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(201, 168, 76, 0.08)'
+                      e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.25)'
+                    }}
+                  >
+                    👑 Proprietário
+                  </button>
+                  <button
+                    onClick={() => handleQuickLogin('manager')}
+                    disabled={loading}
+                    type="button"
+                    style={{
+                      background: 'rgba(201, 168, 76, 0.08)',
+                      border: '1px solid rgba(201, 168, 76, 0.25)',
+                      borderRadius: '8px',
+                      color: '#FAF6EF',
+                      padding: '6px 12px',
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(201, 168, 76, 0.2)'
+                      e.currentTarget.style.borderColor = '#C9A84C'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(201, 168, 76, 0.08)'
+                      e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.25)'
+                    }}
+                  >
+                    🎯 Gerente
+                  </button>
+                  <button
+                    onClick={() => handleQuickLogin('cashier')}
+                    disabled={loading}
+                    type="button"
+                    style={{
+                      background: 'rgba(201, 168, 76, 0.08)',
+                      border: '1px solid rgba(201, 168, 76, 0.25)',
+                      borderRadius: '8px',
+                      color: '#FAF6EF',
+                      padding: '6px 12px',
+                      fontSize: '11px',
+                      fontWeight: '600',
+                      cursor: 'pointer',
+                      transition: 'all 0.2s',
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.background = 'rgba(201, 168, 76, 0.2)'
+                      e.currentTarget.style.borderColor = '#C9A84C'
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.background = 'rgba(201, 168, 76, 0.08)'
+                      e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.25)'
+                    }}
+                  >
+                    💳 Caixa
+                  </button>
+                </div>
+              </div>
+            ) : (
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', color: '#333333', fontSize: '11px' }}>
+                <span>👑 Proprietário</span>
+                <span>•</span>
+                <span>🎯 Gerente</span>
+                <span>•</span>
+                <span>💳 Caixa</span>
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+// Botões Flutuantes (WhatsApp e iFood) da Padaria Nova Paokent
 'use client'
 
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido!'

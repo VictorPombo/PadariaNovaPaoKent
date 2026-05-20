@@ -25,26 +25,30 @@ export default async function AdminLayout({
     .single()
 
   return (
-    <div
-      className="flex h-screen overflow-hidden"
-      style={{ background: '#0F0F0F', color: '#E8E8E8', fontFamily: 'var(--font-inter)' }}
+    <div 
+      className="flex h-screen overflow-hidden admin-panel text-white font-sans bg-neutral-950 relative"
     >
+      {/* Ambient glow spots */}
+      <div className="absolute top-[-10%] left-[-10%] w-[55%] h-[55%] rounded-full bg-amber-500/3 blur-[130px] pointer-events-none z-0" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-amber-500/2 blur-[140px] pointer-events-none z-0" />
+
       {/* Sidebar */}
       <AdminSidebar profile={profile} />
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden ml-0 lg:ml-[260px]">
+      <div className="flex-1 flex flex-col overflow-hidden relative z-10">
         {/* Topbar */}
         <AdminTopbar user={user} profile={profile} />
 
         {/* Page Content */}
-        <main
-          className="flex-1 overflow-y-auto p-4 lg:p-6"
-          style={{ background: '#0F0F0F' }}
-        >
-          {children}
+        <main className="flex-1 overflow-y-auto px-6 py-5 custom-scrollbar">
+          <div className="max-w-7xl mx-auto w-full">
+            {children}
+          </div>
         </main>
       </div>
     </div>
   )
 }
+
+
