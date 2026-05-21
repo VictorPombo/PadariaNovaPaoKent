@@ -13,6 +13,7 @@ import ContactSection from '../components/landing/ContactSection'
 import FloatingButtons from '../components/landing/FloatingButtons'
 import { CartProvider } from '../context/CartContext'
 import { CartSidebar } from '../components/cart/CartSidebar'
+import DailyBreadBanner from '../components/landing/DailyBreadBanner'
 
 export default function HomePage() {
   return (
@@ -22,6 +23,7 @@ export default function HomePage() {
         style={{ background: '#1A0F08', color: '#FAF6EF', fontFamily: 'var(--font-inter)' }}
       >
         <LandingHeader />
+        <DailyBreadBanner />
         <main>
           <HeroSection />
           <SpecialSandwiches />

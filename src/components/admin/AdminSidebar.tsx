@@ -85,6 +85,14 @@ const navCategories: NavCategory[] = [
       { href: '/admin/settings', icon: Settings, label: 'Sistema' },
     ],
   },
+  {
+    title: 'MARKETING',
+    items: [
+      { href: '/admin/marketing/daily-bread', icon: Star, label: 'Pão do Dia' },
+      { href: '/admin/marketing/weekly-highlight', icon: Star, label: 'Destaque' },
+      { href: '/admin/marketing/birthdays', icon: Star, label: 'Aniversários' },
+    ],
+  },
 ]
 
 const roleLabels: Record<string, string> = {
