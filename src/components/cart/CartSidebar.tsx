@@ -180,7 +180,7 @@ export function CartSidebar() {
           onClick={() => setCartOpen(true)}
           style={{
             position: 'fixed',
-            bottom: '40px', // Adjusted to not block other fixed elements if any
+            bottom: '100px', // Adjusted to not block WhatsApp button
             right: '24px',
             zIndex: 99,
             width: '64px',
