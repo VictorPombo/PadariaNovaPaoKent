@@ -2,10 +2,8 @@
 
 import { useEffect, useRef } from 'react'
 import { Award, Bike, ChefHat, ArrowDown } from 'lucide-react'
-import IFoodLogo from '../ui/IFoodLogo'
 
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido!'
-const IFOOD_URL = 'https://www.ifood.com.br' // Atualizar com URL real da loja
 
 export default function HeroSection() {
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -187,36 +185,6 @@ export default function HeroSection() {
             (11) 97653-5789
           </a>
 
-          {/* iFood */}
-          <a
-            href={IFOOD_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            id="hero-ifood-btn"
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: '#EA1D2C',
-              padding: '12px 24px',
-              borderRadius: '12px',
-              textDecoration: 'none',
-              transition: 'all 0.3s ease',
-              boxShadow: '0 4px 20px rgba(234,29,44,0.3)',
-            }}
-            onMouseEnter={(e) => {
-              const el = e.currentTarget
-              el.style.transform = 'translateY(-3px)'
-              el.style.boxShadow = '0 12px 32px rgba(234,29,44,0.4)'
-            }}
-            onMouseLeave={(e) => {
-              const el = e.currentTarget
-              el.style.transform = 'translateY(0)'
-              el.style.boxShadow = '0 4px 20px rgba(234,29,44,0.3)'
-            }}
-          >
-            <IFoodLogo size={54} />
-          </a>
 
           {/* Ver Cardápio */}
           <a

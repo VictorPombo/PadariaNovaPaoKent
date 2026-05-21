@@ -1,10 +1,7 @@
-// Botões Flutuantes (WhatsApp e iFood) da Padaria Nova Paokent
+// Botões Flutuantes (WhatsApp) da Padaria Nova Paokent
 'use client'
 
-import IFoodLogo from '../ui/IFoodLogo'
-
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido!'
-const IFOOD_URL = 'https://www.ifood.com.br'
 
 export default function FloatingButtons() {
   return (
@@ -56,49 +53,10 @@ export default function FloatingButtons() {
         </svg>
       </a>
 
-      {/* iFood */}
-      <a
-        href={IFOOD_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        id="floating-ifood"
-        title="Pedir no iFood"
-        aria-label="Abrir iFood para fazer pedido"
-        style={{
-          width: '56px',
-          height: '56px',
-          borderRadius: '50%',
-          background: '#EA1D2C',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 4px 20px rgba(234,29,44,0.5)',
-          textDecoration: 'none',
-          transition: 'all 0.3s ease',
-          animation: 'pulse-ifood 2s infinite 0.5s',
-        }}
-        onMouseEnter={(e) => {
-          const el = e.currentTarget
-          el.style.transform = 'scale(1.15)'
-          el.style.boxShadow = '0 8px 32px rgba(234,29,44,0.6)'
-        }}
-        onMouseLeave={(e) => {
-          const el = e.currentTarget
-          el.style.transform = 'scale(1)'
-          el.style.boxShadow = '0 4px 20px rgba(234,29,44,0.5)'
-        }}
-      >
-        <IFoodLogo size={32} />
-      </a>
-
       <style>{`
         @keyframes pulse-whatsapp {
           0%, 100% { box-shadow: 0 4px 20px rgba(37,211,102,0.5), 0 0 0 0 rgba(37,211,102,0.4); }
           50% { box-shadow: 0 4px 20px rgba(37,211,102,0.5), 0 0 0 12px rgba(37,211,102,0); }
-        }
-        @keyframes pulse-ifood {
-          0%, 100% { box-shadow: 0 4px 20px rgba(234,29,44,0.5), 0 0 0 0 rgba(234,29,44,0.4); }
-          50% { box-shadow: 0 4px 20px rgba(234,29,44,0.5), 0 0 0 12px rgba(234,29,44,0); }
         }
       `}</style>
     </div>

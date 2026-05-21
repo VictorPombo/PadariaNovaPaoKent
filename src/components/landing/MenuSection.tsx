@@ -132,7 +132,7 @@ const menuItems = [
   { id: 's4', cat: 'sal', name: 'Torta Frango c/ Salada', price: 'R$ 37,90', tags: ['mais_vendido'] },
   { id: 's5', cat: 'sal', name: 'Tapioca c/ Ovos', price: 'R$ 28,50', tags: [] },
   // Salgados
-  { id: 'g1', cat: 'salg', name: 'Coxa Creme', price: 'R$ 14,50', tags: ['ifood_top'] },
+  { id: 'g1', cat: 'salg', name: 'Coxa Creme', price: 'R$ 14,50', tags: ['top_vendas'] },
   { id: 'g2', cat: 'salg', name: 'Salgados Diversos', price: 'R$ 12,00', tags: ['mais_vendido'] },
   { id: 'g3', cat: 'salg', name: 'Tortinhas', price: 'R$ 14,50', tags: [] },
   { id: 'g4', cat: 'salg', name: 'Empada Frango/Palmito', price: 'R$ 10,90', tags: [] },
@@ -145,7 +145,7 @@ const menuItems = [
 const tagLabels: Record<string, { label: string; color: string; icon: any }> = {
   mais_vendido: { label: 'Mais Vendido', color: '#EA580C', icon: Flame },
   especial: { label: 'Especial', color: '#C9A84C', icon: Star },
-  ifood_top: { label: 'Top iFood', color: '#EA1D2C', icon: Award },
+  top_vendas: { label: 'Top Vendas', color: '#EA580C', icon: Award },
 }
 
 export default function MenuSection() {

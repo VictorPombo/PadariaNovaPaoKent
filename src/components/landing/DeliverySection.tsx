@@ -1,23 +1,14 @@
 'use client'
 
-import { Sparkles, Bike, Check, Phone, Clock, MapPin, Calendar, Info } from 'lucide-react'
-import IFoodLogo from '../ui/IFoodLogo'
+import { Sparkles, Bike, Check, Phone, Clock, MapPin, Calendar } from 'lucide-react'
 
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido%20via%20delivery!'
-const IFOOD_URL = 'https://www.ifood.com.br'
 
 const OWN_DELIVERY_ITEMS = [
   'Sem taxa de serviço',
   'Pagamento direto',
   'Atendimento personalizado',
   'Mais rápido e econômico',
-]
-
-const IFOOD_ITEMS = [
-  { text: 'Rastreamento do pedido', isInfo: false },
-  { text: 'Pagamento pelo app', isInfo: false },
-  { text: 'Taxa de serviço do iFood', isInfo: true },
-  { text: 'Comissão sobre o pedido', isInfo: true },
 ]
 
 export default function DeliverySection() {
@@ -63,9 +54,8 @@ export default function DeliverySection() {
         {/* Comparativo delivery */}
         <div
           style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '20px',
+            display: 'flex',
+            justifyContent: 'center',
             marginBottom: '48px',
           }}
         >
@@ -78,6 +68,8 @@ export default function DeliverySection() {
               position: 'relative',
               overflow: 'hidden',
               border: '2px solid #C9A84C',
+              maxWidth: '400px',
+              width: '100%',
             }}
           >
             <div
@@ -182,86 +174,6 @@ export default function DeliverySection() {
             >
               Peça direto e economize nas taxas
             </p>
-          </div>
-
-          {/* iFood */}
-          <div
-            style={{
-              background: 'rgba(44,26,14,0.6)',
-              borderRadius: '20px',
-              padding: '36px 28px',
-              border: '1px solid rgba(201,168,76,0.15)',
-            }}
-          >
-            <div style={{ marginBottom: '16px', display: 'flex', alignItems: 'center' }}>
-              <IFoodLogo size={48} />
-            </div>
-            <h3
-              style={{
-                fontFamily: 'var(--font-playfair)',
-                fontSize: '24px',
-                fontWeight: '700',
-                color: '#FAF6EF',
-                marginBottom: '8px',
-              }}
-            >
-              iFood
-            </h3>
-            <p style={{ color: '#EA1D2C', fontSize: '14px', fontWeight: '600', marginBottom: '20px' }}>
-              Disponível no app
-            </p>
-
-            <ul style={{ listStyle: 'none', padding: 0, marginBottom: '28px' }}>
-              {IFOOD_ITEMS.map((item) => (
-                <li
-                  key={item.text}
-                  style={{
-                    color: 'rgba(250,246,239,0.7)',
-                    fontSize: '14px',
-                    marginBottom: '12px',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px',
-                    opacity: item.isInfo ? 0.6 : 1,
-                  }}
-                >
-                  {item.isInfo ? (
-                    <Info size={16} color="#EA1D2C" style={{ flexShrink: 0 }} />
-                  ) : (
-                    <Check size={16} color="#EA1D2C" style={{ flexShrink: 0 }} />
-                  )}
-                  <span>{item.text}</span>
-                </li>
-              ))}
-            </ul>
-
-            <a
-              href={IFOOD_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: '#EA1D2C',
-                padding: '14px 24px',
-                borderRadius: '12px',
-                textDecoration: 'none',
-                transition: 'all 0.3s ease',
-              }}
-              onMouseEnter={(e) => {
-                const el = e.currentTarget
-                el.style.transform = 'translateY(-2px)'
-                el.style.boxShadow = '0 8px 24px rgba(234,29,44,0.3)'
-              }}
-              onMouseLeave={(e) => {
-                const el = e.currentTarget
-                el.style.transform = 'translateY(0)'
-                el.style.boxShadow = 'none'
-              }}
-            >
-              <IFoodLogo size={54} />
-            </a>
           </div>
         </div>
 

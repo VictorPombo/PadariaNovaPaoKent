@@ -48,7 +48,7 @@ const blogPosts: BlogPost[] = [
     id: '4',
     slug: 'delivery-padaria-jardim-paulistano',
     title: 'Delivery de padaria no Jardim Paulistano: pão quentinho na sua porta',
-    excerpt: 'Peça pelo iFood ou pelo nosso delivery próprio com WhatsApp. Entrega rápida para o Jardim Paulistano, Jardim Europa, Itaim Bibi e regiões próximas. Confira o cardápio completo e receba fresquinho em casa.',
+    excerpt: 'Peça pelo nosso delivery próprio via WhatsApp. Entrega rápida para o Jardim Paulistano, Jardim Europa, Itaim Bibi e regiões próximas. Confira o cardápio completo e receba fresquinho em casa.',
     category: 'Delivery',
     readTime: '3 min',
     date: '28 Abr 2026',
@@ -309,7 +309,7 @@ export default function BlogSection() {
             A Padaria Nova Paokent é especializada em pães artesanais, café da manhã, 
             lanches especiais e encomendas para festas no Jardim Paulistano, São Paulo. 
             Servimos a região dos Jardins desde 1994 com ingredientes selecionados e 
-            receitas tradicionais. Delivery disponível via iFood e WhatsApp.
+            receitas tradicionais. Delivery disponível via WhatsApp.
           </p>
         </div>
       </div>
