@@ -16,7 +16,7 @@ const navItems = [
   { label: 'Contato', href: '#contato' },
 ]
 
-const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20na%20Padaria%20Nova%20Paokent!'
+const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Gostaria%20de%20fazer%20um%20pedido%20na%20Padaria%20Nova%20Pão%20Kent!'
 
 export default function LandingHeader() {
   const [scrolled, setScrolled] = useState(false)
@@ -72,7 +72,7 @@ export default function LandingHeader() {
                 margin: 0,
               }}
             >
-              Nova Paokent
+              Nova Pão Kent
             </p>
             <p
               style={{ fontSize: '10px', color: '#C9A84C', margin: 0, letterSpacing: '0.1em' }}
