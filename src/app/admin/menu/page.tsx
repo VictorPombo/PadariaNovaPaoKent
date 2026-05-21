@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockMenuItems } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -52,6 +53,7 @@ export default function MenuPage() {
   const [categoryId, setCategoryId] = useState('')
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) { setMenuItems(mockMenuItems as any); setLoading(false); return }
     setLoading(true)
     try {
       const { data: items } = await supabase
@@ -151,7 +153,7 @@ export default function MenuPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Cardápio & Menu 📋
+            Cardápio & Menu
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Gerenciamento de produtos, preços de venda, fichas técnicas estimadas de custo e destaques.
@@ -182,7 +184,7 @@ export default function MenuPage() {
           { label: 'Destaques Especiais', value: menuItems.filter(i => i.is_featured).length, color: '#3B82F6', info: 'Carrossel principal' },
           { label: 'Categorias do Menu', value: categories.length, color: '#F59E0B', info: 'Seções ativas' }
         ].map((item, idx) => (
-          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#121212]/40 relative overflow-hidden">
+          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/40 relative overflow-hidden">
             <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">{item.label}</span>
             <span className="text-base lg:text-lg font-bold text-[#FAF6EF] mt-1 block" style={{ color: item.color, fontFamily: 'var(--font-serif)' }}>{item.value}</span>
             <span className="text-[9px] font-semibold text-neutral-500 mt-2 block">{item.info}</span>
@@ -191,7 +193,7 @@ export default function MenuPage() {
       </div>
 
       {/* Filter and search bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl border border-white/[0.06] bg-[#121212]/20">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/20">
         <div className="flex-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <div className="relative flex-1">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
@@ -211,9 +213,9 @@ export default function MenuPage() {
               onChange={(e) => setCatFilter(e.target.value)}
               className="bg-white/[0.02] border border-white/10 rounded-lg py-2 px-3 text-xs text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C] cursor-pointer"
             >
-              <option value="all" className="bg-[#121212]">Todas Categorias</option>
+              <option value="all" className="bg-[#1A0F08]">Todas Categorias</option>
               {categories.map((c) => (
-                <option key={c.id} value={c.id} className="bg-[#121212]">{c.name}</option>
+                <option key={c.id} value={c.id} className="bg-[#1A0F08]">{c.name}</option>
               ))}
             </select>
           </div>
@@ -227,7 +229,7 @@ export default function MenuPage() {
           <p className="text-xs text-neutral-400">Carregando cardápio...</p>
         </div>
       ) : filteredItems.length === 0 ? (
-        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#121212]/30 backdrop-blur-sm">
+        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#1A0F08]/30 backdrop-blur-sm">
           <div className="w-12 h-12 rounded-full bg-white/[0.02] border border-white/[0.08] flex items-center justify-center mx-auto mb-4 text-[#C9A84C]">
             <ClipboardList size={20} />
           </div>
@@ -245,7 +247,7 @@ export default function MenuPage() {
             return (
               <div
                 key={item.id}
-                className="p-5 rounded-2xl border border-white/[0.06] bg-[#121212]/40 relative flex flex-col justify-between hover:border-[#C9A84C]/30 transition-all duration-300"
+                className="p-5 rounded-2xl border border-white/[0.06] bg-[#1A0F08]/40 relative flex flex-col justify-between hover:border-[#C9A84C]/30 transition-all duration-300"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-2">
@@ -306,11 +308,11 @@ export default function MenuPage() {
 
       {/* Add Product Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/75 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-sm bg-[#160D09]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
+            className="w-full max-w-sm bg-[#2C1A0E]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
           >
             <button
               onClick={() => setModalOpen(false)}
@@ -370,7 +372,7 @@ export default function MenuPage() {
                   required
                   value={categoryId}
                   onChange={(e) => setCategoryId(e.target.value)}
-                  className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                  className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                 >
                   <option value="">Selecione...</option>
                   {categories.map(c => (

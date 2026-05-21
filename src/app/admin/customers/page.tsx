@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockCustomers } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
@@ -46,6 +47,7 @@ export default function CustomersPage() {
   const [notes, setNotes] = useState('')
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) { setCustomers(mockCustomers as any); setLoading(false); return }
     setLoading(true)
     try {
       const { data } = await supabase
@@ -112,7 +114,7 @@ export default function CustomersPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            CRM & Clientes Fidelizados 👥
+            CRM & Clientes Fidelizados
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Histórico de consumo, canais de relacionamento e ranking de clientes recorrentes.
@@ -143,7 +145,7 @@ export default function CustomersPage() {
           { label: 'Faturamento CRM Acumulado', value: formatCurrency(customers.reduce((acc, c) => acc + Number(c.total_spent || 0), 0)), color: '#3B82F6', badge: 'Investido' },
           { label: 'Ticket Médio CRM', value: formatCurrency(customers.length > 0 ? customers.reduce((acc, c) => acc + Number(c.total_spent || 0), 0) / customers.length : 0), color: '#F59E0B', badge: 'Consumo Médio' }
         ].map((item, idx) => (
-          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#121212]/40 relative overflow-hidden">
+          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/40 relative overflow-hidden">
             <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">{item.label}</span>
             <span className="text-base lg:text-lg font-bold text-[#FAF6EF] mt-1 block" style={{ color: item.color, fontFamily: 'var(--font-serif)' }}>{item.value}</span>
             <span className="text-[8px] font-extrabold uppercase mt-2 px-1.5 py-0.5 rounded border border-white/10 bg-white/5 w-max block tracking-wide">{item.badge}</span>
@@ -152,7 +154,7 @@ export default function CustomersPage() {
       </div>
 
       {/* Search Header */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl border border-white/[0.06] bg-[#121212]/20">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/20">
         <div className="relative flex-1 max-w-md">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
           <input
@@ -172,7 +174,7 @@ export default function CustomersPage() {
           <p className="text-xs text-neutral-400">Carregando carteira de clientes...</p>
         </div>
       ) : filteredCustomers.length === 0 ? (
-        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#121212]/30 backdrop-blur-sm">
+        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#1A0F08]/30 backdrop-blur-sm">
           <div className="w-12 h-12 rounded-full bg-white/[0.02] border border-white/[0.08] flex items-center justify-center mx-auto mb-4 text-[#C9A84C]">
             <Users size={20} />
           </div>
@@ -182,7 +184,7 @@ export default function CustomersPage() {
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#121212]/30">
+        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#1A0F08]/30">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-white/[0.06] bg-white/[0.02] text-neutral-400 uppercase text-[9px] tracking-wider font-bold">
@@ -217,11 +219,11 @@ export default function CustomersPage() {
 
       {/* Add Customer Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/75 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-sm bg-[#160D09]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
+            className="w-full max-w-sm bg-[#2C1A0E]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
           >
             <button
               onClick={() => setModalOpen(false)}

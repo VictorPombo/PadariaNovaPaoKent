@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { Trophy, Users, ClipboardList, Star } from 'lucide-react'
 
 const timelineEvents = [
   { year: '1994', title: 'A história começa', desc: 'A família abre as portas da Padaria Nova Paokent no Jardim Paulistano.' },
@@ -11,10 +12,10 @@ const timelineEvents = [
 ]
 
 const stats = [
-  { value: 30, suffix: '+', label: 'Anos de Tradição', icon: '🏆' },
-  { value: 50, suffix: 'k+', label: 'Clientes Atendidos', icon: '👥' },
-  { value: 100, suffix: '+', label: 'Itens no Cardápio', icon: '📋' },
-  { value: 5, suffix: '★', label: 'Avaliação Google', icon: '⭐' },
+  { value: 30, suffix: '+', label: 'Anos de Tradição', icon: Trophy },
+  { value: 50, suffix: 'k+', label: 'Clientes Atendidos', icon: Users },
+  { value: 100, suffix: '+', label: 'Itens no Cardápio', icon: ClipboardList },
+  { value: 5, suffix: '★', label: 'Avaliação Google', icon: Star },
 ]
 
 function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) {
@@ -57,7 +58,7 @@ export default function TraditionSection() {
     <section
       id="tradicao"
       style={{
-        background: '#FAF6EF',
+        background: '#1A0F08',
         padding: '96px 24px',
         overflow: 'hidden',
       }}
@@ -81,7 +82,7 @@ export default function TraditionSection() {
               fontFamily: 'var(--font-playfair)',
               fontSize: 'clamp(28px, 4vw, 48px)',
               fontWeight: '700',
-              color: '#2C1A0E',
+              color: '#FAF6EF',
               marginTop: '12px',
               marginBottom: '16px',
             }}
@@ -98,7 +99,7 @@ export default function TraditionSection() {
               Uma tradição.
             </span>
           </h2>
-          <p style={{ color: '#6B3F2A', fontSize: '16px', maxWidth: '500px', margin: '0 auto', opacity: 0.7 }}>
+          <p style={{ color: 'rgba(250,246,239,0.6)', fontSize: '16px', maxWidth: '500px', margin: '0 auto' }}>
             30 anos de história, receitas tradicionais e o carinho de uma família
             que ama o que faz.
           </p>
@@ -122,7 +123,7 @@ export default function TraditionSection() {
                 paddingBottom: '120%',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                backgroundImage: 'url(/bakery-interior.jpg)',
+                backgroundImage: 'url(/bakery-facade.jpg)',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 boxShadow: '0 40px 80px rgba(44,26,14,0.2)',
@@ -207,14 +208,14 @@ export default function TraditionSection() {
                       fontFamily: 'var(--font-playfair)',
                       fontSize: '18px',
                       fontWeight: '700',
-                      color: '#2C1A0E',
+                      color: '#FAF6EF',
                       marginTop: '2px',
                       marginBottom: '4px',
                     }}
                   >
                     {event.title}
                   </h3>
-                  <p style={{ color: '#6B3F2A', fontSize: '14px', lineHeight: '1.6', opacity: 0.7 }}>
+                  <p style={{ color: 'rgba(250,246,239,0.6)', fontSize: '14px', lineHeight: '1.6' }}>
                     {event.desc}
                   </p>
                 </div>
@@ -241,9 +242,16 @@ export default function TraditionSection() {
                 textAlign: 'center',
               }}
             >
-              <span style={{ fontSize: '36px', display: 'block', marginBottom: '8px' }}>
-                {stat.icon}
-              </span>
+              <div
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  marginBottom: '16px',
+                  color: '#C9A84C',
+                }}
+              >
+                <stat.icon size={36} strokeWidth={1.5} />
+              </div>
               <p
                 style={{
                   fontFamily: 'var(--font-playfair)',

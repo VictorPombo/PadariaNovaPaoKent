@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockAlerts } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
@@ -34,6 +35,7 @@ export default function AlertsPage() {
   const [filter, setFilter] = useState<'all' | 'unread' | 'critical' | 'warning'>('unread')
 
   const fetchAlerts = useCallback(async () => {
+    if (USE_MOCK) { setAlerts(mockAlerts as any); setLoading(false); return }
     setLoading(true)
     try {
       let query = supabase
@@ -120,7 +122,7 @@ export default function AlertsPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Central de Alertas 🔔
+            Central de Alertas
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Acompanhe ocorrências, falhas e notificações de estoque e vendas em tempo real.
@@ -174,7 +176,7 @@ export default function AlertsPage() {
           <p className="text-xs text-neutral-400">Carregando notificações...</p>
         </div>
       ) : filteredAlerts.length === 0 ? (
-        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#121212]/30 backdrop-blur-sm">
+        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#1A0F08]/30 backdrop-blur-sm">
           <div className="w-12 h-12 rounded-full bg-white/[0.02] border border-white/[0.08] flex items-center justify-center mx-auto mb-4 text-[#C9A84C]">
             <Bell size={20} />
           </div>

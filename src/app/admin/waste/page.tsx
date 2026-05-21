@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockWaste } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -57,6 +58,29 @@ export default function WastePage() {
   const [notes, setNotes] = useState('')
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) {
+      const today = new Date().toISOString().split('T')[0]
+      setLogs([
+        { id: '1', item_name: 'Pão Francês', waste_reason: 'leftover', quantity: 15, estimated_cost: 22.50, shift: 'shift_1', waste_date: today, notes: 'Sobras do balcão, não vendidos até as 14h', created_at: `${today}T14:00:00` },
+        { id: '2', item_name: 'Croissant', waste_reason: 'damaged', quantity: 3, estimated_cost: 18.00, shift: 'shift_1', waste_date: today, notes: 'Quebra na manipulação da vitrine', created_at: `${today}T10:30:00` },
+        { id: '3', item_name: 'Baguete', waste_reason: 'leftover', quantity: 6, estimated_cost: 36.00, shift: 'shift_1', waste_date: today, notes: 'Excesso de produção do turno da manhã', created_at: `${today}T14:00:00` },
+        { id: '4', item_name: 'Leite Integral', waste_reason: 'expired', quantity: 2, estimated_cost: 13.60, shift: 'shift_2', waste_date: today, notes: 'Vencimento detectado na conferência', created_at: `${today}T16:00:00` },
+        { id: '5', item_name: 'Bolo de Cenoura', waste_reason: 'leftover', quantity: 2, estimated_cost: 8.40, shift: 'shift_2', waste_date: today, notes: 'Fatias restantes ao final do expediente', created_at: `${today}T22:00:00` },
+        { id: '6', item_name: 'Pão de Queijo', waste_reason: 'damaged', quantity: 8, estimated_cost: 12.00, shift: 'shift_1', waste_date: '2026-05-20', notes: 'Queimou na fornada — temperatura incorreta', created_at: '2026-05-20T09:00:00' },
+        { id: '7', item_name: 'Presunto Cozido', waste_reason: 'expired', quantity: 1, estimated_cost: 28.90, shift: 'shift_2', waste_date: '2026-05-19', notes: 'Embalagem aberta há mais de 3 dias', created_at: '2026-05-19T15:00:00' },
+      ] as any)
+      setStockItems([
+        { id: '1', name: 'Pão Francês', last_purchase_price: 1.50 },
+        { id: '2', name: 'Croissant', last_purchase_price: 6.00 },
+        { id: '3', name: 'Baguete', last_purchase_price: 6.00 },
+        { id: '4', name: 'Leite Integral', last_purchase_price: 6.80 },
+        { id: '5', name: 'Bolo de Cenoura', last_purchase_price: 4.20 },
+        { id: '6', name: 'Pão de Queijo', last_purchase_price: 1.50 },
+        { id: '7', name: 'Presunto Cozido', last_purchase_price: 28.90 },
+      ])
+      setLoading(false)
+      return
+    }
     setLoading(true)
     try {
       const { data: logsData } = await supabase
@@ -128,7 +152,7 @@ export default function WastePage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Registro de Desperdício 🗑️
+            Registro de Desperdício
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Controle de sobras de balcão, quebra de fornada e mercadoria vencida para redução do CMV.
@@ -159,7 +183,7 @@ export default function WastePage() {
           { label: 'Desperdício por Sobra', value: formatCurrency(logs.filter(l => l.waste_reason === 'leftover').reduce((acc, l) => acc + (l.estimated_cost || 0), 0)), color: '#F59E0B', info: 'Excesso de vitrine' },
           { label: 'Vencidos / Danificados', value: formatCurrency(logs.filter(l => l.waste_reason === 'expired' || l.waste_reason === 'damaged').reduce((acc, l) => acc + (l.estimated_cost || 0), 0)), color: '#3B82F6', info: 'Problemas de estoque' }
         ].map((item, idx) => (
-          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#121212]/40 relative overflow-hidden">
+          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/40 relative overflow-hidden">
             <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">{item.label}</span>
             <span className="text-base lg:text-lg font-bold text-[#FAF6EF] mt-1 block" style={{ color: item.color, fontFamily: 'var(--font-serif)' }}>{item.value}</span>
             <span className="text-[9px] font-semibold text-neutral-500 mt-2 block">{item.info}</span>
@@ -174,7 +198,7 @@ export default function WastePage() {
           <p className="text-xs text-neutral-400">Carregando registro de perdas...</p>
         </div>
       ) : logs.length === 0 ? (
-        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#121212]/30 backdrop-blur-sm">
+        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#1A0F08]/30 backdrop-blur-sm">
           <div className="w-12 h-12 rounded-full bg-white/[0.02] border border-white/[0.08] flex items-center justify-center mx-auto mb-4 text-[#C9A84C]">
             <Trash2 size={20} />
           </div>
@@ -184,7 +208,7 @@ export default function WastePage() {
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#121212]/30">
+        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#1A0F08]/30">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-white/[0.06] bg-white/[0.02] text-neutral-400 uppercase text-[9px] tracking-wider font-bold">
@@ -221,11 +245,11 @@ export default function WastePage() {
 
       {/* Register Waste Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/75 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-sm bg-[#160D09]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
+            className="w-full max-w-sm bg-[#2C1A0E]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
           >
             <button
               onClick={() => setModalOpen(false)}
@@ -249,7 +273,7 @@ export default function WastePage() {
                   required
                   value={selectedStockItemId}
                   onChange={(e) => setSelectedStockItemId(e.target.value)}
-                  className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                  className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                 >
                   <option value="">Selecione o Insumo...</option>
                   {stockItems.map(item => (
@@ -276,7 +300,7 @@ export default function WastePage() {
                   <select
                     value={reason}
                     onChange={(e) => setReason(e.target.value as any)}
-                    className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                    className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                   >
                     <option value="leftover">Sobras Balcão</option>
                     <option value="expired">Vencido</option>
@@ -292,7 +316,7 @@ export default function WastePage() {
                   <select
                     value={shift}
                     onChange={(e) => setShift(e.target.value as any)}
-                    className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                    className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                   >
                     <option value="shift_1">Manhã</option>
                     <option value="shift_2">Tarde / Noite</option>

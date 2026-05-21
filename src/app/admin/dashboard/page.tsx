@@ -1,11 +1,16 @@
 import { createClient } from '@/lib/supabase/server'
 import DashboardClient from '@/components/admin/DashboardClient'
+import { mockDashboard } from '@/lib/mockData'
 
 export const metadata = {
   title: 'Dashboard',
 }
 
+const USE_MOCK = process.env.NEXT_PUBLIC_USE_MOCK_DATA === 'true'
+
 async function getDashboardData() {
+  if (USE_MOCK) return mockDashboard
+
   const supabase = await createClient()
   const today = new Date().toISOString().split('T')[0]
   const startOfMonth = new Date(new Date().getFullYear(), new Date().getMonth(), 1)

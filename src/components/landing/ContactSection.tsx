@@ -1,6 +1,28 @@
 // Seção de Contato da Padaria Nova Paokent
 'use client'
 
+import { Phone, MapPin } from 'lucide-react'
+import BakeryLogo from '../ui/BakeryLogo'
+
+const InstagramIcon = ({ size = 24, ...props }: { size?: number; style?: any }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={size}
+    height={size}
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    {...props}
+  >
+    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+  </svg>
+)
+
 const MAPS_URL = 'https://maps.google.com/?q=Rua+Prof+Artur+Ramos+223+Jardim+Paulistano+São+Paulo'
 const WHATSAPP_URL = 'https://wa.me/5511976535789'
 const INSTAGRAM_URL = 'https://www.instagram.com/novapaokent'
@@ -28,20 +50,7 @@ export default function ContactSection() {
           {/* Logo e sobre */}
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '20px' }}>
-              <div
-                style={{
-                  width: '48px',
-                  height: '48px',
-                  borderRadius: '12px',
-                  background: 'linear-gradient(135deg, #9E7A2E, #C9A84C)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  fontSize: '24px',
-                }}
-              >
-                🍞
-              </div>
+              <BakeryLogo size={60} />
               <div>
                 <p
                   style={{
@@ -96,7 +105,7 @@ export default function ContactSection() {
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#25D366' }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'rgba(250,246,239,0.7)' }}
               >
-                <span style={{ fontSize: '20px' }}>📞</span>
+                <Phone size={18} style={{ flexShrink: 0 }} />
                 (11) 97653-5789
               </a>
               <a
@@ -116,8 +125,10 @@ export default function ContactSection() {
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#C9A84C' }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'rgba(250,246,239,0.7)' }}
               >
-                <span style={{ fontSize: '20px', flexShrink: 0 }}>📍</span>
-                R. Prof. Artur Ramos, 223<br />Jardim Paulistano, São Paulo
+                <MapPin size={18} style={{ flexShrink: 0 }} />
+                <span>
+                  R. Prof. Artur Ramos, 223<br />Jardim Paulistano, São Paulo
+                </span>
               </a>
               <a
                 href={INSTAGRAM_URL}
@@ -135,7 +146,7 @@ export default function ContactSection() {
                 onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.color = '#E4405F' }}
                 onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.color = 'rgba(250,246,239,0.7)' }}
               >
-                <span style={{ fontSize: '20px' }}>📷</span>
+                <InstagramIcon size={18} style={{ flexShrink: 0 }} />
                 @novapaokent · 1.920 seguidores
               </a>
             </div>
@@ -226,7 +237,6 @@ export default function ContactSection() {
             height="240"
             style={{ border: 0, display: 'block' }}
             allowFullScreen
-            loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Localização da Padaria Nova Paokent"
           />

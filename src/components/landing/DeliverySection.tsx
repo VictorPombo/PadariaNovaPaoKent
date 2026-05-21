@@ -1,14 +1,31 @@
 'use client'
 
+import { Sparkles, Bike, Check, Phone, Clock, MapPin, Calendar, Info } from 'lucide-react'
+import IFoodLogo from '../ui/IFoodLogo'
+
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido%20via%20delivery!'
 const IFOOD_URL = 'https://www.ifood.com.br'
+
+const OWN_DELIVERY_ITEMS = [
+  'Sem taxa de serviço',
+  'Pagamento direto',
+  'Atendimento personalizado',
+  'Mais rápido e econômico',
+]
+
+const IFOOD_ITEMS = [
+  { text: 'Rastreamento do pedido', isInfo: false },
+  { text: 'Pagamento pelo app', isInfo: false },
+  { text: 'Taxa de serviço do iFood', isInfo: true },
+  { text: 'Comissão sobre o pedido', isInfo: true },
+]
 
 export default function DeliverySection() {
   return (
     <section
       id="delivery"
       style={{
-        background: '#FAF6EF',
+        background: '#1A0F08',
         padding: '96px 24px',
       }}
     >
@@ -31,14 +48,14 @@ export default function DeliverySection() {
               fontFamily: 'var(--font-playfair)',
               fontSize: 'clamp(28px, 4vw, 48px)',
               fontWeight: '700',
-              color: '#2C1A0E',
+              color: '#FAF6EF',
               marginTop: '12px',
               marginBottom: '16px',
             }}
           >
             Na sua casa em minutos.
           </h2>
-          <p style={{ color: '#6B3F2A', fontSize: '16px', maxWidth: '500px', margin: '0 auto', opacity: 0.7 }}>
+          <p style={{ color: 'rgba(250,246,239,0.6)', fontSize: '16px', maxWidth: '500px', margin: '0 auto' }}>
             Entregamos com rapidez, qualidade e o carinho de sempre.
           </p>
         </div>
@@ -72,14 +89,19 @@ export default function DeliverySection() {
                 color: '#2C1A0E',
                 fontSize: '10px',
                 fontWeight: '800',
-                padding: '4px 10px',
+                padding: '6px 12px',
                 borderRadius: '999px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '4px',
               }}
             >
-              ✨ RECOMENDADO
+              <Sparkles size={10} /> RECOMENDADO
             </div>
 
-            <span style={{ fontSize: '40px', display: 'block', marginBottom: '16px' }}>🛵</span>
+            <div style={{ marginBottom: '16px' }}>
+              <Bike size={40} color="#C9A84C" />
+            </div>
             <h3
               style={{
                 fontFamily: 'var(--font-playfair)',
@@ -96,24 +118,20 @@ export default function DeliverySection() {
             </p>
 
             <ul style={{ listStyle: 'none', padding: 0, marginBottom: '28px' }}>
-              {[
-                '✅ Sem taxa de serviço',
-                '✅ Pagamento direto',
-                '✅ Atendimento personalizado',
-                '✅ Mais rápido e econômico',
-              ].map((item) => (
+              {OWN_DELIVERY_ITEMS.map((item) => (
                 <li
                   key={item}
                   style={{
                     color: 'rgba(250,246,239,0.7)',
                     fontSize: '14px',
-                    marginBottom: '10px',
+                    marginBottom: '12px',
                     display: 'flex',
                     alignItems: 'center',
                     gap: '8px',
                   }}
                 >
-                  {item}
+                  <Check size={16} color="#C9A84C" style={{ flexShrink: 0 }} />
+                  <span>{item}</span>
                 </li>
               ))}
             </ul>
@@ -147,7 +165,10 @@ export default function DeliverySection() {
                 el.style.boxShadow = 'none'
               }}
             >
-              📲 Pedir pelo WhatsApp
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+              </svg>
+              <span>Pedir pelo WhatsApp</span>
             </a>
 
             <p
@@ -159,26 +180,28 @@ export default function DeliverySection() {
                 fontWeight: '600',
               }}
             >
-              💡 Peça direto e economize nas taxas
+              Peça direto e economize nas taxas
             </p>
           </div>
 
           {/* iFood */}
           <div
             style={{
-              background: 'white',
+              background: 'rgba(44,26,14,0.6)',
               borderRadius: '20px',
               padding: '36px 28px',
-              border: '2px solid rgba(44,26,14,0.1)',
+              border: '1px solid rgba(201,168,76,0.15)',
             }}
           >
-            <span style={{ fontSize: '40px', display: 'block', marginBottom: '16px' }}>🍕</span>
+            <div style={{ marginBottom: '16px', display: 'flex', alignItems: 'center' }}>
+              <IFoodLogo size={48} />
+            </div>
             <h3
               style={{
                 fontFamily: 'var(--font-playfair)',
                 fontSize: '24px',
                 fontWeight: '700',
-                color: '#2C1A0E',
+                color: '#FAF6EF',
                 marginBottom: '8px',
               }}
             >
@@ -189,22 +212,25 @@ export default function DeliverySection() {
             </p>
 
             <ul style={{ listStyle: 'none', padding: 0, marginBottom: '28px' }}>
-              {[
-                '✅ Rastreamento do pedido',
-                '✅ Pagamento pelo app',
-                'ℹ️ Taxa de serviço do iFood',
-                'ℹ️ Comissão sobre o pedido',
-              ].map((item) => (
+              {IFOOD_ITEMS.map((item) => (
                 <li
-                  key={item}
+                  key={item.text}
                   style={{
-                    color: '#6B3F2A',
+                    color: 'rgba(250,246,239,0.7)',
                     fontSize: '14px',
-                    marginBottom: '10px',
-                    opacity: item.startsWith('ℹ️') ? 0.6 : 1,
+                    marginBottom: '12px',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px',
+                    opacity: item.isInfo ? 0.6 : 1,
                   }}
                 >
-                  {item}
+                  {item.isInfo ? (
+                    <Info size={16} color="#EA1D2C" style={{ flexShrink: 0 }} />
+                  ) : (
+                    <Check size={16} color="#EA1D2C" style={{ flexShrink: 0 }} />
+                  )}
+                  <span>{item.text}</span>
                 </li>
               ))}
             </ul>
@@ -217,11 +243,7 @@ export default function DeliverySection() {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                gap: '8px',
                 background: '#EA1D2C',
-                color: 'white',
-                fontWeight: '700',
-                fontSize: '15px',
                 padding: '14px 24px',
                 borderRadius: '12px',
                 textDecoration: 'none',
@@ -238,7 +260,7 @@ export default function DeliverySection() {
                 el.style.boxShadow = 'none'
               }}
             >
-              🍕 Pedir no iFood
+              <IFoodLogo size={54} />
             </a>
           </div>
         </div>
@@ -257,13 +279,13 @@ export default function DeliverySection() {
           }}
         >
           {[
-            { icon: '⏱️', label: 'Tempo médio', value: '30–45 min' },
-            { icon: '📍', label: 'Área de entrega', value: 'Jardim Paulistano e região' },
-            { icon: '🕐', label: 'Horário delivery', value: '7h às 21h' },
-            { icon: '📞', label: 'Pedidos WhatsApp', value: '(11) 97653-5789' },
-          ].map((info) => (
-            <div key={info.label} style={{ textAlign: 'center', flex: '1', minWidth: '140px' }}>
-              <span style={{ fontSize: '28px', display: 'block', marginBottom: '6px' }}>{info.icon}</span>
+            { icon: <Clock size={28} color="#C9A84C" />, label: 'Tempo médio', value: '30–45 min' },
+            { icon: <MapPin size={28} color="#C9A84C" />, label: 'Área de entrega', value: 'Jardim Paulistano e região' },
+            { icon: <Calendar size={28} color="#C9A84C" />, label: 'Horário delivery', value: '7h às 21h' },
+            { icon: <Phone size={28} color="#C9A84C" />, label: 'Pedidos WhatsApp', value: '(11) 97653-5789' },
+          ].map((info, idx) => (
+            <div key={idx} style={{ textAlign: 'center', flex: '1', minWidth: '140px', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+              <div style={{ marginBottom: '8px' }}>{info.icon}</div>
               <p style={{ color: 'rgba(250,246,239,0.5)', fontSize: '11px', textTransform: 'uppercase', letterSpacing: '0.1em', marginBottom: '4px' }}>
                 {info.label}
               </p>

@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockGoals } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -39,6 +40,7 @@ export default function GoalsPage() {
   const [endDate, setEndDate] = useState(new Date().toISOString().split('T')[0])
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) { setGoals(mockGoals as any); setLoading(false); return }
     setLoading(true)
     try {
       const { data } = await supabase
@@ -102,7 +104,7 @@ export default function GoalsPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Metas & Alvos Faturamento 🎯
+            Metas & Alvos Faturamento
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Definição de alvos comerciais diários, semanais e mensais da Padaria Nova Paokent.
@@ -132,7 +134,7 @@ export default function GoalsPage() {
           <p className="text-xs text-neutral-400">Carregando metas comerciais...</p>
         </div>
       ) : goals.length === 0 ? (
-        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#121212]/30 backdrop-blur-sm">
+        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#1A0F08]/30 backdrop-blur-sm">
           <div className="w-12 h-12 rounded-full bg-white/[0.02] border border-white/[0.08] flex items-center justify-center mx-auto mb-4 text-[#C9A84C]">
             <Target size={20} />
           </div>
@@ -152,7 +154,7 @@ export default function GoalsPage() {
             return (
               <div
                 key={goal.id}
-                className="p-5 rounded-2xl border border-[#C9A84C]/20 bg-[#121212]/40 relative flex flex-col justify-between hover:border-[#C9A84C]/45 transition-all duration-300"
+                className="p-5 rounded-2xl border border-[#C9A84C]/20 bg-[#1A0F08]/40 relative flex flex-col justify-between hover:border-[#C9A84C]/45 transition-all duration-300"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3 mb-2">
@@ -193,11 +195,11 @@ export default function GoalsPage() {
 
       {/* Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/75 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-sm bg-[#160D09]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
+            className="w-full max-w-sm bg-[#2C1A0E]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
           >
             <button
               onClick={() => setModalOpen(false)}
@@ -218,7 +220,7 @@ export default function GoalsPage() {
                 <select
                   value={periodType}
                   onChange={(e) => setPeriodType(e.target.value as any)}
-                  className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                  className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                 >
                   <option value="daily">Faturamento Diário</option>
                   <option value="weekly">Faturamento Semanal</option>

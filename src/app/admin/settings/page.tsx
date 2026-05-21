@@ -127,7 +127,7 @@ export default function SettingsPage() {
         })
 
       if (error) throw error
-      showToast('Configurações salvas com sucesso! ✨', 'success')
+      showToast('Configurações salvas com sucesso!', 'success')
     } catch (err: any) {
       console.error('Erro ao salvar:', err)
       showToast('Erro ao salvar as configurações no banco de dados.', 'error')
@@ -160,7 +160,7 @@ export default function SettingsPage() {
         if (error) throw error
       }
 
-      showToast('Todas as alterações salvas com sucesso! ✨', 'success')
+      showToast('Todas as alterações salvas com sucesso!', 'success')
     } catch (err: any) {
       console.error('Erro ao salvar tudo:', err)
       showToast('Falha ao salvar as configurações.', 'error')
@@ -205,7 +205,7 @@ export default function SettingsPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Configurações do Sistema ⚙️
+            Configurações do Sistema
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Gerencie os parâmetros de controle financeiro, turnos de funcionários, alertas de CMV e dados de exibição.

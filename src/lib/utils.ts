@@ -36,7 +36,7 @@ export function getCurrentShift(): 'shift_1' | 'shift_2' {
 }
 
 export function getShiftLabel(shift: 'shift_1' | 'shift_2'): string {
-  return shift === 'shift_1' ? '🌅 Turno 1 (06h–14h)' : '🌙 Turno 2 (14h–22h)'
+  return shift === 'shift_1' ? 'Turno 1 (06h–14h)' : 'Turno 2 (14h–22h)'
 }
 
 export function calculateMargin(price: number, cost: number): number {

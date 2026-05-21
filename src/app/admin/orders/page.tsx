@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockOrders } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -70,6 +71,7 @@ export default function OrdersPage() {
   const [selectedOrder, setSelectedOrder] = useState<Order | null>(null)
 
   const fetchOrders = useCallback(async () => {
+    if (USE_MOCK) { setOrders(mockOrders as any); setLoading(false); return }
     setLoading(true)
     try {
       const { data, error } = await supabase
@@ -112,7 +114,7 @@ export default function OrdersPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Gerenciador de Pedidos 🛒
+            Gerenciador de Pedidos
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Controle de fluxo de vendas, integração multi-canal e faturamento ao vivo.
@@ -139,7 +141,7 @@ export default function OrdersPage() {
         ].map((stat, idx) => (
           <div
             key={idx}
-            className="p-4 rounded-xl border border-white/[0.06] bg-[#121212]/40"
+            className="p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/40"
           >
             <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">{stat.label}</span>
             <span className="text-base lg:text-lg font-bold text-[#FAF6EF] mt-1 block" style={{ color: stat.color }}>{stat.value}</span>
@@ -148,7 +150,7 @@ export default function OrdersPage() {
       </div>
 
       {/* Filters & Actions Bar */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl border border-white/[0.06] bg-[#121212]/20">
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/20">
         <div className="flex-1 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           {/* Search */}
           <div className="relative flex-1">
@@ -170,11 +172,11 @@ export default function OrdersPage() {
               onChange={(e) => setChannelFilter(e.target.value)}
               className="bg-white/[0.02] border border-white/10 rounded-lg py-2 px-3 text-xs text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C] cursor-pointer"
             >
-              <option value="all" className="bg-[#121212]">Todos Canais</option>
-              <option value="counter" className="bg-[#121212]">Balcão</option>
-              <option value="dining_room" className="bg-[#121212]">Salão</option>
-              <option value="delivery_own" className="bg-[#121212]">Delivery Próprio</option>
-              <option value="ifood" className="bg-[#121212]">iFood</option>
+              <option value="all" className="bg-[#1A0F08]">Todos Canais</option>
+              <option value="counter" className="bg-[#1A0F08]">Balcão</option>
+              <option value="dining_room" className="bg-[#1A0F08]">Salão</option>
+              <option value="delivery_own" className="bg-[#1A0F08]">Delivery Próprio</option>
+              <option value="ifood" className="bg-[#1A0F08]">iFood</option>
             </select>
           </div>
         </div>
@@ -187,7 +189,7 @@ export default function OrdersPage() {
           <p className="text-xs text-neutral-400">Carregando pedidos...</p>
         </div>
       ) : filteredOrders.length === 0 ? (
-        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#121212]/30 backdrop-blur-sm">
+        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#1A0F08]/30 backdrop-blur-sm">
           <div className="w-12 h-12 rounded-full bg-white/[0.02] border border-white/[0.08] flex items-center justify-center mx-auto mb-4 text-[#C9A84C]">
             <ShoppingCart size={20} />
           </div>
@@ -197,7 +199,7 @@ export default function OrdersPage() {
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#121212]/30">
+        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#1A0F08]/30">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-white/[0.06] bg-white/[0.02] text-neutral-400 uppercase text-[9px] tracking-wider font-bold">
@@ -262,12 +264,12 @@ export default function OrdersPage() {
       {/* Details Modal */}
       <AnimatePresence>
         {selectedOrder && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/75 backdrop-blur-md">
             <motion.div
               initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
-              className="w-full max-w-md bg-[#160D09]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 overflow-hidden relative"
+              className="w-full max-w-md bg-[#2C1A0E]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 overflow-hidden relative"
             >
               <button
                 onClick={() => setSelectedOrder(null)}

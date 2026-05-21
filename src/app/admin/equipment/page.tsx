@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockEquipment } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -42,6 +43,7 @@ export default function EquipmentPage() {
   const [intervalDays, setIntervalDays] = useState('90')
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) { setEquipment(mockEquipment as any); setLoading(false); return }
     setLoading(true)
     try {
       const { data } = await supabase
@@ -103,7 +105,7 @@ export default function EquipmentPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Controle de Equipamentos 🛠️
+            Controle de Equipamentos
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Plano de manutenção preventiva de fornos, masseiras, POS e câmaras frias.
@@ -190,7 +192,7 @@ export default function EquipmentPage() {
 
       {/* Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/85 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -218,7 +220,7 @@ export default function EquipmentPage() {
                   placeholder="Ex: Forno Turbo Industrial, Masseira..."
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium"
+                  className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium"
                 />
               </div>
 
@@ -230,7 +232,7 @@ export default function EquipmentPage() {
                     placeholder="Ex: Tedesco, Venâncio..."
                     value={model}
                     onChange={(e) => setModel(e.target.value)}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium"
+                    className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium"
                   />
                 </div>
                 <div className="space-y-1">
@@ -240,7 +242,7 @@ export default function EquipmentPage() {
                     placeholder="SN489302"
                     value={serial}
                     onChange={(e) => setSerial(e.target.value)}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium"
+                    className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium"
                   />
                 </div>
               </div>
@@ -250,7 +252,7 @@ export default function EquipmentPage() {
                 <select
                   value={intervalDays}
                   onChange={(e) => setIntervalDays(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium animate-none"
+                  className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium animate-none"
                 >
                   <option value="30">Mensal (30 dias)</option>
                   <option value="90">Trimestral (90 dias)</option>

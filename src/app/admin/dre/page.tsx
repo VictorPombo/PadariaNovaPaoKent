@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockDre } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -33,6 +34,22 @@ export default function DrePage() {
   })
 
   const calculateDRE = useCallback(async () => {
+    if (USE_MOCK) {
+      setDre({
+        grossRevenue: 127450.80,
+        taxesAndDeductions: 8921.56,
+        netRevenue: 118529.24,
+        cmv: 40798.16,
+        grossProfit: 77731.08,
+        fixedExpenses: 44530.00,
+        variableExpenses: 7560.50,
+        netProfit: 25640.58,
+        cmvPercentage: 34.4,
+        marginPercentage: 21.6,
+      })
+      setLoading(false)
+      return
+    }
     setLoading(true)
     try {
       const startOfMonth = `${referenceMonth}-01T00:00:00`
@@ -118,7 +135,7 @@ export default function DrePage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            DRE & CMV Financeiro 📊
+            DRE & CMV Financeiro
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Demonstrativo de Resultados do Exercício e Custo de Mercadorias Vendidas.
@@ -129,7 +146,7 @@ export default function DrePage() {
           <select
             value={referenceMonth}
             onChange={(e) => setReferenceMonth(e.target.value)}
-            className="bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-xs text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium h-[38px]"
+            className="bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-xs text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium h-[38px]"
           >
             <option value="2026-05">Maio / 2026</option>
             <option value="2026-04">Abril / 2026</option>

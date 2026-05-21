@@ -7,6 +7,7 @@ import { createClient } from '@/lib/supabase/client'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import type { Profile } from '@/types'
+import BakeryLogo from '../ui/BakeryLogo'
 import {
   LayoutDashboard,
   AlertTriangle,
@@ -108,8 +109,8 @@ function SidebarContent({ profile, pathname, onLogout, onNavClick }: SidebarCont
     <div className="flex flex-col h-full overflow-hidden bg-transparent">
       {/* Logo */}
       <div className="flex items-center gap-3 px-5 py-6 flex-shrink-0 border-b border-[#C9A84C]/10">
-        <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-[#9E7A2E] to-[#C9A84C] flex items-center justify-center text-base shadow-md shadow-black/40 border border-white/10">
-          🍞
+        <div className="flex-shrink-0">
+          <BakeryLogo size={36} />
         </div>
         <div>
           <p className="font-bold text-[14px] leading-tight text-[#FAF6EF] tracking-wide" style={{ fontFamily: 'var(--font-serif)' }}>
@@ -158,7 +159,7 @@ function SidebarContent({ profile, pathname, onLogout, onNavClick }: SidebarCont
       </nav>
 
       {/* User info + Bottom Actions */}
-      <div className="px-4 py-4 flex-shrink-0 border-t border-[#C9A84C]/10 bg-black/10 backdrop-blur-md">
+      <div className="px-4 py-4 flex-shrink-0 border-t border-[#C9A84C]/10 bg-[#1A0F08]/10 backdrop-blur-md">
         <Link
           href="/"
           target="_blank"
@@ -260,7 +261,7 @@ export default function AdminSidebar({ profile }: AdminSidebarProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 lg:hidden bg-black/70 backdrop-blur-sm"
+              className="fixed inset-0 z-40 lg:hidden bg-[#1A0F08]/70 backdrop-blur-sm"
               onClick={closeMobile}
               aria-hidden="true"
             />

@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockFootTraffic } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -44,6 +45,11 @@ export default function FootTrafficPage() {
   const [hour, setHour] = useState('8')
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) {
+      setLogs(mockFootTraffic.hourly.map((h, i) => ({ id: String(i+1), date: new Date().toISOString().split('T')[0], hour: parseInt(h.hour), count: h.count, shift: parseInt(h.hour) < 14 ? 'shift_1' : 'shift_2', created_at: new Date().toISOString() })) as any);
+      setLoading(false);
+      return
+    }
     setLoading(true)
     try {
       const { data } = await supabase
@@ -113,7 +119,7 @@ export default function FootTrafficPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Fluxo Presencial de Clientes 🚶
+            Fluxo Presencial de Clientes
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Mapeamento de visitas de clientes na loja física por hora para redimensionamento de equipe de atendimento.
@@ -125,7 +131,7 @@ export default function FootTrafficPage() {
             type="date"
             value={dateFilter}
             onChange={(e) => setDateFilter(e.target.value)}
-            className="bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-xs text-[#FAF6EF]"
+            className="bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-xs text-[#FAF6EF]"
           />
           <button
             onClick={() => setModalOpen(true)}
@@ -150,7 +156,7 @@ export default function FootTrafficPage() {
           { label: 'Fluxo Turno Manhã', value: dayLogs.filter(l => l.shift === 'shift_1').reduce((s, l) => s + l.customer_count, 0), color: '#3B82F6', info: '7:00 as 12:00' },
           { label: 'Fluxo Turno Tarde/Noite', value: dayLogs.filter(l => l.shift === 'shift_2').reduce((s, l) => s + l.customer_count, 0), color: '#F59E0B', info: '13:00 as 21:00' }
         ].map((item, idx) => (
-          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#121212]/40 relative overflow-hidden">
+          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/40 relative overflow-hidden">
             <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">{item.label}</span>
             <span className="text-base lg:text-lg font-bold text-[#FAF6EF] mt-1 block" style={{ color: item.color, fontFamily: 'var(--font-serif)' }}>{item.value}</span>
             <span className="text-[9px] font-semibold text-neutral-500 mt-2 block">{item.info}</span>
@@ -159,7 +165,7 @@ export default function FootTrafficPage() {
       </div>
 
       {/* Bar chart */}
-      <div className="rounded-2xl border border-white/[0.06] bg-[#121212]/30 p-5">
+      <div className="rounded-2xl border border-white/[0.06] bg-[#1A0F08]/30 p-5">
         <h3 className="text-xs font-bold text-[#C9A84C] tracking-widest uppercase mb-4 flex items-center gap-1.5">
           <Clock size={14} /> Curva de Fluxo do Dia • {new Date(dateFilter).toLocaleDateString('pt-BR')}
         </h3>
@@ -187,11 +193,11 @@ export default function FootTrafficPage() {
 
       {/* Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/75 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-sm bg-[#160D09]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
+            className="w-full max-w-sm bg-[#2C1A0E]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
           >
             <button
               onClick={() => setModalOpen(false)}
@@ -213,7 +219,7 @@ export default function FootTrafficPage() {
                   <select
                     value={hour}
                     onChange={(e) => setHour(e.target.value)}
-                    className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                    className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                   >
                     {Array.from({ length: 15 }, (_, i) => i + 7).map(hr => (
                       <option key={hr} value={hr}>{hr}:00 às {hr + 1}:00</option>
@@ -239,7 +245,7 @@ export default function FootTrafficPage() {
                 <select
                   value={shift}
                   onChange={(e) => setShift(e.target.value as any)}
-                  className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                  className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                 >
                   <option value="shift_1">Manhã (Shift 1)</option>
                   <option value="shift_2">Tarde / Noite (Shift 2)</option>

@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockReviews } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -40,6 +41,7 @@ export default function ReviewsPage() {
   const [source, setSource] = useState<'google' | 'ifood' | 'whatsapp' | 'manual'>('manual')
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) { setReviews(mockReviews as any); setLoading(false); return }
     setLoading(true)
     try {
       const { data } = await supabase
@@ -115,7 +117,7 @@ export default function ReviewsPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Avaliações & Clientes ⭐
+            Avaliações & Clientes
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Painel consolidado do Google My Business, iFood reviews e formulário público de satisfação.
@@ -238,7 +240,7 @@ export default function ReviewsPage() {
 
       {/* Add Review Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/85 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
@@ -266,7 +268,7 @@ export default function ReviewsPage() {
                   placeholder="Nome do cliente..."
                   value={customerName}
                   onChange={(e) => setCustomerName(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium"
+                  className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium"
                 />
               </div>
 
@@ -276,7 +278,7 @@ export default function ReviewsPage() {
                   <select
                     value={rating}
                     onChange={(e) => setRating(parseInt(e.target.value))}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium"
+                    className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium"
                   >
                     <option value="5">5 Estrelas (Excelente)</option>
                     <option value="4">4 Estrelas (Muito Bom)</option>
@@ -290,7 +292,7 @@ export default function ReviewsPage() {
                   <select
                     value={source}
                     onChange={(e) => setSource(e.target.value as any)}
-                    className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium"
+                    className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium"
                   >
                     <option value="manual">Balcão / Caixa</option>
                     <option value="whatsapp">WhatsApp</option>
@@ -306,7 +308,7 @@ export default function ReviewsPage() {
                   placeholder="Mensagem deixada pelo cliente..."
                   value={comment}
                   onChange={(e) => setComment(e.target.value)}
-                  className="w-full bg-black/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-black/60 transition-all font-medium h-20 resize-none"
+                  className="w-full bg-[#1A0F08]/40 border border-white/10 rounded-xl py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50 focus:bg-[#1A0F08]/60 transition-all font-medium h-20 resize-none"
                 />
               </div>
 

@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockSocial } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -40,6 +41,16 @@ export default function SocialPage() {
   const [loading, setLoading] = useState(true)
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) {
+      setReports([
+        { id: '1', platform: 'instagram', report_type: 'organic', report_date: new Date().toISOString().split('T')[0], posts_count: 18, reach: 24500, impressions: 38200, engagement_rate: 5.8, followers_count: 4280, followers_gained: 320, ad_spend: 0, clicks: 0, cpc: 0, conversions: 0, roi: 0 },
+        { id: '2', platform: 'instagram', report_type: 'paid', report_date: new Date().toISOString().split('T')[0], posts_count: 4, reach: 58000, impressions: 92000, engagement_rate: 4.2, followers_count: 4280, followers_gained: 160, ad_spend: 650, clicks: 1240, cpc: 0.52, conversions: 180, roi: 3.8 },
+        { id: '3', platform: 'facebook', report_type: 'paid', report_date: new Date().toISOString().split('T')[0], posts_count: 2, reach: 32000, impressions: 48000, engagement_rate: 3.1, followers_count: 2100, followers_gained: 80, ad_spend: 550, clicks: 890, cpc: 0.62, conversions: 140, roi: 2.9 },
+        { id: '4', platform: 'google', report_type: 'paid', report_date: new Date().toISOString().split('T')[0], posts_count: 0, reach: 8900, impressions: 15200, engagement_rate: 4.8, followers_count: 217, followers_gained: 12, ad_spend: 0, clicks: 420, cpc: 0, conversions: 0, roi: 0 },
+      ] as any);
+      setLoading(false);
+      return
+    }
     setLoading(true)
     try {
       const { data } = await supabase
@@ -75,7 +86,7 @@ export default function SocialPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Redes Sociais & Marketing 📢
+            Redes Sociais & Marketing
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Métricas integradas do Instagram Business, Facebook Ads e Google Campaigns.
@@ -98,7 +109,7 @@ export default function SocialPage() {
           { label: 'Retorno ROI campanhas', value: `${avgROI.toFixed(1)}x ROI`, color: '#10B981', info: 'Eficiência de investimento' },
           { label: 'Cliques / Conversões', value: `${totalConversions} ped`, color: '#3B82F6', info: 'Vendas via tráfego' }
         ].map((item, idx) => (
-          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#121212]/40 relative overflow-hidden">
+          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/40 relative overflow-hidden">
             <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">{item.label}</span>
             <span className="text-base lg:text-lg font-bold text-[#FAF6EF] mt-1 block" style={{ color: item.color, fontFamily: 'var(--font-serif)' }}>{item.value}</span>
             <span className="text-[9px] font-semibold text-neutral-400 mt-2 block">{item.info}</span>
@@ -107,7 +118,7 @@ export default function SocialPage() {
       </div>
 
       {/* Reports Details */}
-      <div className="rounded-2xl border border-white/[0.06] bg-[#121212]/30 p-5 overflow-hidden">
+      <div className="rounded-2xl border border-white/[0.06] bg-[#1A0F08]/30 p-5 overflow-hidden">
         <h3 className="text-xs font-bold text-[#C9A84C] tracking-widest uppercase mb-4 flex items-center gap-2">
           <Activity size={14} /> Performance de Campanhas & Postagens
         </h3>

@@ -2,7 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { Crown, Target, CreditCard, AlertTriangle } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
+import BakeryLogo from '@/components/ui/BakeryLogo'
 
 export default function LoginForm() {
   const router = useRouter()
@@ -132,18 +134,12 @@ export default function LoginForm() {
           <div style={{ textAlign: 'center', marginBottom: '32px' }}>
             <div
               style={{
-                width: '64px',
-                height: '64px',
-                borderRadius: '16px',
-                background: 'linear-gradient(135deg, #9E7A2E, #C9A84C)',
                 display: 'flex',
-                alignItems: 'center',
                 justifyContent: 'center',
-                fontSize: '32px',
-                margin: '0 auto 16px',
+                marginBottom: '16px',
               }}
             >
-              🍞
+              <BakeryLogo size={70} />
             </div>
             <h1
               style={{
@@ -231,7 +227,7 @@ export default function LoginForm() {
                   fontSize: '13px',
                 }}
               >
-                <span>⚠️</span>
+                <AlertTriangle size={14} />
                 <span>{error}</span>
               </div>
             )}
@@ -283,8 +279,8 @@ export default function LoginForm() {
             </p>
             {isLocalhost ? (
               <div style={{ display: 'flex', flexDirection: 'column', gap: '8px', alignItems: 'center' }}>
-                <p style={{ color: '#C9A84C', fontSize: '10px', fontWeight: '600', letterSpacing: '0.05em', margin: '0 0 4px 0' }}>
-                  ⚡ ENTRADA RÁPIDA (LOCALHOST):
+                <p style={{ color: '#C9A84C', fontSize: '10px', fontWeight: '800', letterSpacing: '0.1em', margin: '0 0 4px 0' }}>
+                  ACESSO RÁPIDO (LOCALHOST):
                 </p>
                 <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: '8px' }}>
                   <button
@@ -301,6 +297,9 @@ export default function LoginForm() {
                       fontWeight: '600',
                       cursor: 'pointer',
                       transition: 'all 0.2s',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'rgba(201, 168, 76, 0.2)'
@@ -311,7 +310,7 @@ export default function LoginForm() {
                       e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.25)'
                     }}
                   >
-                    👑 Proprietário
+                    <Crown size={12} /> Proprietário
                   </button>
                   <button
                     onClick={() => handleQuickLogin('manager')}
@@ -327,6 +326,9 @@ export default function LoginForm() {
                       fontWeight: '600',
                       cursor: 'pointer',
                       transition: 'all 0.2s',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'rgba(201, 168, 76, 0.2)'
@@ -337,7 +339,7 @@ export default function LoginForm() {
                       e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.25)'
                     }}
                   >
-                    🎯 Gerente
+                    <Target size={12} /> Gerente
                   </button>
                   <button
                     onClick={() => handleQuickLogin('cashier')}
@@ -353,6 +355,9 @@ export default function LoginForm() {
                       fontWeight: '600',
                       cursor: 'pointer',
                       transition: 'all 0.2s',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '6px',
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'rgba(201, 168, 76, 0.2)'
@@ -363,17 +368,17 @@ export default function LoginForm() {
                       e.currentTarget.style.borderColor = 'rgba(201, 168, 76, 0.25)'
                     }}
                   >
-                    💳 Caixa
+                    <CreditCard size={12} /> Caixa
                   </button>
                 </div>
               </div>
             ) : (
-              <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', color: '#333333', fontSize: '11px' }}>
-                <span>👑 Proprietário</span>
+              <div style={{ display: 'flex', justifyContent: 'center', gap: '12px', color: '#444444', fontSize: '11px', fontWeight: '500' }}>
+                <span>Proprietário</span>
                 <span>•</span>
-                <span>🎯 Gerente</span>
+                <span>Gerente</span>
                 <span>•</span>
-                <span>💳 Caixa</span>
+                <span>Caixa</span>
               </div>
             )}
           </div>

@@ -16,12 +16,12 @@
   --color-coffee: #6B3F2A;
   --color-coffee-light: #8B5E44;
 
-  /* Paleta Admin (Light Mode Strict) */
-  --color-admin-bg: #F9FAFB;
-  --color-admin-card: #FFFFFF;
-  --color-admin-border: #E5E7EB;
-  --color-admin-text: #111827;
-  --color-admin-muted: #9CA3AF;
+  /* Paleta Admin (Dark Brown Mode) */
+  --color-admin-bg: #1A0F08;
+  --color-admin-card: rgba(44, 26, 14, 0.4);
+  --color-admin-border: rgba(201, 168, 76, 0.15);
+  --color-admin-text: #FAF6EF;
+  --color-admin-muted: rgba(250, 246, 239, 0.6);
 
   /* Status Colors */
   --color-critical: #EF4444;
@@ -63,8 +63,8 @@ body {
    ============================================= */
 
 .landing-body {
-  background-color: var(--color-warm-white);
-  color: var(--color-brown-dark);
+  background-color: #1A0F08;
+  color: #FAF6EF;
 }
 
 /* Textura de papel artesanal sutil */
@@ -175,7 +175,7 @@ body {
 
 /* Card de produto premium */
 .product-card {
-  background: var(--color-warm-white);
+  background: rgba(44, 26, 14, 0.6);
   border: 1px solid rgba(201, 168, 76, 0.2);
   transition: all 0.3s ease;
   overflow: hidden;
@@ -183,7 +183,7 @@ body {
 
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(44, 26, 14, 0.15), 0 0 0 1px rgba(201, 168, 76, 0.3);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(201, 168, 76, 0.3);
 }
 
 /* Selo animado */
@@ -220,7 +220,7 @@ body {
 
 /* Admin Cards */
 .admin-card {
-  background: rgba(255, 255, 255, 0.65);
+  background: rgba(44, 26, 14, 0.65);
   border: 1px solid rgba(201, 168, 76, 0.18);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -232,7 +232,7 @@ body {
 
 /* KPI Card */
 .kpi-card {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.65), rgba(201, 168, 76, 0.05));
+  background: linear-gradient(135deg, rgba(44, 26, 14, 0.65), rgba(201, 168, 76, 0.05));
   border: 1px solid rgba(201, 168, 76, 0.18);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
@@ -323,10 +323,10 @@ body {
 
 /* Input admin estilo light */
 .admin-input {
-  background: rgba(255, 255, 255, 0.7);
+  background: rgba(44, 26, 14, 0.7);
   border: 1px solid rgba(201, 168, 76, 0.22);
   border-radius: 8px;
-  color: #2C1A0E;
+  color: #FAF6EF;
   font-family: var(--font-sans);
   transition: border-color 0.2s, box-shadow 0.2s;
   outline: none;
@@ -352,15 +352,15 @@ body {
 
 /* Botão ghost admin */
 .btn-admin-ghost {
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(44, 26, 14, 0.5);
   border: 1px solid rgba(201, 168, 76, 0.22);
-  color: #2C1A0E;
+  color: #FAF6EF;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
-.btn-admin-ghost:hover { background: rgba(255,255,255,0.8); border-color: var(--color-gold); }
+.btn-admin-ghost:hover { background: rgba(44, 26, 14, 0.8); border-color: var(--color-gold); }
 
 /* Heatmap */
 .heatmap-cell {

@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockProduction } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -46,6 +47,25 @@ export default function ProductionPage() {
   const [prodDate, setProdDate] = useState(new Date().toISOString().split('T')[0])
 
   const fetchData = useCallback(async () => {
+    if (USE_MOCK) {
+      const today = new Date().toISOString().split('T')[0]
+      setLogs([
+        { id: '1', item_name: 'Pão Francês', shift: 'shift_1', production_date: today, quantity_produced: 480, quantity_sold: 465, leftover_cost: 22.50, created_at: `${today}T06:30:00` },
+        { id: '2', item_name: 'Baguete', shift: 'shift_1', production_date: today, quantity_produced: 78, quantity_sold: 72, leftover_cost: 36.00, created_at: `${today}T06:45:00` },
+        { id: '3', item_name: 'Pão de Queijo', shift: 'shift_1', production_date: today, quantity_produced: 195, quantity_sold: 190, leftover_cost: 12.50, created_at: `${today}T07:00:00` },
+        { id: '4', item_name: 'Croissant', shift: 'shift_1', production_date: today, quantity_produced: 58, quantity_sold: 55, leftover_cost: 18.00, created_at: `${today}T07:15:00` },
+        { id: '5', item_name: 'Bolo de Chocolate', shift: 'shift_1', production_date: today, quantity_produced: 8, quantity_sold: 6, leftover_cost: 24.00, created_at: `${today}T08:00:00` },
+        { id: '6', item_name: 'Bisnaga', shift: 'shift_2', production_date: today, quantity_produced: 115, quantity_sold: 108, leftover_cost: 10.50, created_at: `${today}T14:30:00` },
+        { id: '7', item_name: 'Pão Integral', shift: 'shift_2', production_date: today, quantity_produced: 58, quantity_sold: 52, leftover_cost: 15.00, created_at: `${today}T15:00:00` },
+      ] as any)
+      setMenuItems([
+        { id: '1', name: 'Pão Francês' }, { id: '2', name: 'Baguete' }, { id: '3', name: 'Pão de Queijo' },
+        { id: '4', name: 'Croissant' }, { id: '5', name: 'Bolo de Chocolate' }, { id: '6', name: 'Bisnaga' },
+        { id: '7', name: 'Pão Integral' }, { id: '8', name: 'Broa de Milho' }, { id: '9', name: 'Ciabatta' },
+      ])
+      setLoading(false)
+      return
+    }
     setLoading(true)
     try {
       const { data: logsData } = await supabase
@@ -115,7 +135,7 @@ export default function ProductionPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Produção do Turno 🥐
+            Produção do Turno
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Acompanhe o lote de pães, salgados, doces assados e otimize as fornadas por turno.
@@ -146,7 +166,7 @@ export default function ProductionPage() {
           { label: 'Quebra / Sobras', value: logs.reduce((acc, l) => acc + Math.max(0, l.quantity_produced - l.quantity_sold), 0), color: '#F59E0B', info: 'Excesso estimado' },
           { label: 'Aproveitamento Médio', value: `${logs.length > 0 ? ((logs.reduce((acc, l) => acc + l.quantity_sold, 0) / logs.reduce((acc, l) => acc + l.quantity_produced, 0), 0) * 100 || 88).toFixed(0) : 100}%`, color: '#3B82F6', info: 'Eficiência' }
         ].map((item, idx) => (
-          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#121212]/40 relative overflow-hidden">
+          <div key={idx} className="p-4 rounded-xl border border-white/[0.06] bg-[#1A0F08]/40 relative overflow-hidden">
             <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-wider block">{item.label}</span>
             <span className="text-base lg:text-lg font-bold text-[#FAF6EF] mt-1 block" style={{ color: item.color, fontFamily: 'var(--font-serif)' }}>{item.value}</span>
             <span className="text-[9px] font-semibold text-neutral-500 mt-2 block">{item.info}</span>
@@ -161,7 +181,7 @@ export default function ProductionPage() {
           <p className="text-xs text-neutral-400">Carregando logs de produção...</p>
         </div>
       ) : logs.length === 0 ? (
-        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#121212]/30 backdrop-blur-sm">
+        <div className="rounded-2xl p-12 text-center border border-white/[0.06] bg-[#1A0F08]/30 backdrop-blur-sm">
           <div className="w-12 h-12 rounded-full bg-white/[0.02] border border-white/[0.08] flex items-center justify-center mx-auto mb-4 text-[#C9A84C]">
             <ChefHat size={20} />
           </div>
@@ -171,7 +191,7 @@ export default function ProductionPage() {
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#121212]/30">
+        <div className="overflow-x-auto rounded-xl border border-white/[0.06] bg-[#1A0F08]/30">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="border-b border-white/[0.06] bg-white/[0.02] text-neutral-400 uppercase text-[9px] tracking-wider font-bold">
@@ -206,11 +226,11 @@ export default function ProductionPage() {
 
       {/* Fornada Register Modal */}
       {modalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-[#1A0F08]/75 backdrop-blur-md">
           <motion.div
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            className="w-full max-w-sm bg-[#160D09]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
+            className="w-full max-w-sm bg-[#2C1A0E]/95 border border-[#C9A84C]/30 rounded-2xl p-6 shadow-2xl space-y-4 relative"
           >
             <button
               onClick={() => setModalOpen(false)}
@@ -232,7 +252,7 @@ export default function ProductionPage() {
                   required
                   value={selectedMenuItemId}
                   onChange={(e) => setSelectedMenuItemId(e.target.value)}
-                  className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                  className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                 >
                   <option value="">Selecione do Cardápio...</option>
                   {menuItems.map(item => (
@@ -272,7 +292,7 @@ export default function ProductionPage() {
                   <select
                     value={shift}
                     onChange={(e) => setShift(e.target.value as any)}
-                    className="w-full bg-[#121212] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
+                    className="w-full bg-[#1A0F08] border border-white/10 rounded-lg py-2 px-3 text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]"
                   >
                     <option value="shift_1">Manhã</option>
                     <option value="shift_2">Tarde / Noite</option>

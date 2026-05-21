@@ -1,4 +1,5 @@
 'use client'
+import { USE_MOCK, mockRevenue } from '@/lib/mockData'
 
 import { useState, useEffect, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
@@ -42,6 +43,28 @@ export default function RevenuePage() {
   })
 
   const fetchRevenueData = useCallback(async () => {
+    if (USE_MOCK) {
+      setData({
+        totalRevenue: 127450.80,
+        ordersCount: 1797,
+        avgTicket: 70.93,
+        ifoodRevenue: 25490.16,
+        counterRevenue: 57352.86,
+        deliveryRevenue: 16568.60,
+        diningRevenue: 28039.18,
+        dailyTrends: [
+          { day: 'Seg', v: 4200 },
+          { day: 'Ter', v: 4850 },
+          { day: 'Qua', v: 3980 },
+          { day: 'Qui', v: 5120 },
+          { day: 'Sex', v: 5890 },
+          { day: 'Sáb', v: 6340 },
+          { day: 'Dom', v: 4070 },
+        ]
+      });
+      setLoading(false);
+      return
+    }
     setLoading(true)
     try {
       const { data: orders, error } = await supabase
@@ -133,7 +156,7 @@ export default function RevenuePage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            Faturamento & Performance 📈
+            Faturamento & Performance
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Análise detalhada de ticket médio, taxas de conversão e receita multi-canal.
@@ -159,7 +182,7 @@ export default function RevenuePage() {
           return (
             <div
               key={index}
-              className="p-5 rounded-2xl border border-white/[0.06] bg-[#121212]/40 backdrop-blur-sm flex items-center justify-between"
+              className="p-5 rounded-2xl border border-white/[0.06] bg-[#1A0F08]/40 backdrop-blur-sm flex items-center justify-between"
             >
               <div>
                 <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{kpi.label}</span>
@@ -178,7 +201,7 @@ export default function RevenuePage() {
       {/* Charts Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
         {/* Sales Chart */}
-        <div className="rounded-2xl p-5 border border-white/[0.06] bg-[#121212]/40 backdrop-blur-sm">
+        <div className="rounded-2xl p-5 border border-white/[0.06] bg-[#1A0F08]/40 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="text-xs font-bold text-[#C9A84C] tracking-widest uppercase">Evolução Faturamento</h3>
@@ -215,7 +238,7 @@ export default function RevenuePage() {
         </div>
 
         {/* Channel Share Chart */}
-        <div className="rounded-2xl p-5 border border-white/[0.06] bg-[#121212]/40 backdrop-blur-sm">
+        <div className="rounded-2xl p-5 border border-white/[0.06] bg-[#1A0F08]/40 backdrop-blur-sm">
           <div className="flex items-center justify-between mb-6">
             <div>
               <h3 className="text-xs font-bold text-[#C9A84C] tracking-widest uppercase">Canais de Receita</h3>

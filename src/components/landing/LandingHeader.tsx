@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import { ArrowRight } from 'lucide-react'
+import BakeryLogo from '../ui/BakeryLogo'
 
 const navItems = [
   { label: 'Início', href: '#inicio' },
@@ -10,6 +12,7 @@ const navItems = [
   { label: 'Lanches', href: '#especiais' },
   { label: 'Delivery', href: '#delivery' },
   { label: 'Sobre', href: '#tradicao' },
+  { label: 'Blog', href: '#blog' },
   { label: 'Contato', href: '#contato' },
 ]
 
@@ -57,20 +60,7 @@ export default function LandingHeader() {
           href="/"
           style={{ textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '12px' }}
         >
-          <div
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '10px',
-              background: 'linear-gradient(135deg, #9E7A2E, #C9A84C)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontSize: '20px',
-            }}
-          >
-            🍞
-          </div>
+          <BakeryLogo size={55} />
           <div>
             <p
               style={{
@@ -128,6 +118,9 @@ export default function LandingHeader() {
             target="_blank"
             rel="noopener noreferrer"
             style={{
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '6px',
               background: 'linear-gradient(135deg, #9E7A2E, #C9A84C)',
               color: '#2C1A0E',
               fontWeight: '700',
@@ -149,7 +142,7 @@ export default function LandingHeader() {
               el.style.boxShadow = 'none'
             }}
           >
-            Pedir Agora 🍞
+            Pedir Agora <ArrowRight size={16} />
           </a>
 
           {/* Mobile menu button */}

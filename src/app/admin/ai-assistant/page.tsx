@@ -91,7 +91,7 @@ export default function AiAssistantPage() {
             </Link>
           </div>
           <h1 className="text-2xl lg:text-3xl font-bold tracking-tight text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>
-            IA Gerencial & Insights 🧠
+            IA Gerencial & Insights
           </h1>
           <p className="text-xs text-[#888888] mt-1">
             Assistente executivo inteligente conectado em tempo real à base de vendas, estoque e CMV da padaria.
@@ -102,7 +102,7 @@ export default function AiAssistantPage() {
       {/* Main Chat Area */}
       <div className="flex-1 flex flex-col md:flex-row gap-4 overflow-hidden">
         {/* Chat Drawer */}
-        <div className="flex-1 flex flex-col rounded-2xl border border-white/[0.06] bg-[#121212]/30 overflow-hidden">
+        <div className="flex-1 flex flex-col rounded-2xl border border-white/[0.06] bg-[#1A0F08]/30 overflow-hidden">
           <div className="px-5 py-3 border-b border-white/[0.06] bg-white/[0.02] flex items-center gap-2 flex-shrink-0">
             <Sparkles size={16} className="text-[#C9A84C] animate-pulse" />
             <span className="text-xs font-bold text-[#FAF6EF]">Chat Inteligente Nova Paokent</span>
@@ -120,7 +120,7 @@ export default function AiAssistantPage() {
                 <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 border ${
                   msg.role === 'user'
                     ? 'bg-[#C9A84C]/10 border-[#C9A84C]/35 text-[#C9A84C]'
-                    : 'bg-[#160D09] border-white/5 text-[#FAF6EF]'
+                    : 'bg-[#2C1A0E] border-white/5 text-[#FAF6EF]'
                 }`}>
                   {msg.role === 'user' ? <User size={14} /> : <Bot size={14} />}
                 </div>
@@ -128,7 +128,7 @@ export default function AiAssistantPage() {
                 <div className={`p-3.5 rounded-2xl text-xs leading-relaxed ${
                   msg.role === 'user'
                     ? 'bg-gradient-to-r from-[#9E7A2E] to-[#C9A84C] text-[#2C1A0E] font-medium rounded-tr-none'
-                    : 'bg-[#121212] border border-white/5 text-neutral-200 rounded-tl-none'
+                    : 'bg-[#1A0F08] border border-white/5 text-neutral-200 rounded-tl-none'
                 }`}>
                   <p>{msg.content}</p>
                   <span className={`text-[9px] block mt-1.5 text-right ${msg.role === 'user' ? 'text-[#2C1A0E]/70' : 'text-neutral-500'}`}>
@@ -140,10 +140,10 @@ export default function AiAssistantPage() {
 
             {loading && (
               <div className="flex gap-3 max-w-[80%]">
-                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#160D09] border border-white/5 text-[#FAF6EF]">
+                <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-[#2C1A0E] border border-white/5 text-[#FAF6EF]">
                   <Bot size={14} />
                 </div>
-                <div className="p-3.5 rounded-2xl bg-[#121212] border border-white/5 text-xs text-neutral-400 flex items-center gap-1.5">
+                <div className="p-3.5 rounded-2xl bg-[#1A0F08] border border-white/5 text-xs text-neutral-400 flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] animate-bounce" style={{ animationDelay: '0ms' }} />
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] animate-bounce" style={{ animationDelay: '150ms' }} />
                   <span className="w-1.5 h-1.5 rounded-full bg-[#C9A84C] animate-bounce" style={{ animationDelay: '300ms' }} />
@@ -186,7 +186,7 @@ export default function AiAssistantPage() {
               <button
                 key={idx}
                 onClick={() => setInput(prompt.q)}
-                className="p-3 rounded-xl border border-white/[0.05] hover:border-[#C9A84C]/35 bg-[#121212]/30 hover:bg-[#121212]/50 text-left text-xs transition-all duration-300 space-y-1"
+                className="p-3 rounded-xl border border-white/[0.05] hover:border-[#C9A84C]/35 bg-[#1A0F08]/30 hover:bg-[#1A0F08]/50 text-left text-xs transition-all duration-300 space-y-1"
               >
                 <div className="flex items-center gap-2">
                   <Icon size={12} className="text-[#C9A84C]" />

@@ -6,42 +6,32 @@ const reviews = [
     rating: 5,
     comment: 'Muito gostoso. O café é saboroso e o pão não chapa.',
     source: 'Google',
-    avatar: '☕',
+    initials: 'JC',
+    gradient: 'linear-gradient(135deg, #FFE29F 0%, #FFA99F 100%)',
   },
   {
     name: 'Vera Santos',
     rating: 5,
     comment: 'Sou cliente há mais de 40 anos. Qualidade sempre impecável!',
     source: 'Google',
-    avatar: '👵',
+    initials: 'VS',
+    gradient: 'linear-gradient(135deg, #A1C4FD 0%, #C2E9FB 100%)',
   },
   {
     name: 'Arthur Rebelo',
     rating: 5,
     comment: 'A melhor broa de milho de todas!',
     source: 'Google',
-    avatar: '🍞',
+    initials: 'AR',
+    gradient: 'linear-gradient(135deg, #F5E3E6 0%, #D9E4DD 100%)',
   },
   {
     name: 'Marina Costa',
     rating: 5,
     comment: 'Ambiente acolhedor, atendimento excelente. Venho toda semana!',
     source: 'Google',
-    avatar: '🌸',
-  },
-  {
-    name: 'Roberto Alves',
-    rating: 5,
-    comment: 'O lanche Arthur Ramos é incrível. Vale cada centavo!',
-    source: 'Google',
-    avatar: '🥖',
-  },
-  {
-    name: 'Fernanda Lima',
-    rating: 5,
-    comment: 'Cafeteria premium no coração do Jardim Paulistano. Recomendo!',
-    source: 'Google',
-    avatar: '⭐',
+    initials: 'MC',
+    gradient: 'linear-gradient(135deg, #FEE140 0%, #FA709A 100%)',
   },
 ]
 
@@ -160,15 +150,17 @@ export default function ReviewsSection() {
                     width: '44px',
                     height: '44px',
                     borderRadius: '50%',
-                    background: 'rgba(201,168,76,0.15)',
+                    background: review.gradient,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    fontSize: '20px',
+                    fontSize: '14px',
+                    fontWeight: '700',
+                    color: '#2C1A0E',
                     flexShrink: 0,
                   }}
                 >
-                  {review.avatar}
+                  {review.initials}
                 </div>
                 <div>
                   <p style={{ color: '#FAF6EF', fontWeight: '600', fontSize: '15px' }}>{review.name}</p>

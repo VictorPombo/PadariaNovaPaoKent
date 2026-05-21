@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { Award, Bike, ChefHat, ArrowDown } from 'lucide-react'
+import IFoodLogo from '../ui/IFoodLogo'
 
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido!'
 const IFOOD_URL = 'https://www.ifood.com.br' // Atualizar com URL real da loja
@@ -194,12 +196,9 @@ export default function HeroSection() {
             style={{
               display: 'flex',
               alignItems: 'center',
-              gap: '10px',
+              justifyContent: 'center',
               background: '#EA1D2C',
-              color: 'white',
-              fontWeight: '700',
-              fontSize: '16px',
-              padding: '14px 24px',
+              padding: '12px 24px',
               borderRadius: '12px',
               textDecoration: 'none',
               transition: 'all 0.3s ease',
@@ -216,7 +215,7 @@ export default function HeroSection() {
               el.style.boxShadow = '0 4px 20px rgba(234,29,44,0.3)'
             }}
           >
-            🍕 Pedir no iFood
+            <IFoodLogo size={54} />
           </a>
 
           {/* Ver Cardápio */}
@@ -249,7 +248,7 @@ export default function HeroSection() {
               el.style.borderColor = 'rgba(201,168,76,0.4)'
             }}
           >
-            Ver Cardápio ↓
+            Ver Cardápio <ArrowDown size={16} />
           </a>
         </div>
 
@@ -295,7 +294,7 @@ export default function HeroSection() {
               padding: '8px 14px',
             }}
           >
-            <span style={{ fontSize: '16px' }}>🏆</span>
+            <Award size={16} color="#C9A84C" style={{ display: 'block' }} />
             <span style={{ color: '#C9A84C', fontSize: '13px', fontWeight: '600' }}>
               Desde 1994
             </span>
@@ -314,7 +313,7 @@ export default function HeroSection() {
               padding: '8px 14px',
             }}
           >
-            <span style={{ fontSize: '16px' }}>🛵</span>
+            <Bike size={16} color="#FAF6EF" style={{ display: 'block' }} />
             <span style={{ color: '#FAF6EF', fontSize: '13px', fontWeight: '600' }}>
               Entrega Rápida
             </span>
@@ -333,7 +332,7 @@ export default function HeroSection() {
               padding: '8px 14px',
             }}
           >
-            <span style={{ fontSize: '16px' }}>👨‍🍳</span>
+            <ChefHat size={16} color="#FAF6EF" style={{ display: 'block' }} />
             <span style={{ color: '#FAF6EF', fontSize: '13px', fontWeight: '600' }}>
               Produção Própria
             </span>
@@ -359,7 +358,7 @@ export default function HeroSection() {
         <span style={{ color: 'rgba(250,246,239,0.4)', fontSize: '12px', letterSpacing: '0.1em' }}>
           EXPLORAR
         </span>
-        <span style={{ color: 'rgba(250,246,239,0.4)', fontSize: '20px' }}>↓</span>
+        <ArrowDown size={20} color="rgba(250,246,239,0.4)" style={{ display: 'block' }} />
       </div>
 
       <style>{`

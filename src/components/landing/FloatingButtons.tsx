@@ -1,6 +1,8 @@
 // Botões Flutuantes (WhatsApp e iFood) da Padaria Nova Paokent
 'use client'
 
+import IFoodLogo from '../ui/IFoodLogo'
+
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido!'
 const IFOOD_URL = 'https://www.ifood.com.br'
 
@@ -74,7 +76,6 @@ export default function FloatingButtons() {
           textDecoration: 'none',
           transition: 'all 0.3s ease',
           animation: 'pulse-ifood 2s infinite 0.5s',
-          fontSize: '24px',
         }}
         onMouseEnter={(e) => {
           const el = e.currentTarget
@@ -87,7 +88,7 @@ export default function FloatingButtons() {
           el.style.boxShadow = '0 4px 20px rgba(234,29,44,0.5)'
         }}
       >
-        🍕
+        <IFoodLogo size={32} />
       </a>
 
       <style>{`
