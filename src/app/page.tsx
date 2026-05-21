@@ -11,27 +11,32 @@ import DeliverySection from '../components/landing/DeliverySection'
 import BlogSection from '../components/landing/BlogSection'
 import ContactSection from '../components/landing/ContactSection'
 import FloatingButtons from '../components/landing/FloatingButtons'
+import { CartProvider } from '../context/CartContext'
+import { CartSidebar } from '../components/cart/CartSidebar'
 
 export default function HomePage() {
   return (
-    <div
-      className="landing-body paper-texture"
-      style={{ background: '#1A0F08', color: '#FAF6EF', fontFamily: 'var(--font-inter)' }}
-    >
-      <LandingHeader />
-      <main>
-        <HeroSection />
-        <SpecialSandwiches />
-        <ServicesSection />
-        <MenuSection />
-        <TraditionSection />
-        <ClientsSection />
-        <ReviewsSection />
-        <BlogSection />
-        <DeliverySection />
-        <ContactSection />
-      </main>
-      <FloatingButtons />
-    </div>
+    <CartProvider>
+      <div
+        className="landing-body paper-texture"
+        style={{ background: '#1A0F08', color: '#FAF6EF', fontFamily: 'var(--font-inter)' }}
+      >
+        <LandingHeader />
+        <main>
+          <HeroSection />
+          <SpecialSandwiches />
+          <ServicesSection />
+          <MenuSection />
+          <TraditionSection />
+          <ClientsSection />
+          <ReviewsSection />
+          <BlogSection />
+          <DeliverySection />
+          <ContactSection />
+        </main>
+        <FloatingButtons />
+        <CartSidebar />
+      </div>
+    </CartProvider>
   )
 }
