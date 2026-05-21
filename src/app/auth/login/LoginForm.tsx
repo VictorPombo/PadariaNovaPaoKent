@@ -36,13 +36,13 @@ export default function LoginForm() {
 
     if (role === 'owner') {
       targetEmail = 'proprietario@novapaokent.com.br'
-      targetPassword = 'PaokentOwner2026!'
+      targetPassword = 'senha123'
     } else if (role === 'manager') {
       targetEmail = 'gerente@novapaokent.com.br'
-      targetPassword = 'PaokentManager2026!'
+      targetPassword = 'senha123'
     } else {
       targetEmail = 'caixa@novapaokent.com.br'
-      targetPassword = 'PaokentCashier2026!'
+      targetPassword = 'senha123'
     }
 
     setEmail(targetEmail)
