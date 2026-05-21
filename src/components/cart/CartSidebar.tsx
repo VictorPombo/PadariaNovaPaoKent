@@ -42,6 +42,8 @@ export function CartSidebar() {
   const [number, setNumber] = useState('')
   const [complement, setComplement] = useState('')
   const [observations, setObservations] = useState('')
+  const [wantsCpf, setWantsCpf] = useState(false)
+  const [cpf, setCpf] = useState('')
 
   // Reset steps when closed or emptied
   useEffect(() => {
@@ -53,6 +55,8 @@ export function CartSidebar() {
       setNumber('')
       setComplement('')
       setObservations('')
+      setWantsCpf(false)
+      setCpf('')
     }
   }, [cartOpen, cart.length])
 
@@ -70,6 +74,23 @@ export function CartSidebar() {
     if (val.length === 8) {
       await fetchAddress(val)
     }
+  }
+
+  const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let val = e.target.value.replace(/\D/g, '')
+    if (val.length > 11) val = val.slice(0, 11)
+    
+    // Mask logic: 000.000.000-00
+    let masked = val
+    if (val.length > 9) {
+      masked = `${val.slice(0,3)}.${val.slice(3,6)}.${val.slice(6,9)}-${val.slice(9)}`
+    } else if (val.length > 6) {
+      masked = `${val.slice(0,3)}.${val.slice(3,6)}.${val.slice(6)}`
+    } else if (val.length > 3) {
+      masked = `${val.slice(0,3)}.${val.slice(3)}`
+    }
+    
+    setCpf(masked)
   }
 
   const fetchAddress = async (cleanCep: string) => {
@@ -136,6 +157,10 @@ export function CartSidebar() {
     
     if (observations.trim()) {
       msg += `*OBSERVAÇÕES:*\n${observations.trim()}\n\n`
+    }
+    
+    if (wantsCpf && cpf.trim()) {
+      msg += `*CPF NA NOTA:* ${cpf}\n\n`
     }
     
     msg += 'Aguardando confirmação. Muito obrigado!'
@@ -436,6 +461,38 @@ export function CartSidebar() {
                       placeholder="Ex: Tirar cebola, troco para 50, etc."
                       style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FAF6EF', fontSize: '15px', outline: 'none', resize: 'vertical', minHeight: '80px' }}
                     />
+                  </div>
+
+                  <div style={{ marginTop: '4px' }}>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '12px 16px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px' }}>
+                      <label style={{ color: '#FAF6EF', fontSize: '14px', fontWeight: '600' }}>Deseja CPF na nota?</label>
+                      <div style={{ display: 'flex', gap: '8px' }}>
+                        <button
+                          onClick={() => setWantsCpf(true)}
+                          style={{ padding: '6px 12px', borderRadius: '6px', fontSize: '13px', fontWeight: '600', border: 'none', cursor: 'pointer', background: wantsCpf ? '#C9A84C' : 'rgba(255,255,255,0.1)', color: wantsCpf ? '#1A0F08' : '#FAF6EF', transition: 'all 0.2s' }}
+                        >
+                          Sim
+                        </button>
+                        <button
+                          onClick={() => setWantsCpf(false)}
+                          style={{ padding: '6px 12px', borderRadius: '6px', fontSize: '13px', fontWeight: '600', border: 'none', cursor: 'pointer', background: !wantsCpf ? 'rgba(255,255,255,0.1)' : 'transparent', color: !wantsCpf ? '#FAF6EF' : 'rgba(250,246,239,0.5)', transition: 'all 0.2s' }}
+                        >
+                          Não
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {wantsCpf && (
+                      <div style={{ marginTop: '12px' }}>
+                        <input
+                          type="text"
+                          value={cpf}
+                          onChange={handleCpfChange}
+                          placeholder="Digite o CPF: 000.000.000-00"
+                          style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(201,168,76,0.4)', borderRadius: '8px', color: '#FAF6EF', fontSize: '15px', outline: 'none' }}
+                        />
+                      </div>
+                    )}
                   </div>
                 </div>
                 
