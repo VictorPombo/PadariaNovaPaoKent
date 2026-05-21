@@ -46,7 +46,13 @@ export default function FootTrafficPage() {
 
   const fetchData = useCallback(async () => {
     if (USE_MOCK) {
-      setLogs(mockFootTraffic.hourly.map((h, i) => ({ id: String(i+1), date: new Date().toISOString().split('T')[0], hour: parseInt(h.hour), count: h.count, shift: parseInt(h.hour) < 14 ? 'shift_1' : 'shift_2', created_at: new Date().toISOString() })) as any);
+      setLogs(mockFootTraffic.hourly.map((h, i) => ({ 
+        id: String(i+1), 
+        count_date: new Date().toISOString().split('T')[0], 
+        hour_slot: parseInt(h.hour), 
+        customer_count: h.count, 
+        shift: parseInt(h.hour) < 14 ? 'shift_1' : 'shift_2'
+      } as FootTrafficLog)));
       setLoading(false);
       return
     }
