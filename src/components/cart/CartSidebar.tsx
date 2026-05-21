@@ -41,6 +41,7 @@ export function CartSidebar() {
   })
   const [number, setNumber] = useState('')
   const [complement, setComplement] = useState('')
+  const [observations, setObservations] = useState('')
 
   // Reset steps when closed or emptied
   useEffect(() => {
@@ -51,6 +52,7 @@ export function CartSidebar() {
       setDistanceKm(null)
       setNumber('')
       setComplement('')
+      setObservations('')
     }
   }, [cartOpen, cart.length])
 
@@ -131,6 +133,10 @@ export function CartSidebar() {
     
     const fullAddress = `${addressData.street}, ${number} ${complement ? `- ${complement}` : ''}\nBairro: ${addressData.neighborhood}\nCEP: ${cep}`
     msg += `*ENDEREÇO PARA ENTREGA:*\n${fullAddress}\n\n`
+    
+    if (observations.trim()) {
+      msg += `*OBSERVAÇÕES:*\n${observations.trim()}\n\n`
+    }
     
     msg += 'Aguardando confirmação. Muito obrigado!'
 
@@ -420,6 +426,16 @@ export function CartSidebar() {
                         style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FAF6EF', fontSize: '15px', outline: 'none' }}
                       />
                     </div>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', color: 'rgba(250,246,239,0.8)', fontSize: '13px', marginBottom: '6px' }}>Observações do Pedido</label>
+                    <textarea
+                      value={observations}
+                      onChange={e => setObservations(e.target.value)}
+                      placeholder="Ex: Tirar cebola, troco para 50, etc."
+                      style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FAF6EF', fontSize: '15px', outline: 'none', resize: 'vertical', minHeight: '80px' }}
+                    />
                   </div>
                 </div>
                 
