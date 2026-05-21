@@ -209,6 +209,7 @@ export default function SpecialSandwiches() {
                   overflow: 'hidden',
                 }}
               >
+                {sandwich.featured && (
                   <span
                     style={{
                       position: 'absolute',

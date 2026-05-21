@@ -14,6 +14,7 @@ import FloatingButtons from '../components/landing/FloatingButtons'
 import { CartProvider } from '../context/CartContext'
 import { CartSidebar } from '../components/cart/CartSidebar'
 import DailyBreadBanner from '../components/landing/DailyBreadBanner'
+import BirthdayGift from '../components/landing/BirthdayGift'
 
 export default function HomePage() {
   return (
@@ -34,6 +35,7 @@ export default function HomePage() {
           <ReviewsSection />
           <BlogSection />
           <DeliverySection />
+          <BirthdayGift />
           <ContactSection />
         </main>
         <FloatingButtons />
