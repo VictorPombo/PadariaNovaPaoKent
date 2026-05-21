@@ -44,6 +44,7 @@ export function CartSidebar() {
   const [observations, setObservations] = useState('')
   const [wantsCpf, setWantsCpf] = useState(false)
   const [cpf, setCpf] = useState('')
+  const [paymentMethod, setPaymentMethod] = useState('')
 
   // Reset steps when closed or emptied
   useEffect(() => {
@@ -57,6 +58,7 @@ export function CartSidebar() {
       setObservations('')
       setWantsCpf(false)
       setCpf('')
+      setPaymentMethod('')
     }
   }, [cartOpen, cart.length])
 
@@ -140,9 +142,13 @@ export function CartSidebar() {
       alert('Por favor, informe o número do endereço.')
       return
     }
+    if (!paymentMethod) {
+      alert('Por favor, selecione a forma de pagamento.')
+      return
+    }
 
     const total = cart.reduce((s, i) => s + i.price * i.quantity, 0)
-    let msg = '*NOVO PEDIDO - PADARIA NOVA PAOKENT*\n'
+    let msg = '*NOVO PEDIDO - PADARIA NOVA PÃO KENT*\n'
     msg += '------------------------------------\n\n'
     cart.forEach((item, idx) => {
       msg += `Item ${idx + 1}: ${item.name}\n`
@@ -162,6 +168,8 @@ export function CartSidebar() {
     if (wantsCpf && cpf.trim()) {
       msg += `*CPF NA NOTA:* ${cpf}\n\n`
     }
+    
+    msg += `*FORMA DE PAGAMENTO:* ${paymentMethod}\n\n`
     
     msg += 'Aguardando confirmação. Muito obrigado!'
 
@@ -451,6 +459,21 @@ export function CartSidebar() {
                         style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FAF6EF', fontSize: '15px', outline: 'none' }}
                       />
                     </div>
+                  </div>
+
+                  <div>
+                    <label style={{ display: 'block', color: 'rgba(250,246,239,0.8)', fontSize: '13px', marginBottom: '6px' }}>Forma de Pagamento*</label>
+                    <select
+                      value={paymentMethod}
+                      onChange={e => setPaymentMethod(e.target.value)}
+                      style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FAF6EF', fontSize: '15px', outline: 'none' }}
+                    >
+                      <option value="" disabled style={{ background: '#1A0F08' }}>Selecione o pagamento</option>
+                      <option value="Pix" style={{ background: '#1A0F08' }}>Pix</option>
+                      <option value="Cartão de Crédito" style={{ background: '#1A0F08' }}>Cartão de Crédito</option>
+                      <option value="Cartão de Débito" style={{ background: '#1A0F08' }}>Cartão de Débito</option>
+                      <option value="Dinheiro" style={{ background: '#1A0F08' }}>Dinheiro</option>
+                    </select>
                   </div>
 
                   <div>
