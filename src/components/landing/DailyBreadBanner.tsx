@@ -94,7 +94,7 @@ export default function DailyBreadBanner() {
             <h3 style={{ margin: '4px 0 0', color: '#FAF6EF', fontSize: '20px', fontFamily: 'var(--font-playfair)', fontWeight: '700' }}>
               {bread.name} <span style={{ color: '#C9A84C', fontSize: '18px' }}>— R$ {bread.price.toFixed(2).replace('.', ',')}</span>
             </h3>
-            <p style={{ margin: '2px 0 0', color: 'rgba(250,246,239,0.7)', fontSize: '13px', maxWidth: '400px', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+            <p style={{ margin: '2px 0 0', color: 'rgba(250,246,239,0.7)', fontSize: '13px', maxWidth: '400px', display: '-webkit-box', WebkitLineClamp: 2, WebkitBoxOrient: 'vertical', overflow: 'hidden' }}>
               {bread.description}
             </p>
           </div>

@@ -117,6 +117,7 @@ export default function LandingHeader() {
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
+            className="hidden-mobile"
             style={{
               display: 'inline-flex',
               alignItems: 'center',
