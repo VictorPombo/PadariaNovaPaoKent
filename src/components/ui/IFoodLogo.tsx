@@ -17,7 +17,6 @@ export default function IFoodLogo({ size, width, height, className, style, white
   useEffect(() => {
     const img = new Image()
     img.src = '/ifood-logo.png'
-    img.crossOrigin = 'anonymous'
     img.onload = () => {
       const canvas = document.createElement('canvas')
       canvas.width = img.width

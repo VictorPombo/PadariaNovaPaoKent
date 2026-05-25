@@ -157,7 +157,7 @@ export default function LandingHeader() {
               fontSize: '24px',
               cursor: 'pointer',
               padding: '4px',
-              display: 'none',
+              /* removed display: 'none' to allow .show-mobile to work */
             }}
             aria-label="Menu"
           >

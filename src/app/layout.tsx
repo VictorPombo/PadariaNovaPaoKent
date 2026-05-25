@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: '%s | Padaria Nova Paokent',
   },
   description:
-    'Padaria artesanal, cafeteria e restaurante no coração do Jardim Paulistano, São Paulo. Mais de 30 anos de tradição, sabor e qualidade premium. Delivery próprio e iFood.',
+    'Padaria e confeitaria artesanal no coração do Jardim Paulistano, São Paulo. Mais de 30 anos de tradição, sabor e qualidade premium. Delivery próprio e iFood.',
   keywords: [
     'padaria', 'padaria jardim paulistano', 'padaria são paulo',
     'nova paokent', 'padaria artesanal', 'cafeteria', 'delivery padaria',
@@ -91,7 +91,7 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'Bakery',
               name: 'Padaria Nova Paokent',
-              description: 'Padaria artesanal, cafeteria e restaurante com 30 anos de tradição.',
+              description: 'Padaria e confeitaria artesanal com mais de 30 anos de tradição.',
               url: 'https://novapaokent.com.br',
               telephone: '+55-11-97653-5789',
               address: {
@@ -107,13 +107,13 @@ export default function RootLayout({
                 latitude: -23.571,
                 longitude: -46.692,
               },
-              openingHours: ['Mo-Fr 06:00-22:00', 'Sa-Su 07:00-21:00'],
+              openingHours: ['Mo-Su 06:00-22:00'],
               image: 'https://novapaokent.com.br/og-image.jpg',
               priceRange: '$$',
               servesCuisine: ['Brasileira', 'Padaria', 'Cafeteria'],
               hasMenu: 'https://novapaokent.com.br/cardapio',
               sameAs: ['https://www.instagram.com/novapaokent'],
-              foundingDate: '1994',
+              foundingDate: '1993',
               aggregateRating: {
                 '@type': 'AggregateRating',
                 ratingValue: '5',

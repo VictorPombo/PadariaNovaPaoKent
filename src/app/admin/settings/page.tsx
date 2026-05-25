@@ -45,7 +45,7 @@ export default function SettingsPage() {
     address: 'Rua Prof. Artur Ramos, 223 — Jardim Paulistano, São Paulo',
     google_maps_url: '',
     ifood_url: '',
-    founded_year: 1994
+    founded_year: 1993
   })
 
   const [dailyGoal, setDailyGoal] = useState({ amount: 5000 })
@@ -340,7 +340,7 @@ export default function SettingsPage() {
                         <input
                           type="number"
                           value={businessInfo.founded_year}
-                          onChange={(e) => setBusinessInfo({ ...businessInfo, founded_year: parseInt(e.target.value) || 1994 })}
+                          onChange={(e) => setBusinessInfo({ ...businessInfo, founded_year: parseInt(e.target.value) || 1993 })}
                           className="w-full pl-10 pr-4 py-2 text-xs rounded-xl border border-white/10 bg-white/[0.02] text-[#FAF6EF] focus:outline-none focus:border-[#C9A84C]/50"
                         />
                       </div>

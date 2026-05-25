@@ -4,11 +4,11 @@ import { useEffect, useRef, useState } from 'react'
 import { Trophy, Users, ClipboardList, Star } from 'lucide-react'
 
 const timelineEvents = [
-  { year: '1994', title: 'A história começa', desc: 'A família abre as portas da Padaria Nova Paokent no Jardim Paulistano.' },
+  { year: '1993', title: 'A história começa', desc: 'A partir do dia 1 de agosto de 1993, a família abre as portas da Padaria Nova Pão Kent no Jardim Paulistano.' },
   { year: '2000', title: 'Expansão do cardápio', desc: 'Novos produtos artesanais e a criação dos lanches com nome de rua.' },
-  { year: '2010', title: '16 anos de tradição', desc: 'Reconhecida como referência em qualidade e atendimento no bairro.' },
+  { year: '2010', title: '17 anos de tradição', desc: 'Reconhecida como referência em qualidade e atendimento no bairro.' },
   { year: '2020', title: 'Delivery próprio', desc: 'Entrega rápida para o Jardim Paulistano e regiões próximas.' },
-  { year: '2024', title: '30 anos!', desc: 'Três décadas servindo o melhor café, pão e lanche de São Paulo.' },
+  { year: '2025', title: 'Mais de 30 anos!', desc: 'Mais de três décadas servindo o melhor café, pão e lanche de São Paulo.' },
 ]
 
 const stats = [
@@ -100,7 +100,7 @@ export default function TraditionSection() {
             </span>
           </h2>
           <p style={{ color: 'rgba(250,246,239,0.6)', fontSize: '16px', maxWidth: '500px', margin: '0 auto' }}>
-            30 anos de história, receitas tradicionais e o carinho de uma família
+            Mais de 30 anos de história, receitas tradicionais e o carinho de uma família
             que ama o que faz.
           </p>
         </div>
@@ -147,7 +147,7 @@ export default function TraditionSection() {
               }}
             >
               <span style={{ fontSize: '11px', color: '#2C1A0E', fontWeight: '700', textAlign: 'center', lineHeight: '1.2' }}>
-                Desde<br />1994
+                Desde<br />1993
               </span>
             </div>
           </div>

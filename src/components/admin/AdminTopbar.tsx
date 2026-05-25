@@ -39,32 +39,32 @@ export default function AdminTopbar({ user, profile }: AdminTopbarProps) {
   const firstName = user.user_metadata?.full_name?.split(' ')[0] || profile?.full_name?.split(' ')[0] || 'Usuário'
 
   return (
-    <header className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 px-6 h-[64px] flex-shrink-0 bg-black/10 backdrop-blur-md border-b border-[#C9A84C]/5 z-30">
+    <header className="flex items-center justify-between gap-3 px-3 sm:px-6 py-3 sm:py-0 sm:h-[64px] flex-shrink-0 bg-[#1A0F08]/95 backdrop-blur-md border-b border-[#C9A84C]/10 z-30 w-full min-w-0">
       {/* Esquerda: Saudação e Data */}
-      <div className="pl-12 lg:pl-0 flex flex-col justify-center h-full"> {/* padding left on mobile so it doesn't overlap the menu button */}
-        <h1 className="text-[15px] font-bold text-[#FAF6EF] tracking-wide leading-tight">
+      <div className="pl-12 lg:pl-0 flex flex-col justify-center min-w-0">
+        <h1 className="text-[14px] sm:text-[15px] font-bold text-[#FAF6EF] tracking-wide leading-tight truncate">
           {greeting}, <span className="text-[#C9A84C]">{firstName}</span>
         </h1>
-        <p className="text-[10px] text-neutral-500 font-medium capitalize leading-tight mt-0.5">
+        <p className="text-[10px] text-neutral-500 font-medium capitalize leading-tight mt-0.5 truncate">
           {currentDateStr} • {turno}
         </p>
       </div>
 
       {/* Direita: Botões */}
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-2 sm:gap-3 flex-shrink-0">
         <Link
           href="/admin/ai-assistant"
-          className="btn-premium-ghost px-4 py-1.5 text-xs transition-all"
+          className="btn-premium-ghost px-3 sm:px-4 py-1.5 text-xs transition-all"
         >
           <Brain size={14} className="text-[#C9A84C]" />
-          <span>Perguntar à IA</span>
+          <span className="hidden sm:inline">Perguntar à IA</span>
         </Link>
         <Link
           href="/admin/orders"
-          className="btn-premium-gold px-4 py-1.5 text-xs transition-all"
+          className="btn-premium-gold px-3 sm:px-4 py-1.5 text-xs transition-all"
         >
           <Plus size={14} />
-          <span>Novo Pedido</span>
+          <span className="hidden sm:inline">Novo Pedido</span>
         </Link>
       </div>
     </header>

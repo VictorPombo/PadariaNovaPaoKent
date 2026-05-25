@@ -65,7 +65,7 @@ export default function ContactSection() {
                   Nova Paokent
                 </p>
                 <p style={{ color: '#C9A84C', fontSize: '11px', margin: 0, letterSpacing: '0.1em' }}>
-                  PADARIA ARTESANAL DESDE 1994
+                  PADARIA ARTESANAL DESDE 1993
                 </p>
               </div>
             </div>
@@ -168,9 +168,7 @@ export default function ContactSection() {
             </h3>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
               {[
-                { day: 'Segunda a Sexta', hours: '6h às 22h' },
-                { day: 'Sábado', hours: '7h às 21h' },
-                { day: 'Domingo', hours: '7h às 20h' },
+                { day: 'Todos os dias', hours: '6h às 22h' },
               ].map((schedule) => (
                 <div
                   key={schedule.day}
@@ -258,7 +256,7 @@ export default function ContactSection() {
             © {new Date().getFullYear()} Padaria Nova Paokent. Todos os direitos reservados.
           </p>
           <p style={{ color: 'rgba(250,246,239,0.2)', fontSize: '11px' }}>
-            Desde 1994 • Jardim Paulistano, São Paulo
+            Desde 1993 • Jardim Paulistano, São Paulo
           </p>
         </div>
       </div>

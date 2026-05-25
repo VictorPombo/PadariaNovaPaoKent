@@ -241,7 +241,8 @@ export default function AdminSidebar({ profile }: AdminSidebarProps) {
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setMobileOpen((v) => !v)}
-        className="lg:hidden fixed top-[12px] left-4 z-50 flex items-center justify-center w-10 h-10 rounded-xl border border-[#C9A84C]/25 bg-[#2C1A0E]/80 backdrop-blur-md text-[#FAF6EF] hover:bg-[#3d2719]/80 transition-all shadow-md cursor-pointer"
+        className="lg:hidden fixed top-3 left-3 z-[60] flex items-center justify-center w-10 h-10 rounded-xl border border-[#C9A84C]/25 bg-[#2C1A0E]/90 backdrop-blur-md text-[#FAF6EF] hover:bg-[#3d2719]/80 transition-all shadow-lg cursor-pointer"
+        aria-label="Menu"
       >
         {mobileOpen ? <X size={18} /> : <Menu size={18} />}
       </button>
@@ -269,7 +270,7 @@ export default function AdminSidebar({ profile }: AdminSidebarProps) {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 lg:hidden bg-[#1A0F08]/70 backdrop-blur-sm"
+              className="fixed inset-0 z-[55] lg:hidden bg-[#1A0F08]/70 backdrop-blur-sm"
               onClick={closeMobile}
               aria-hidden="true"
             />
@@ -281,7 +282,7 @@ export default function AdminSidebar({ profile }: AdminSidebarProps) {
               animate={{ x: 0 }}
               exit={{ x: '-100%' }}
               transition={{ type: 'spring', stiffness: 350, damping: 35 }}
-              className="fixed top-0 left-0 h-screen z-50 flex flex-col lg:hidden overflow-hidden w-[260px] sidebar-glass shadow-2xl"
+              className="fixed top-0 left-0 h-screen z-[60] flex flex-col lg:hidden overflow-hidden w-[280px] sidebar-glass shadow-2xl"
             >
               <SidebarContent
                 profile={profile}

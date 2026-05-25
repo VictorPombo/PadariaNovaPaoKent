@@ -6,6 +6,7 @@ const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20u
 export default function FloatingButtons() {
   return (
     <div
+      id="floating-container"
       style={{
         position: 'fixed',
         bottom: '24px',
