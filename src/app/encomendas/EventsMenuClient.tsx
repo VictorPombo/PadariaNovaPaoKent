@@ -16,12 +16,12 @@ export default function EventsMenuClient() {
   const [activeTab, setActiveTab] = useState<string>('miniSanduiches')
   const tabImages: Record<string, string> = {
     miniSanduiches: '/images/reais/sanduiches-10.png',
-    paesDeMetro: '/images/reais/sanduiches-01.jpg',
+    paesDeMetro: '', // No coherent photo
     salgados: '/images/reais/salgados-05.png',
     doces: '/images/reais/doces-bolos-11.png',
   }
 
-  const bannerImage = tabImages[activeTab] || '/hero-bread.jpg'
+  const bannerImage = tabImages[activeTab]
 
   const tabs = [
     { id: 'miniSanduiches', label: 'Mini Sanduíches', data: miniSanduiches },
@@ -38,7 +38,7 @@ export default function EventsMenuClient() {
       <div style={{ 
         width: '100%', 
         height: '350px', 
-        backgroundImage: `linear-gradient(to bottom, rgba(26,15,8,0.3), #1A0F08), url(${bannerImage})`,
+        backgroundImage: bannerImage ? `linear-gradient(to bottom, rgba(26,15,8,0.3), #1A0F08), url(${bannerImage})` : `linear-gradient(to bottom, rgba(26,15,8,0.3), #1A0F08)`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         position: 'relative',

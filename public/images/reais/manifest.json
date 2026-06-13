@@ -8,7 +8,7 @@
         "descricao": "Foto real de paes (fonteB-22.jpg)",
         "categoria": "paes",
         "src": "/images/reais/paes-01.jpg",
-        "usada_em": "BlogSection"
+        "usada_em": "website"
       },
       {
         "id": "paes-02",
@@ -17,7 +17,7 @@
         "descricao": "Foto real de paes (fonteB-20.jpg)",
         "categoria": "paes",
         "src": "/images/reais/paes-02.jpg",
-        "usada_em": "BlogSection"
+        "usada_em": "website"
       },
       {
         "id": "paes-03",
@@ -64,7 +64,7 @@
         "descricao": "Foto real de sanduiches (fonteB-23.jpg)",
         "categoria": "sanduiches",
         "src": "/images/reais/sanduiches-01.jpg",
-        "usada_em": "EncomendasPage"
+        "usada_em": null
       },
       {
         "id": "sanduiches-02",
@@ -73,7 +73,7 @@
         "descricao": "Foto real de sanduiches (fonteB-09.jpg)",
         "categoria": "sanduiches",
         "src": "/images/reais/sanduiches-02.jpg",
-        "usada_em": "BlogSection"
+        "usada_em": null
       },
       {
         "id": "sanduiches-03",
@@ -82,7 +82,7 @@
         "descricao": "Foto real de sanduiches (fonteB-08.jpg)",
         "categoria": "sanduiches",
         "src": "/images/reais/sanduiches-03.jpg",
-        "usada_em": "SpecialSandwiches"
+        "usada_em": null
       },
       {
         "id": "sanduiches-04",
@@ -91,7 +91,7 @@
         "descricao": "Foto real de sanduiches (fonteB-19.jpg)",
         "categoria": "sanduiches",
         "src": "/images/reais/sanduiches-04.jpg",
-        "usada_em": "SpecialSandwiches"
+        "usada_em": null
       },
       {
         "id": "sanduiches-05",
@@ -100,7 +100,7 @@
         "descricao": "Foto real de sanduiches (fonteB-27.jpg)",
         "categoria": "sanduiches",
         "src": "/images/reais/sanduiches-05.jpg",
-        "usada_em": "SpecialSandwiches"
+        "usada_em": null
       },
       {
         "id": "sanduiches-06",
@@ -109,7 +109,7 @@
         "descricao": "Foto real de sanduiches (fonteB-17.jpg)",
         "categoria": "sanduiches",
         "src": "/images/reais/sanduiches-06.jpg",
-        "usada_em": "SpecialSandwiches"
+        "usada_em": null
       },
       {
         "id": "sanduiches-07",
@@ -145,7 +145,7 @@
         "descricao": "Foto real de sanduiches (fonteC-p02-02.png)",
         "categoria": "sanduiches",
         "src": "/images/reais/sanduiches-10.png",
-        "usada_em": "EncomendasPage"
+        "usada_em": "website"
       },
       {
         "id": "sanduiches-11",
@@ -210,7 +210,7 @@
         "descricao": "Foto real de salgados (fonteB-18.jpg)",
         "categoria": "salgados",
         "src": "/images/reais/salgados-01.jpg",
-        "usada_em": "BlogSection"
+        "usada_em": "website"
       },
       {
         "id": "salgados-02",
@@ -219,7 +219,7 @@
         "descricao": "Foto real de salgados (fonteB-25.jpg)",
         "categoria": "salgados",
         "src": "/images/reais/salgados-02.jpg",
-        "usada_em": "ServicesSection"
+        "usada_em": "website"
       },
       {
         "id": "salgados-03",
@@ -246,7 +246,7 @@
         "descricao": "Foto real de salgados (fonteC-p13-14.png)",
         "categoria": "salgados",
         "src": "/images/reais/salgados-05.png",
-        "usada_em": "EncomendasPage"
+        "usada_em": "website"
       },
       {
         "id": "salgados-06",
@@ -284,7 +284,7 @@
         "descricao": "Foto real de doces-bolos (fonteB-21.jpg)",
         "categoria": "doces-bolos",
         "src": "/images/reais/doces-bolos-01.jpg",
-        "usada_em": "ServicesSection"
+        "usada_em": "website"
       },
       {
         "id": "doces-bolos-02",
@@ -374,7 +374,7 @@
         "descricao": "Foto real de doces-bolos (fonteC-p16-15.png)",
         "categoria": "doces-bolos",
         "src": "/images/reais/doces-bolos-11.png",
-        "usada_em": "EncomendasPage"
+        "usada_em": "website"
       },
       {
         "id": "doces-bolos-12",
@@ -431,7 +431,7 @@
         "descricao": "Foto real de ambiente-fachada (fonteA-servico-02.jpg)",
         "categoria": "ambiente-fachada",
         "src": "/images/reais/ambiente-fachada-01.jpg",
-        "usada_em": "ServicesSection"
+        "usada_em": "website"
       },
       {
         "id": "ambiente-fachada-02",
@@ -440,7 +440,7 @@
         "descricao": "Foto real de ambiente-fachada (fonteA-servico-01.jpg)",
         "categoria": "ambiente-fachada",
         "src": "/images/reais/ambiente-fachada-02.jpg",
-        "usada_em": "TraditionSection"
+        "usada_em": null
       }
     ],
     "logo-cliente": [
@@ -451,7 +451,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-08.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-01.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-02",
@@ -460,7 +460,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-09.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-02.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-03",
@@ -469,7 +469,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-01.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-03.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-04",
@@ -478,7 +478,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-02.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-04.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-05",
@@ -487,7 +487,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-03.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-05.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-06",
@@ -496,7 +496,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-07.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-06.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-07",
@@ -505,7 +505,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-06.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-07.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-08",
@@ -514,7 +514,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-04.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-08.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       },
       {
         "id": "logo-cliente-09",
@@ -523,7 +523,7 @@
         "descricao": "Foto real de logo-cliente (fonteA-cliente-05.png)",
         "categoria": "logo-cliente",
         "src": "/images/reais/logo-cliente-09.png",
-        "usada_em": "ClientsSection"
+        "usada_em": "website"
       }
     ],
     "descartar": []

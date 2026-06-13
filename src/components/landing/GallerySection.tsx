@@ -3,16 +3,203 @@
 import { useState } from 'react'
 import Image from 'next/image'
 
-import manifest from '../../../../public/images/reais/manifest.json'
-
-const galleryImages = Object.values(manifest.categorias)
-  .flat()
-  .filter(img => img.usada_em === null && img.categoria !== 'logo-cliente' && img.categoria !== 'descartar')
-  .map(img => ({
-    src: `/images/reais/${img.arquivo}`,
-    alt: img.descricao,
-    category: img.categoria
-  }))
+const galleryImages = [
+  {
+    "src": "/images/reais/paes-03.jpg",
+    "alt": "Foto real de paes (fonteB-24.jpg)",
+    "category": "paes"
+  },
+  {
+    "src": "/images/reais/paes-04.jpg",
+    "alt": "Foto real de paes (fonteB-16.jpg)",
+    "category": "paes"
+  },
+  {
+    "src": "/images/reais/paes-05.jpg",
+    "alt": "Foto real de paes (fonteB-05.jpg)",
+    "category": "paes"
+  },
+  {
+    "src": "/images/reais/paes-06.jpg",
+    "alt": "Foto real de paes (fonteB-12.jpg)",
+    "category": "paes"
+  },
+  {
+    "src": "/images/reais/sanduiches-01.jpg",
+    "alt": "Foto real de sanduiches (fonteB-23.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-02.jpg",
+    "alt": "Foto real de sanduiches (fonteB-09.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-03.jpg",
+    "alt": "Foto real de sanduiches (fonteB-08.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-04.jpg",
+    "alt": "Foto real de sanduiches (fonteB-19.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-05.jpg",
+    "alt": "Foto real de sanduiches (fonteB-27.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-06.jpg",
+    "alt": "Foto real de sanduiches (fonteB-17.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-07.jpg",
+    "alt": "Foto real de sanduiches (fonteB-29.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-08.jpg",
+    "alt": "Foto real de sanduiches (fonteB-11.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-09.jpg",
+    "alt": "Foto real de sanduiches (fonteB-10.jpg)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-11.png",
+    "alt": "Foto real de sanduiches (fonteC-p03-08.png)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-12.png",
+    "alt": "Foto real de sanduiches (fonteC-p03-06.png)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-13.png",
+    "alt": "Foto real de sanduiches (fonteC-p03-07.png)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-14.png",
+    "alt": "Foto real de sanduiches (fonteC-p03-05.png)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-15.png",
+    "alt": "Foto real de sanduiches (fonteC-p03-04.png)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/sanduiches-16.png",
+    "alt": "Foto real de sanduiches (fonteC-p03-03.png)",
+    "category": "sanduiches"
+  },
+  {
+    "src": "/images/reais/salgados-03.jpg",
+    "alt": "Foto real de salgados (fonteB-14.jpg)",
+    "category": "salgados"
+  },
+  {
+    "src": "/images/reais/salgados-04.jpg",
+    "alt": "Foto real de salgados (fonteB-04.jpg)",
+    "category": "salgados"
+  },
+  {
+    "src": "/images/reais/salgados-06.png",
+    "alt": "Foto real de salgados (fonteC-p13-11.png)",
+    "category": "salgados"
+  },
+  {
+    "src": "/images/reais/salgados-07.png",
+    "alt": "Foto real de salgados (fonteC-p13-12.png)",
+    "category": "salgados"
+  },
+  {
+    "src": "/images/reais/salgados-08.png",
+    "alt": "Foto real de salgados (fonteC-p13-13.png)",
+    "category": "salgados"
+  },
+  {
+    "src": "/images/reais/doces-bolos-02.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-26.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-03.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-03.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-04.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-02.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-05.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-28.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-06.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-15.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-07.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-01.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-08.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-06.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-09.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-07.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-10.jpg",
+    "alt": "Foto real de doces-bolos (fonteB-13.jpg)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-12.png",
+    "alt": "Foto real de doces-bolos (fonteC-p16-17.png)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-13.png",
+    "alt": "Foto real de doces-bolos (fonteC-p16-16.png)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-14.png",
+    "alt": "Foto real de doces-bolos (fonteC-p16-18.png)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-15.png",
+    "alt": "Foto real de doces-bolos (fonteC-p16-19.png)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/doces-bolos-16.png",
+    "alt": "Foto real de doces-bolos (fonteC-p16-20.png)",
+    "category": "doces-bolos"
+  },
+  {
+    "src": "/images/reais/ambiente-fachada-02.jpg",
+    "alt": "Foto real de ambiente-fachada (fonteA-servico-01.jpg)",
+    "category": "ambiente-fachada"
+  }
+];
 
 export default function GallerySection() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null)

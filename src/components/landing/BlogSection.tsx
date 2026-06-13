@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Coffee, Utensils, ShoppingBag, Info } from 'lucide-react'
 
 interface BlogPost {
   id: string
@@ -32,7 +33,7 @@ const blogPosts: BlogPost[] = [
     category: 'Gastronomia',
     readTime: '5 min',
     date: '10 Mai 2026',
-    image: '/images/reais/sanduiches-02.jpg',
+    image: '',
   },
   {
     id: '3',
@@ -151,19 +152,33 @@ export default function BlogSection() {
                     overflow: 'hidden',
                   }}
                 >
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    loading="lazy"
-                    style={{
+                  {post.image ? (
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      loading="lazy"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease',
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
+                    />
+                  ) : (
+                    <div style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s ease',
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
-                  />
+                      background: 'linear-gradient(135deg, #2C1A0E, #1A0F08)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'rgba(201,168,76,0.3)',
+                    }}>
+                      <Coffee size={48} strokeWidth={1} />
+                    </div>
+                  )}
                   <div style={{
                     position: 'absolute',
                     bottom: 0,
