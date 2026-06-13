@@ -7,13 +7,15 @@ export interface CartItem {
   name: string
   price: number
   quantity: number
+  cat?: string
+  unit?: string
 }
 
 interface CartContextData {
   cart: CartItem[]
   cartOpen: boolean
   setCartOpen: (open: boolean) => void
-  addToCart: (item: { id: string; name: string; price: number }) => void
+  addToCart: (item: { id: string; name: string; price: number; cat?: string; unit?: string }) => void
   updateQty: (id: string, delta: number) => void
   removeItem: (id: string) => void
   clearCart: () => void
@@ -27,7 +29,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [cart, setCart] = useState<CartItem[]>([])
   const [cartOpen, setCartOpen] = useState(false)
 
-  const addToCart = (item: { id: string; name: string; price: number }) => {
+  const addToCart = (item: { id: string; name: string; price: number; cat?: string; unit?: string }) => {
     if (item.price === 0) return
     setCart((prev) => {
       const existing = prev.find((c) => c.id === item.id)

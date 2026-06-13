@@ -5,6 +5,7 @@ import SpecialSandwiches from '../components/landing/SpecialSandwiches'
 import ServicesSection from '../components/landing/ServicesSection'
 import MenuSection from '../components/landing/MenuSection'
 import TraditionSection from '../components/landing/TraditionSection'
+import GallerySection from '../components/landing/GallerySection'
 import ClientsSection from '../components/landing/ClientsSection'
 import ReviewsSection from '../components/landing/ReviewsSection'
 import DeliverySection from '../components/landing/DeliverySection'
@@ -31,6 +32,7 @@ export default function HomePage() {
           <ServicesSection />
           <MenuSection />
           <TraditionSection />
+          <GallerySection />
           <ClientsSection />
           <ReviewsSection />
           <BlogSection />

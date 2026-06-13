@@ -59,10 +59,6 @@ export const metadata: Metadata = {
     images: ['/og-image.jpg'],
   },
   manifest: '/manifest.json',
-  icons: {
-    icon: '/favicon.ico',
-    apple: '/icons/icon-192x192.png',
-  },
   alternates: {
     canonical: 'https://novapaokent.com.br',
   },

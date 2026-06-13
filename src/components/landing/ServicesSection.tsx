@@ -2,22 +2,24 @@
 
 import { ArrowRight } from 'lucide-react'
 
+
+
 const services = [
   {
     title: 'Padaria',
-    image: '/padaria-breads.png',
+    image: '/images/reais/ambiente-fachada-01.jpg',
     description:
       'Nossos pães artesanais são assados diariamente para garantir frescor e sabor. Escolha entre uma variedade de opções, incluindo clássicos, como pão francês, baguetes, ciabatas e etc.',
   },
   {
     title: 'Festas',
-    image: '/festas-sandwiches.png',
+    image: '/images/reais/salgados-02.jpg',
     description:
       'Surpreenda seus convidados com nossos sanduíches de qualidade para festas. De mini sanduíches a sanduíches de metro, temos opções deliciosas para todas as ocasiões.',
   },
   {
     title: 'Salgados e Doces',
-    image: '/doces-sobremesas.png',
+    image: '/images/reais/doces-bolos-01.jpg',
     description:
       'De bolos a doces caseiros, nossa seleção de sobremesas artesanais irá satisfazer seus desejos mais doces. Experimente uma variedade de sabores e deixe-se levar pelo prazer dos doces.',
   },

@@ -202,7 +202,7 @@ export default function SpecialSandwiches() {
                   borderRadius: '10px',
                   marginBottom: '20px',
                   background: 'rgba(255,255,255,0.05)',
-                  backgroundImage: 'url(/sandwich-premium.jpg)',
+                  backgroundImage: `url('/images/reais/sanduiches-0${index + 3}.jpg')`,
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   position: 'relative',

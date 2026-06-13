@@ -123,7 +123,7 @@ export default function TraditionSection() {
                 paddingBottom: '120%',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                backgroundImage: 'url(/bakery-facade.jpg)',
+                backgroundImage: `url('/images/reais/ambiente-fachada-02.jpg')`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
                 boxShadow: '0 40px 80px rgba(44,26,14,0.2)',

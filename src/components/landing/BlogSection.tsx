@@ -22,7 +22,7 @@ const blogPosts: BlogPost[] = [
     category: 'Tradição',
     readTime: '4 min',
     date: '15 Mai 2026',
-    image: '/images/blog-padaria.png',
+    image: '/images/reais/paes-01.jpg',
   },
   {
     id: '2',
@@ -32,7 +32,7 @@ const blogPosts: BlogPost[] = [
     category: 'Gastronomia',
     readTime: '5 min',
     date: '10 Mai 2026',
-    image: '/images/blog-cafe.png',
+    image: '/images/reais/sanduiches-02.jpg',
   },
   {
     id: '3',
@@ -42,7 +42,7 @@ const blogPosts: BlogPost[] = [
     category: 'Encomendas',
     readTime: '3 min',
     date: '5 Mai 2026',
-    image: '/images/blog-festas.png',
+    image: '/images/reais/salgados-01.jpg',
   },
   {
     id: '4',
@@ -52,7 +52,7 @@ const blogPosts: BlogPost[] = [
     category: 'Delivery',
     readTime: '3 min',
     date: '28 Abr 2026',
-    image: '/images/blog-delivery.png',
+    image: '/images/reais/paes-02.jpg',
   },
 ]
 
