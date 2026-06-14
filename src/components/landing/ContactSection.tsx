@@ -1,6 +1,7 @@
 // Seção de Contato da Padaria Nova Paokent
 'use client'
 
+import { useState, useEffect } from 'react'
 import { Phone, MapPin } from 'lucide-react'
 import BakeryLogo from '../ui/BakeryLogo'
 
@@ -28,6 +29,20 @@ const WHATSAPP_URL = 'https://wa.me/5511976535789'
 const INSTAGRAM_URL = 'https://www.instagram.com/novapaokent'
 
 export default function ContactSection() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    const checkStatus = () => {
+      const now = new Date()
+      const hour = now.getHours()
+      setIsOpen(hour >= 6 && hour < 22)
+    }
+    
+    checkStatus()
+    const interval = setInterval(checkStatus, 60000)
+    return () => clearInterval(interval)
+  }, [])
+
   return (
     <footer
       id="contato"
@@ -196,8 +211,8 @@ export default function ContactSection() {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '8px',
-                background: 'rgba(34,197,94,0.1)',
-                border: '1px solid rgba(34,197,94,0.3)',
+                background: isOpen ? 'rgba(34,197,94,0.1)' : 'rgba(239,68,68,0.1)',
+                border: `1px solid ${isOpen ? 'rgba(34,197,94,0.3)' : 'rgba(239,68,68,0.3)'}`,
                 borderRadius: '8px',
                 padding: '6px 12px',
               }}
@@ -207,12 +222,12 @@ export default function ContactSection() {
                   width: '8px',
                   height: '8px',
                   borderRadius: '50%',
-                  background: '#22C55E',
+                  background: isOpen ? '#22C55E' : '#EF4444',
                   display: 'inline-block',
                 }}
               />
-              <span style={{ color: '#22C55E', fontSize: '12px', fontWeight: '600' }}>
-                Aberto agora
+              <span style={{ color: isOpen ? '#22C55E' : '#EF4444', fontSize: '12px', fontWeight: '600' }}>
+                {isOpen ? 'Aberto agora' : 'Fechado agora'}
               </span>
             </div>
           </div>
