@@ -42,7 +42,7 @@ export default function BakeryLogo({
       }}
     >
       <img
-        src="/images/logos/LogoFundoTransparente.png"
+        src="/images/logos/LogoFundoBranco.jpeg"
         alt="Padaria Nova Pão Kent"
         width={displayWidth}
         height={displayHeight}
