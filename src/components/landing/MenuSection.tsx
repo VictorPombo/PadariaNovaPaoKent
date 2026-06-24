@@ -66,6 +66,7 @@ const categories = [
   { id: 'sal', label: 'Saladas', iconId: 'sal' },
   { id: 'salg', label: 'Salgados', iconId: 'salg' },
   { id: 'sob', label: 'Sobremesas', iconId: 'sob' },
+  { id: 'mini', label: 'Mini Lanches', iconId: 'mini' },
 ]
 
 const categoryIcons: Record<string, React.ComponentType<{ size?: number; style?: React.CSSProperties }>> = {
@@ -78,6 +79,7 @@ const categoryIcons: Record<string, React.ComponentType<{ size?: number; style?:
   sal: Leaf, // Saladas
   salg: Cookie, // Salgados
   sob: Cake, // Sobremesas
+  mini: Star, // Mini Lanches
 }
 
 const menuItems = [
@@ -140,6 +142,11 @@ const menuItems = [
   { id: 'o1', cat: 'sob', name: 'Pedaço de Bolo', price: 'R$ 12,50', tags: [] },
   { id: 'o2', cat: 'sob', name: 'Salada de Frutas', price: 'R$ 20,90', tags: [] },
   { id: 'o3', cat: 'sob', name: 'Mamão em Pedaços', price: 'R$ 16,90', tags: [] },
+  // Mini Lanches
+  { id: 'ml1', cat: 'mini', name: 'Mini Sanduíche Tipo 1', price: 'R$ 103,00', tags: ['especial'], unit: 'KG' },
+  { id: 'ml2', cat: 'mini', name: 'Mini Sanduíche Tipo 2', price: 'R$ 102,00', tags: [], unit: 'KG' },
+  { id: 'ml3', cat: 'mini', name: 'Mini Salgadinhos Diversos', price: 'R$ 1,75', tags: ['top_vendas'], unit: 'UN' },
+  { id: 'ml4', cat: 'mini', name: 'Mini Pão de Queijo', price: 'R$ 76,00', tags: ['mais_vendido'], unit: 'KG' },
 ]
 
 const tagLabels: Record<string, { label: string; color: string; icon: any }> = {
@@ -173,7 +180,7 @@ export default function MenuSection() {
   const addToCart = (item: typeof menuItems[0]) => {
     const price = parsePrice(item.price)
     if (price === 0) return
-    addGlobalCart({ id: item.id, name: item.name, price })
+    addGlobalCart({ id: item.id, name: item.name, price, cat: item.cat, unit: (item as any).unit || 'UN' })
   }
 
   // COLLAPSED / CLOSED STATE (DARK BANNER)
@@ -627,7 +634,7 @@ export default function MenuSection() {
                     marginBottom: '16px',
                   }}
                 >
-                  {item.price}
+                  {item.price} {(item as any).unit && <span style={{ fontSize: '14px', color: 'rgba(250,246,239,0.5)' }}>/ {(item as any).unit}</span>}
                 </p>
 
                 {/* Botão Adicionar */}

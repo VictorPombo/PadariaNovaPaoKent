@@ -39,6 +39,8 @@ export default function RevenuePage() {
     counterRevenue: 0,
     deliveryRevenue: 0,
     diningRevenue: 0,
+    redeRevenue: 0,
+    redeTransactions: [] as { type: string; value: number; count: number }[],
     dailyTrends: [] as { day: string; v: number }[]
   })
 
@@ -60,6 +62,12 @@ export default function RevenuePage() {
           { day: 'Sex', v: 5890 },
           { day: 'Sáb', v: 6340 },
           { day: 'Dom', v: 4070 },
+        ],
+        redeRevenue: 42500.50,
+        redeTransactions: [
+          { type: 'Crédito', value: 25000.00, count: 450 },
+          { type: 'Débito', value: 12000.00, count: 320 },
+          { type: 'Voucher', value: 5500.50, count: 180 },
         ]
       });
       setLoading(false);
@@ -92,7 +100,9 @@ export default function RevenuePage() {
             { day: 'Sáb', v: 7200 },
             { day: 'Dom', v: 8100 },
             { day: 'Seg', v: 4900 }
-          ]
+          ],
+          redeRevenue: 0,
+          redeTransactions: []
         })
         return
       }
@@ -125,7 +135,13 @@ export default function RevenuePage() {
         counterRevenue,
         deliveryRevenue,
         diningRevenue,
-        dailyTrends
+        dailyTrends,
+        redeRevenue: 42500.50, // mock fallback
+        redeTransactions: [
+          { type: 'Crédito', value: 25000.00, count: 450 },
+          { type: 'Débito', value: 12000.00, count: 320 },
+          { type: 'Voucher', value: 5500.50, count: 180 },
+        ]
       })
     } catch (err) {
       console.error(err)
@@ -272,6 +288,40 @@ export default function RevenuePage() {
               </ResponsiveContainer>
             )}
           </div>
+        </div>
+      </div>
+
+      {/* Rede Dashboard Integration */}
+      <div className="mt-8 pt-8 border-t border-white/[0.06]">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h2 className="text-xl lg:text-2xl font-bold text-[#FAF6EF]" style={{ fontFamily: 'var(--font-serif)' }}>Integração Maquininhas (Rede)</h2>
+            <p className="text-xs text-[#888] mt-1">Transações processadas via API da Rede. Requer configuração das chaves de API.</p>
+          </div>
+          <span className="px-3 py-1 bg-yellow-500/10 text-yellow-500 text-[10px] font-bold tracking-widest uppercase rounded-full border border-yellow-500/20">
+            Aguardando Chaves API
+          </span>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
+          <div className="p-5 rounded-2xl border border-white/[0.06] bg-[#1A0F08]/40 backdrop-blur-sm col-span-1 sm:col-span-1 flex flex-col justify-center">
+            <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">Total Maquininhas</span>
+            <span className="text-2xl font-bold text-[#C9A84C] mt-2 block" style={{ fontFamily: 'var(--font-serif)' }}>
+              {formatCurrency(data.redeRevenue || 0)}
+            </span>
+          </div>
+
+          {data.redeTransactions?.map((tx, idx) => (
+            <div key={idx} className="p-5 rounded-2xl border border-white/[0.06] bg-[#1A0F08]/40 backdrop-blur-sm flex justify-between items-center">
+              <div>
+                <span className="text-[10px] font-bold text-neutral-500 uppercase tracking-widest">{tx.type}</span>
+                <span className="text-lg font-bold text-[#FAF6EF] mt-1 block">
+                  {formatCurrency(tx.value)}
+                </span>
+                <span className="text-xs text-neutral-500 mt-1">{tx.count} transações</span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

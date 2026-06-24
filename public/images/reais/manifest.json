@@ -1,0 +1,531 @@
+{
+  "categorias": {
+    "paes": [
+      {
+        "id": "paes-01",
+        "arquivo": "paes-01.jpg",
+        "fonte": "fonteB-22.jpg",
+        "descricao": "Foto real de paes (fonteB-22.jpg)",
+        "categoria": "paes",
+        "src": "/images/reais/paes-01.jpg",
+        "usada_em": "website"
+      },
+      {
+        "id": "paes-02",
+        "arquivo": "paes-02.jpg",
+        "fonte": "fonteB-20.jpg",
+        "descricao": "Foto real de paes (fonteB-20.jpg)",
+        "categoria": "paes",
+        "src": "/images/reais/paes-02.jpg",
+        "usada_em": "website"
+      },
+      {
+        "id": "paes-03",
+        "arquivo": "paes-03.jpg",
+        "fonte": "fonteB-24.jpg",
+        "descricao": "Foto real de paes (fonteB-24.jpg)",
+        "categoria": "paes",
+        "src": "/images/reais/paes-03.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "paes-04",
+        "arquivo": "paes-04.jpg",
+        "fonte": "fonteB-16.jpg",
+        "descricao": "Foto real de paes (fonteB-16.jpg)",
+        "categoria": "paes",
+        "src": "/images/reais/paes-04.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "paes-05",
+        "arquivo": "paes-05.jpg",
+        "fonte": "fonteB-05.jpg",
+        "descricao": "Foto real de paes (fonteB-05.jpg)",
+        "categoria": "paes",
+        "src": "/images/reais/paes-05.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "paes-06",
+        "arquivo": "paes-06.jpg",
+        "fonte": "fonteB-12.jpg",
+        "descricao": "Foto real de paes (fonteB-12.jpg)",
+        "categoria": "paes",
+        "src": "/images/reais/paes-06.jpg",
+        "usada_em": null
+      }
+    ],
+    "sanduiches": [
+      {
+        "id": "sanduiches-01",
+        "arquivo": "sanduiches-01.jpg",
+        "fonte": "fonteB-23.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-23.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-01.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-02",
+        "arquivo": "sanduiches-02.jpg",
+        "fonte": "fonteB-09.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-09.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-02.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-03",
+        "arquivo": "sanduiches-03.jpg",
+        "fonte": "fonteB-08.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-08.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-03.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-04",
+        "arquivo": "sanduiches-04.jpg",
+        "fonte": "fonteB-19.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-19.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-04.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-05",
+        "arquivo": "sanduiches-05.jpg",
+        "fonte": "fonteB-27.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-27.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-05.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-06",
+        "arquivo": "sanduiches-06.jpg",
+        "fonte": "fonteB-17.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-17.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-06.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-07",
+        "arquivo": "sanduiches-07.jpg",
+        "fonte": "fonteB-29.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-29.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-07.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-08",
+        "arquivo": "sanduiches-08.jpg",
+        "fonte": "fonteB-11.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-11.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-08.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-09",
+        "arquivo": "sanduiches-09.jpg",
+        "fonte": "fonteB-10.jpg",
+        "descricao": "Foto real de sanduiches (fonteB-10.jpg)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-09.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-10",
+        "arquivo": "sanduiches-10.png",
+        "fonte": "fonteC-p02-02.png",
+        "descricao": "Foto real de sanduiches (fonteC-p02-02.png)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-10.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "sanduiches-11",
+        "arquivo": "sanduiches-11.png",
+        "fonte": "fonteC-p03-08.png",
+        "descricao": "Foto real de sanduiches (fonteC-p03-08.png)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-11.png",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-12",
+        "arquivo": "sanduiches-12.png",
+        "fonte": "fonteC-p03-06.png",
+        "descricao": "Foto real de sanduiches (fonteC-p03-06.png)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-12.png",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-13",
+        "arquivo": "sanduiches-13.png",
+        "fonte": "fonteC-p03-07.png",
+        "descricao": "Foto real de sanduiches (fonteC-p03-07.png)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-13.png",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-14",
+        "arquivo": "sanduiches-14.png",
+        "fonte": "fonteC-p03-05.png",
+        "descricao": "Foto real de sanduiches (fonteC-p03-05.png)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-14.png",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-15",
+        "arquivo": "sanduiches-15.png",
+        "fonte": "fonteC-p03-04.png",
+        "descricao": "Foto real de sanduiches (fonteC-p03-04.png)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-15.png",
+        "usada_em": null
+      },
+      {
+        "id": "sanduiches-16",
+        "arquivo": "sanduiches-16.png",
+        "fonte": "fonteC-p03-03.png",
+        "descricao": "Foto real de sanduiches (fonteC-p03-03.png)",
+        "categoria": "sanduiches",
+        "src": "/images/reais/sanduiches-16.png",
+        "usada_em": null
+      }
+    ],
+    "salgados": [
+      {
+        "id": "salgados-01",
+        "arquivo": "salgados-01.jpg",
+        "fonte": "fonteB-18.jpg",
+        "descricao": "Foto real de salgados (fonteB-18.jpg)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-01.jpg",
+        "usada_em": "website"
+      },
+      {
+        "id": "salgados-02",
+        "arquivo": "salgados-02.jpg",
+        "fonte": "fonteB-25.jpg",
+        "descricao": "Foto real de salgados (fonteB-25.jpg)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-02.jpg",
+        "usada_em": "website"
+      },
+      {
+        "id": "salgados-03",
+        "arquivo": "salgados-03.jpg",
+        "fonte": "fonteB-14.jpg",
+        "descricao": "Foto real de salgados (fonteB-14.jpg)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-03.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "salgados-04",
+        "arquivo": "salgados-04.jpg",
+        "fonte": "fonteB-04.jpg",
+        "descricao": "Foto real de salgados (fonteB-04.jpg)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-04.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "salgados-05",
+        "arquivo": "salgados-05.png",
+        "fonte": "fonteC-p13-14.png",
+        "descricao": "Foto real de salgados (fonteC-p13-14.png)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-05.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "salgados-06",
+        "arquivo": "salgados-06.png",
+        "fonte": "fonteC-p13-11.png",
+        "descricao": "Foto real de salgados (fonteC-p13-11.png)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-06.png",
+        "usada_em": null
+      },
+      {
+        "id": "salgados-07",
+        "arquivo": "salgados-07.png",
+        "fonte": "fonteC-p13-12.png",
+        "descricao": "Foto real de salgados (fonteC-p13-12.png)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-07.png",
+        "usada_em": null
+      },
+      {
+        "id": "salgados-08",
+        "arquivo": "salgados-08.png",
+        "fonte": "fonteC-p13-13.png",
+        "descricao": "Foto real de salgados (fonteC-p13-13.png)",
+        "categoria": "salgados",
+        "src": "/images/reais/salgados-08.png",
+        "usada_em": null
+      }
+    ],
+    "doces-bolos": [
+      {
+        "id": "doces-bolos-01",
+        "arquivo": "doces-bolos-01.jpg",
+        "fonte": "fonteB-21.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-21.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-01.jpg",
+        "usada_em": "website"
+      },
+      {
+        "id": "doces-bolos-02",
+        "arquivo": "doces-bolos-02.jpg",
+        "fonte": "fonteB-26.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-26.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-02.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-03",
+        "arquivo": "doces-bolos-03.jpg",
+        "fonte": "fonteB-03.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-03.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-03.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-04",
+        "arquivo": "doces-bolos-04.jpg",
+        "fonte": "fonteB-02.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-02.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-04.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-05",
+        "arquivo": "doces-bolos-05.jpg",
+        "fonte": "fonteB-28.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-28.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-05.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-06",
+        "arquivo": "doces-bolos-06.jpg",
+        "fonte": "fonteB-15.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-15.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-06.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-07",
+        "arquivo": "doces-bolos-07.jpg",
+        "fonte": "fonteB-01.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-01.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-07.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-08",
+        "arquivo": "doces-bolos-08.jpg",
+        "fonte": "fonteB-06.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-06.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-08.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-09",
+        "arquivo": "doces-bolos-09.jpg",
+        "fonte": "fonteB-07.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-07.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-09.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-10",
+        "arquivo": "doces-bolos-10.jpg",
+        "fonte": "fonteB-13.jpg",
+        "descricao": "Foto real de doces-bolos (fonteB-13.jpg)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-10.jpg",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-11",
+        "arquivo": "doces-bolos-11.png",
+        "fonte": "fonteC-p16-15.png",
+        "descricao": "Foto real de doces-bolos (fonteC-p16-15.png)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-11.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "doces-bolos-12",
+        "arquivo": "doces-bolos-12.png",
+        "fonte": "fonteC-p16-17.png",
+        "descricao": "Foto real de doces-bolos (fonteC-p16-17.png)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-12.png",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-13",
+        "arquivo": "doces-bolos-13.png",
+        "fonte": "fonteC-p16-16.png",
+        "descricao": "Foto real de doces-bolos (fonteC-p16-16.png)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-13.png",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-14",
+        "arquivo": "doces-bolos-14.png",
+        "fonte": "fonteC-p16-18.png",
+        "descricao": "Foto real de doces-bolos (fonteC-p16-18.png)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-14.png",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-15",
+        "arquivo": "doces-bolos-15.png",
+        "fonte": "fonteC-p16-19.png",
+        "descricao": "Foto real de doces-bolos (fonteC-p16-19.png)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-15.png",
+        "usada_em": null
+      },
+      {
+        "id": "doces-bolos-16",
+        "arquivo": "doces-bolos-16.png",
+        "fonte": "fonteC-p16-20.png",
+        "descricao": "Foto real de doces-bolos (fonteC-p16-20.png)",
+        "categoria": "doces-bolos",
+        "src": "/images/reais/doces-bolos-16.png",
+        "usada_em": null
+      }
+    ],
+    "cafe-bebidas": [],
+    "ambiente-fachada": [
+      {
+        "id": "ambiente-fachada-01",
+        "arquivo": "ambiente-fachada-01.jpg",
+        "fonte": "fonteA-servico-02.jpg",
+        "descricao": "Foto real de ambiente-fachada (fonteA-servico-02.jpg)",
+        "categoria": "ambiente-fachada",
+        "src": "/images/reais/ambiente-fachada-01.jpg",
+        "usada_em": "website"
+      },
+      {
+        "id": "ambiente-fachada-02",
+        "arquivo": "ambiente-fachada-02.jpg",
+        "fonte": "fonteA-servico-01.jpg",
+        "descricao": "Foto real de ambiente-fachada (fonteA-servico-01.jpg)",
+        "categoria": "ambiente-fachada",
+        "src": "/images/reais/ambiente-fachada-02.jpg",
+        "usada_em": null
+      }
+    ],
+    "logo-cliente": [
+      {
+        "id": "logo-cliente-01",
+        "arquivo": "logo-cliente-01.png",
+        "fonte": "fonteA-cliente-08.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-08.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-01.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-02",
+        "arquivo": "logo-cliente-02.png",
+        "fonte": "fonteA-cliente-09.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-09.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-02.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-03",
+        "arquivo": "logo-cliente-03.png",
+        "fonte": "fonteA-cliente-01.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-01.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-03.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-04",
+        "arquivo": "logo-cliente-04.png",
+        "fonte": "fonteA-cliente-02.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-02.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-04.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-05",
+        "arquivo": "logo-cliente-05.png",
+        "fonte": "fonteA-cliente-03.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-03.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-05.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-06",
+        "arquivo": "logo-cliente-06.png",
+        "fonte": "fonteA-cliente-07.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-07.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-06.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-07",
+        "arquivo": "logo-cliente-07.png",
+        "fonte": "fonteA-cliente-06.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-06.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-07.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-08",
+        "arquivo": "logo-cliente-08.png",
+        "fonte": "fonteA-cliente-04.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-04.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-08.png",
+        "usada_em": "website"
+      },
+      {
+        "id": "logo-cliente-09",
+        "arquivo": "logo-cliente-09.png",
+        "fonte": "fonteA-cliente-05.png",
+        "descricao": "Foto real de logo-cliente (fonteA-cliente-05.png)",
+        "categoria": "logo-cliente",
+        "src": "/images/reais/logo-cliente-09.png",
+        "usada_em": "website"
+      }
+    ],
+    "descartar": []
+  }
+}

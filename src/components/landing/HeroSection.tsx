@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react'
 import { Award, Bike, ChefHat, ArrowDown } from 'lucide-react'
+import { getImagesByCategory } from '@/lib/imageManager'
 
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text=Olá!%20Quero%20fazer%20um%20pedido!'
 
@@ -49,7 +50,7 @@ export default function HeroSection() {
         style={{
           position: 'absolute',
           inset: 0,
-          backgroundImage: 'url(/hero-bread.jpg)',
+          backgroundImage: `url(${getImagesByCategory('produtos')[0]?.src || '/hero-bread.jpg'})`,
           backgroundSize: 'cover',
           backgroundPosition: 'center 30%',
           backgroundAttachment: 'fixed',

@@ -1,17 +1,17 @@
 'use client'
 
+import Image from 'next/image'
+
 const clients = [
-  // Row 1
-  { name: 'Radisson', subtitle: 'HOTELS & RESORTS', style: 'italic' as const },
-  { name: 'TATU BOLA', subtitle: 'BAR E GRELHA', style: 'bold' as const },
-  { name: 'Sheraton', subtitle: 'EST. 1937', style: 'serif' as const },
-  { name: 'CAPIM SANTO', subtitle: '', style: 'spaced' as const },
-  { name: 'Meliã', subtitle: '', style: 'serif' as const },
-  // Row 2
-  { name: 'Machado', subtitle: 'MEYER', style: 'bold' as const },
-  { name: 'Pippo Limone', subtitle: 'PIZZA · MEDITERRÂNEO', style: 'italic' as const },
-  { name: 'PRA TI FARIA', subtitle: 'BAR E BRASA', style: 'bold' as const },
-  { name: 'NossaCasa', subtitle: '', style: 'spaced' as const },
+  { name: 'Cliente 1', logo: '/images/reais/logo-cliente-01.png' },
+  { name: 'Cliente 2', logo: '/images/reais/logo-cliente-02.png' },
+  { name: 'Cliente 3', logo: '/images/reais/logo-cliente-03.png' },
+  { name: 'Cliente 4', logo: '/images/reais/logo-cliente-04.png' },
+  { name: 'Cliente 5', logo: '/images/reais/logo-cliente-05.png' },
+  { name: 'Cliente 6', logo: '/images/reais/logo-cliente-06.png' },
+  { name: 'Cliente 7', logo: '/images/reais/logo-cliente-07.png' },
+  { name: 'Cliente 8', logo: '/images/reais/logo-cliente-08.png' },
+  { name: 'Cliente 9', logo: '/images/reais/logo-cliente-09.png' },
 ]
 
 const nameStyles: Record<string, React.CSSProperties> = {
@@ -132,23 +132,9 @@ export default function ClientsSection() {
                 el.style.transform = 'translateY(0)'
               }}
             >
-              <span style={{ ...nameStyles[client.style], textAlign: 'center', lineHeight: '1.2' }}>
-                {client.name}
-              </span>
-              {client.subtitle && (
-                <span
-                  style={{
-                    fontSize: '9px',
-                    fontWeight: '600',
-                    color: '#C9A84C',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.12em',
-                    textAlign: 'center',
-                  }}
-                >
-                  {client.subtitle}
-                </span>
-              )}
+              <div style={{ position: 'relative', width: '100%', height: '60px' }}>
+                <Image src={client.logo} alt={client.name} fill style={{ objectFit: 'contain' }} />
+              </div>
             </div>
           ))}
         </div>
@@ -193,23 +179,9 @@ export default function ClientsSection() {
                 el.style.transform = 'translateY(0)'
               }}
             >
-              <span style={{ ...nameStyles[client.style], textAlign: 'center', lineHeight: '1.2' }}>
-                {client.name}
-              </span>
-              {client.subtitle && (
-                <span
-                  style={{
-                    fontSize: '9px',
-                    fontWeight: '600',
-                    color: '#C9A84C',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.12em',
-                    textAlign: 'center',
-                  }}
-                >
-                  {client.subtitle}
-                </span>
-              )}
+              <div style={{ position: 'relative', width: '100%', height: '60px' }}>
+                <Image src={client.logo} alt={client.name} fill style={{ objectFit: 'contain' }} />
+              </div>
             </div>
           ))}
         </div>

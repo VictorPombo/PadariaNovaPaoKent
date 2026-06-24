@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { Trophy, Users, ClipboardList, Star } from 'lucide-react'
+import { Trophy, Users, ClipboardList, Star, Store } from 'lucide-react'
 
 const timelineEvents = [
   { year: '1993', title: 'A história começa', desc: 'A partir do dia 1 de agosto de 1993, a família abre as portas da Padaria Nova Pão Kent no Jardim Paulistano.' },
@@ -123,12 +123,18 @@ export default function TraditionSection() {
                 paddingBottom: '120%',
                 borderRadius: '20px',
                 overflow: 'hidden',
-                backgroundImage: 'url(/bakery-facade.jpg)',
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
+                background: 'linear-gradient(135deg, #2C1A0E, #1A0F08)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 boxShadow: '0 40px 80px rgba(44,26,14,0.2)',
+                position: 'relative',
               }}
-            />
+            >
+              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)', color: 'rgba(201,168,76,0.3)' }}>
+                <Store size={80} strokeWidth={1} />
+              </div>
+            </div>
             {/* Badge overlay */}
             <div
               style={{

@@ -45,6 +45,7 @@ export function CartSidebar() {
   const [wantsCpf, setWantsCpf] = useState(false)
   const [cpf, setCpf] = useState('')
   const [paymentMethod, setPaymentMethod] = useState('')
+  const [customerName, setCustomerName] = useState('')
 
   // Reset steps when closed or emptied
   useEffect(() => {
@@ -59,6 +60,7 @@ export function CartSidebar() {
       setWantsCpf(false)
       setCpf('')
       setPaymentMethod('')
+      setCustomerName('')
     }
   }, [cartOpen, cart.length])
 
@@ -138,6 +140,10 @@ export function CartSidebar() {
   }
 
   const sendWhatsApp = () => {
+    if (!customerName.trim()) {
+      alert('Por favor, informe seu nome.')
+      return
+    }
     if (!number.trim()) {
       alert('Por favor, informe o número do endereço.')
       return
@@ -159,6 +165,7 @@ export function CartSidebar() {
     msg += `*TOTAL A PAGAR: R$ ${total.toFixed(2).replace('.', ',')}*\n\n`
     
     const fullAddress = `${addressData.street}, ${number} ${complement ? `- ${complement}` : ''}\nBairro: ${addressData.neighborhood}\nCEP: ${cep}`
+    msg += `*CLIENTE:* ${customerName.trim()}\n`
     msg += `*ENDEREÇO PARA ENTREGA:*\n${fullAddress}\n\n`
     
     if (observations.trim()) {
@@ -176,6 +183,21 @@ export function CartSidebar() {
     window.open(`https://wa.me/${WHATSAPP_PHONE}?text=${encodeURIComponent(msg)}`, '_blank')
     setCartOpen(false)
     clearCart()
+  }
+
+  const miniLanchesKg = cart.filter(i => i.cat === 'mini' && i.unit === 'KG').reduce((acc, i) => acc + i.quantity, 0)
+  const miniLanchesUn = cart.filter(i => i.cat === 'mini' && i.unit === 'UN').reduce((acc, i) => acc + i.quantity, 0)
+  const hasMiniLanches = miniLanchesKg > 0 || miniLanchesUn > 0
+  
+  let miniLanchesWarning = ''
+  if (hasMiniLanches) {
+    if (miniLanchesKg < 1 && miniLanchesUn < 20) {
+      miniLanchesWarning = 'Atenção: O pedido mínimo para Mini Lanches é de 1kg ou 20 unidades.'
+    } else if (miniLanchesKg >= 4) {
+      miniLanchesWarning = 'Atenção: Para pedidos acima de 4kg de Mini Lanches, o prazo de entrega está sujeito a confirmação.'
+    } else {
+      miniLanchesWarning = 'Aviso: O prazo mínimo de preparação para Mini Lanches é de 2 horas.'
+    }
   }
 
   if (cart.length === 0) return null
@@ -326,6 +348,13 @@ export function CartSidebar() {
                   ))}
                 </div>
 
+                {miniLanchesWarning && (
+                  <div style={{ margin: '0 24px 16px', display: 'flex', gap: '8px', alignItems: 'flex-start', padding: '12px', background: 'rgba(234, 179, 8, 0.1)', border: '1px solid rgba(234, 179, 8, 0.3)', borderRadius: '8px' }}>
+                    <AlertCircle size={18} color="#EAB308" style={{ flexShrink: 0, marginTop: '2px' }} />
+                    <p style={{ color: '#EAB308', fontSize: '13px', margin: 0, lineHeight: '1.4', fontWeight: '500' }}>{miniLanchesWarning}</p>
+                  </div>
+                )}
+
                 <div
                   style={{
                     padding: '24px',
@@ -432,6 +461,17 @@ export function CartSidebar() {
 
                 <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
                   <div>
+                    <label style={{ display: 'block', color: 'rgba(250,246,239,0.8)', fontSize: '13px', marginBottom: '6px' }}>Seu Nome*</label>
+                    <input
+                      type="text"
+                      value={customerName}
+                      onChange={e => setCustomerName(e.target.value)}
+                      placeholder="Nome completo ou identificação"
+                      style={{ width: '100%', padding: '14px', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.15)', borderRadius: '8px', color: '#FAF6EF', fontSize: '15px', outline: 'none' }}
+                    />
+                  </div>
+
+                  <div>
                     <label style={{ display: 'block', color: 'rgba(250,246,239,0.6)', fontSize: '13px', marginBottom: '6px' }}>Rua e Bairro</label>
                     <div style={{ padding: '12px 16px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '8px', color: 'rgba(250,246,239,0.5)', fontSize: '15px' }}>
                       {addressData.street} - {addressData.neighborhood}
@@ -473,6 +513,8 @@ export function CartSidebar() {
                       <option value="Cartão de Crédito" style={{ background: '#1A0F08' }}>Cartão de Crédito</option>
                       <option value="Cartão de Débito" style={{ background: '#1A0F08' }}>Cartão de Débito</option>
                       <option value="Dinheiro" style={{ background: '#1A0F08' }}>Dinheiro</option>
+                      <option value="Voucher" style={{ background: '#1A0F08' }}>Voucher</option>
+                      <option value="Conta Assinada" style={{ background: '#1A0F08' }}>Conta Assinada</option>
                     </select>
                   </div>
 

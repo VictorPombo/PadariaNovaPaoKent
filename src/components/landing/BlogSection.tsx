@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { Coffee, Utensils, ShoppingBag, Info } from 'lucide-react'
 
 interface BlogPost {
   id: string
@@ -22,7 +23,7 @@ const blogPosts: BlogPost[] = [
     category: 'Tradição',
     readTime: '4 min',
     date: '15 Mai 2026',
-    image: '/images/blog-padaria.png',
+    image: '/images/reais/paes-01.jpg',
   },
   {
     id: '2',
@@ -32,7 +33,7 @@ const blogPosts: BlogPost[] = [
     category: 'Gastronomia',
     readTime: '5 min',
     date: '10 Mai 2026',
-    image: '/images/blog-cafe.png',
+    image: '/images/reais/paes-03.jpg',
   },
   {
     id: '3',
@@ -42,7 +43,7 @@ const blogPosts: BlogPost[] = [
     category: 'Encomendas',
     readTime: '3 min',
     date: '5 Mai 2026',
-    image: '/images/blog-festas.png',
+    image: '/images/reais/salgados-01.jpg',
   },
   {
     id: '4',
@@ -52,7 +53,7 @@ const blogPosts: BlogPost[] = [
     category: 'Delivery',
     readTime: '3 min',
     date: '28 Abr 2026',
-    image: '/images/blog-delivery.png',
+    image: '/images/reais/paes-02.jpg',
   },
 ]
 
@@ -151,19 +152,33 @@ export default function BlogSection() {
                     overflow: 'hidden',
                   }}
                 >
-                  <img
-                    src={post.image}
-                    alt={post.title}
-                    loading="lazy"
-                    style={{
+                  {post.image ? (
+                    <img
+                      src={post.image}
+                      alt={post.title}
+                      loading="lazy"
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        transition: 'transform 0.5s ease',
+                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)' }}
+                      onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
+                    />
+                  ) : (
+                    <div style={{
                       width: '100%',
                       height: '100%',
-                      objectFit: 'cover',
-                      transition: 'transform 0.5s ease',
-                    }}
-                    onMouseEnter={(e) => { e.currentTarget.style.transform = 'scale(1.05)' }}
-                    onMouseLeave={(e) => { e.currentTarget.style.transform = 'scale(1)' }}
-                  />
+                      background: 'linear-gradient(135deg, #2C1A0E, #1A0F08)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'rgba(201,168,76,0.3)',
+                    }}>
+                      <Coffee size={48} strokeWidth={1} />
+                    </div>
+                  )}
                   <div style={{
                     position: 'absolute',
                     bottom: 0,

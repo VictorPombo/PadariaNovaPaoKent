@@ -1,8 +1,9 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { miniSanduiches, paesDeMetro, salgados, doces, MenuCategory, MenuItem } from '@/data/eventsMenu'
 import { ArrowLeft, MessageCircle } from 'lucide-react'
+import { getImagesByCategory } from '@/lib/imageManager'
 
 const WHATSAPP_URL = 'https://wa.me/5511976535789?text='
 
@@ -13,6 +14,14 @@ function generateWhatsAppLink(category: string, item: string) {
 
 export default function EventsMenuClient() {
   const [activeTab, setActiveTab] = useState<string>('miniSanduiches')
+  const tabImages: Record<string, string> = {
+    miniSanduiches: '/images/reais/sanduiches-10.png',
+    paesDeMetro: '', // No coherent photo
+    salgados: '/images/reais/salgados-05.png',
+    doces: '/images/reais/doces-bolos-11.png',
+  }
+
+  const bannerImage = tabImages[activeTab]
 
   const tabs = [
     { id: 'miniSanduiches', label: 'Mini Sanduíches', data: miniSanduiches },
@@ -24,10 +33,34 @@ export default function EventsMenuClient() {
   const activeData = tabs.find(t => t.id === activeTab)?.data
 
   return (
-    <div style={{ minHeight: '100vh', background: '#1A0F08', color: '#FAF6EF', padding: '120px 24px 60px' }} className="paper-texture">
-      <div style={{ maxWidth: '1000px', margin: '0 auto' }}>
+    <div style={{ minHeight: '100vh', background: '#1A0F08', color: '#FAF6EF' }} className="paper-texture">
+      {/* Banner */}
+      <div style={{ 
+        width: '100%', 
+        height: '350px', 
+        backgroundImage: bannerImage ? `linear-gradient(to bottom, rgba(26,15,8,0.3), #1A0F08), url(${bannerImage})` : `linear-gradient(to bottom, rgba(26,15,8,0.3), #1A0F08)`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        position: 'relative',
+        display: 'flex',
+        alignItems: 'flex-end',
+        justifyContent: 'center',
+        paddingBottom: '40px'
+      }}>
+        <div style={{ textAlign: 'center', maxWidth: '800px', padding: '0 24px' }}>
+          <span style={{ color: '#C9A84C', fontSize: '12px', fontWeight: '700', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
+            Menu de Eventos 2026
+          </span>
+          <h1 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: '700', margin: '16px 0 0' }}>
+            Cardápio de <span style={{ background: 'linear-gradient(135deg, #C9A84C, #E2C06E)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Encomendas</span>
+          </h1>
+        </div>
+      </div>
+
+      <div style={{ maxWidth: '1000px', margin: '0 auto', padding: '40px 24px 60px' }}>
         
         <a 
+
           href="/#encomendas" 
           style={{ 
             display: 'inline-flex', 
@@ -43,17 +76,7 @@ export default function EventsMenuClient() {
           <ArrowLeft size={16} /> Voltar para o site
         </a>
 
-        <div style={{ textAlign: 'center', marginBottom: '48px' }}>
-          <span style={{ color: '#C9A84C', fontSize: '12px', fontWeight: '700', letterSpacing: '0.2em', textTransform: 'uppercase' }}>
-            Menu de Eventos 2026
-          </span>
-          <h1 style={{ fontFamily: 'var(--font-playfair)', fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: '700', margin: '16px 0' }}>
-            Cardápio de <span style={{ background: 'linear-gradient(135deg, #C9A84C, #E2C06E)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>Encomendas</span>
-          </h1>
-          <p style={{ color: 'rgba(250,246,239,0.6)', maxWidth: '600px', margin: '0 auto', fontSize: '16px' }}>
-            Escolha as melhores opções para sua festa ou reunião. Trabalhamos com ingredientes selecionados para garantir uma experiência inesquecível.
-          </p>
-        </div>
+
 
         {/* Tabs */}
         <div 
