@@ -57,6 +57,7 @@ export default function GaleriaPage() {
           {galeria.map((img, idx) => (
             <div 
               key={img.id + idx}
+              className="group"
               style={{
                 borderRadius: '16px',
                 overflow: 'hidden',
@@ -67,6 +68,7 @@ export default function GaleriaPage() {
               }}
             >
               <div 
+                className="group-hover:scale-105"
                 style={{
                   width: '100%',
                   height: '100%',
@@ -74,12 +76,6 @@ export default function GaleriaPage() {
                   backgroundSize: 'cover',
                   backgroundPosition: 'center',
                   transition: 'transform 0.5s ease',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)'
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)'
                 }}
               />
               <div 
