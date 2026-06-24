@@ -1,6 +1,7 @@
 import manifest from '../../public/images/reais/manifest.json';
 
-export type ImageCategory = keyof typeof manifest.categorias;
+export type ManifestCategory = keyof typeof manifest.categorias;
+export type ImageCategory = ManifestCategory | 'produtos' | 'eventos';
 
 export interface RealImage {
   id: string;
@@ -13,7 +14,29 @@ export interface RealImage {
  * Retorna todas as imagens de uma categoria específica.
  */
 export function getImagesByCategory(category: ImageCategory): RealImage[] {
-  return manifest.categorias[category] || [];
+  if (category === 'produtos') {
+    return [
+      ...getImagesByCategory('paes'),
+      ...getImagesByCategory('sanduiches'),
+      ...getImagesByCategory('salgados'),
+      ...getImagesByCategory('doces-bolos'),
+      ...getImagesByCategory('cafe-bebidas'),
+    ];
+  }
+  if (category === 'eventos') {
+    return [
+      ...getImagesByCategory('ambiente-fachada'),
+      ...getImagesByCategory('logo-cliente')
+    ];
+  }
+
+  const rawImages = manifest.categorias[category as ManifestCategory] || [];
+  return rawImages.map(raw => ({
+    id: raw.id,
+    src: raw.src,
+    alt: raw.descricao || raw.id,
+    tags: [raw.categoria, raw.usada_em].filter(Boolean) as string[]
+  }));
 }
 
 /**

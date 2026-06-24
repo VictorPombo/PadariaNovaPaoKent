@@ -33,7 +33,7 @@ const blogPosts: BlogPost[] = [
     category: 'Gastronomia',
     readTime: '5 min',
     date: '10 Mai 2026',
-    image: '',
+    image: '/images/reais/paes-03.jpg',
   },
   {
     id: '3',

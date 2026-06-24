@@ -26,7 +26,7 @@ export default function BakeryLogo({
 
   return (
     <Image
-      src={variant === 'white' ? '/LogoNovaPaoKent_WhiteText.png' : '/LogoNovaPaoKent.png'}
+      src={'/images/logos/LogoFundoTransparente.png'}
       alt="Padaria Nova Pão Kent"
       width={displayWidth}
       height={displayHeight}
